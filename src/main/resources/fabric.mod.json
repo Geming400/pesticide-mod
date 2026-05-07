@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "pesticides",
+	"version": "${version}",
+	"name": "Pesticides",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/pesticides/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"fr.geming400.pesticide.Pesticides"
+		],
+		"client": [
+			"fr.geming400.pesticide.client.PesticidesClient"
+		],
+		"fabric-datagen": [
+			"fr.geming400.pesticide.client.PesticidesDataGenerator"
+		]
+	},
+	"mixins": [
+		"pesticides.mixins.json",
+		{
+			"config": "pesticides.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
