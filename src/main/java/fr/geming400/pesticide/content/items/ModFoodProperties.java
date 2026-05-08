@@ -14,11 +14,13 @@ public final class ModFoodProperties {
             .onConsume(new ModConsumeEffects.PesticideConsumeEffect())
             .animation(ItemUseAnimation.DRINK)
             .sound(SoundEvents.GENERIC_DRINK)
+            .hasConsumeParticles(false)
             .build();
 
     public static final Consumable WATER_BOTTLE_LIKE_CONSUMABLE = Consumable.builder()
             .animation(ItemUseAnimation.DRINK)
             .sound(SoundEvents.GENERIC_DRINK)
+            .hasConsumeParticles(false)
             .build();
 
 
