@@ -3,6 +3,7 @@ package fr.geming400.pesticide.client.datagen;
 import fr.geming400.pesticide.Pesticides;
 import fr.geming400.pesticide.content.blocks.FaucetBlock;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
+import fr.geming400.pesticide.content.items.ModItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -11,10 +12,7 @@ import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.data.models.model.ModelLocationUtils;
-import net.minecraft.client.data.models.model.ModelTemplate;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.*;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
@@ -42,7 +40,8 @@ public final class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(@NonNull ItemModelGenerators itemModelGenerator) {
-
+        itemModelGenerator.generateFlatItem(ModItems.PESTICIDE_CONTAINER, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.EMPTY_PESTICIDE_CONTAINER, ModelTemplates.FLAT_ITEM);
     }
 
 

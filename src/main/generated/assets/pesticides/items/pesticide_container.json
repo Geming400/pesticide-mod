@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "pesticides:item/pesticide_container"
+  }
+}

@@ -13,7 +13,12 @@ import java.util.function.Function;
 public final class ModItems {
     public static final Item PESTICIDE_CONTAINER = register(
             "pesticide_container",
-            Item::new,
+            PesticideContainer::new,
+            new Item.Properties()
+    );
+    public static final Item EMPTY_PESTICIDE_CONTAINER = register(
+            "empty_pesticide_container",
+            PesticideContainer::new,
             new Item.Properties()
     );
 
