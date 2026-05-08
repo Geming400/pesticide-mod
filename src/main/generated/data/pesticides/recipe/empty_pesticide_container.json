@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pesticide_containers",
+  "key": {
+    "g": "#c:glass_blocks"
+  },
+  "pattern": [
+    "  g",
+    " gg",
+    " gg"
+  ],
+  "result": {
+    "count": 3,
+    "id": "pesticides:empty_pesticide_container"
+  }
+}

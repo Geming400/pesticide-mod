@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "faucet",
+  "key": {
+    "d": "#c:cobblestones/deepslate",
+    "i": "#c:nuggets/iron"
+  },
+  "pattern": [
+    "ddd",
+    " i "
+  ],
+  "result": {
+    "count": 3,
+    "id": "pesticides:faucet"
+  }
+}
