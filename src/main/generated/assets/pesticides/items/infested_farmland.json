@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "pesticides:block/infested_farmland"
+  }
+}

@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
@@ -24,6 +25,15 @@ public final class ModBlocks {
                     .noOcclusion()
                     .sound(SoundType.IRON)
                     .instabreak(),
+            true
+    );
+
+    public static final InfestedFarmBlock INFESTED_FARMLAND = register(
+            "infested_farmland",
+            InfestedFarmBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)
+                    .sound(SoundType.SUSPICIOUS_GRAVEL)
+                    .strength(0.5f),
             true
     );
 

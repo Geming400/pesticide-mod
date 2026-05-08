@@ -1,5 +1,6 @@
 {
   "block.pesticides.faucet": "Faucet",
+  "block.pesticides.infested_farmland": "Infested Farmland",
   "effect.pesticides.bad_farmer": "Bad Farmer",
   "item.pesticides.empty_container": "Empty Container",
   "item.pesticides.pesticide_container": "Pesticide Container",

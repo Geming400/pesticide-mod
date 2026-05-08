@@ -17,6 +17,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
@@ -36,6 +37,7 @@ public final class ModModelProvider extends FabricModelProvider {
                 ModBlocks.FAUCET,
                 createFaucetTextureMapping(Blocks.IRON_BLOCK, Blocks.COBBLED_DEEPSLATE)
         );
+        registerFarmland(generator, Blocks.DIRT, ModBlocks.INFESTED_FARMLAND);
     }
 
     @Override
@@ -74,6 +76,40 @@ public final class ModModelProvider extends FabricModelProvider {
 
         generator.blockStateOutput.accept(createFaucetBlockStates(faucetBlock, faucetModel, singleFaucetModel));
         generator.registerSimpleItemModel(faucetBlock, faucetModel);
+    }
+
+    private static void registerFarmland(BlockModelGenerators generator, Block dirtBlock, Block farmlandBlock) {
+        TextureMapping textureMapping = new TextureMapping()
+                .put(TextureSlot.DIRT, TextureMapping.getBlockTexture(dirtBlock))
+                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(farmlandBlock));
+
+        TextureMapping textureMapping2 = new TextureMapping()
+                .put(TextureSlot.DIRT, TextureMapping.getBlockTexture(dirtBlock))
+                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(farmlandBlock, "_moist"));
+
+        Identifier farmlandModel = ModelTemplates.FARMLAND.create(
+                farmlandBlock,
+                textureMapping,
+                generator.modelOutput
+        );
+        Identifier moistFarmlandModel = ModelTemplates.FARMLAND.create(
+                TextureMapping.getBlockTexture(farmlandBlock, "_moist"),
+                textureMapping2,
+                generator.modelOutput
+        );
+
+        MultiVariant farmlandVariant = BlockModelGenerators.plainVariant(farmlandModel);
+        MultiVariant moistFarmlandVariant = BlockModelGenerators.plainVariant(moistFarmlandModel);
+
+        generator.blockStateOutput
+                .accept(
+                        MultiVariantGenerator.dispatch(farmlandBlock)
+                                .with(
+                                        BlockModelGenerators.createEmptyOrFullDispatch(BlockStateProperties.MOISTURE, 7, moistFarmlandVariant, farmlandVariant)
+                                )
+                );
+
+        generator.registerSimpleItemModel(farmlandBlock, farmlandModel);
     }
 
     private static ModelTemplate block(String parent, TextureSlot... requiredTextureKeys) {

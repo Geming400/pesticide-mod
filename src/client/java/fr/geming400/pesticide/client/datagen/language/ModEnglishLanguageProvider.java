@@ -22,6 +22,7 @@ public class ModEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(ModEffects.BAD_FARMER.value(), "Bad Farmer");
 
         translationBuilder.add(ModBlocks.FAUCET, "Faucet");
+        translationBuilder.add(ModBlocks.INFESTED_FARMLAND, "Infested Farmland");
 
         translationBuilder.add(ModItems.EMPTY_CONTAINER, "Empty Container");
         translationBuilder.add(ModItems.WATER_CONTAINER, "Water Container");

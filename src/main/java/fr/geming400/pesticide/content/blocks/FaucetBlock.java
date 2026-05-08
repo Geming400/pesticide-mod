@@ -9,9 +9,11 @@ import fr.geming400.pesticide.content.items.PesticideContainer;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -20,6 +22,7 @@ import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -29,6 +32,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -44,6 +48,7 @@ public class FaucetBlock extends BaseEntityBlock {
     public static final int FIND_RADIUS = 5;
 
     public static final BooleanProperty SINGLE = BooleanProperty.create("single");
+    public static final BooleanProperty ENABLED = BooleanProperty.create("toggled");
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     private static final VoxelShape FULL_SHAPE = Block.box(0, 12, 0, 16, 14, 16);
@@ -51,6 +56,10 @@ public class FaucetBlock extends BaseEntityBlock {
 
     public FaucetBlock(Properties properties) {
         super(properties);
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(SINGLE, true)
+                .setValue(ENABLED, true)
+        );
     }
 
     @Override
@@ -63,7 +72,8 @@ public class FaucetBlock extends BaseEntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(
                 FACING,
-                SINGLE
+                SINGLE,
+                ENABLED
         );
     }
 
@@ -82,15 +92,40 @@ public class FaucetBlock extends BaseEntityBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         return this.defaultBlockState()
-                .setValue(FACING, blockPlaceContext.getHorizontalDirection())
-                .setValue(SINGLE, true);
+                .setValue(FACING, blockPlaceContext.getHorizontalDirection());
+    }
+
+    @Override
+    protected void neighborChanged(@NonNull BlockState blockState, Level level, @NonNull BlockPos blockPos, @NonNull Block block, @Nullable Orientation orientation, boolean bl) {
+        if (!level.isClientSide()) {
+            boolean isToggled = blockState.getValue(ENABLED);
+
+            if (isToggled == level.hasNeighborSignal(blockPos)) {
+                level.setBlock(blockPos, blockState.cycle(ENABLED), Block.UPDATE_CLIENTS);
+            }
+        }
+    }
+
+    private static void makeParticle(BlockState blockState, LevelAccessor levelAccessor, BlockPos blockPos, float f) {
+        if (!blockState.getValue(ENABLED)) {
+            Direction direction = blockState.getValue(FACING).getOpposite();
+            double d = blockPos.getX() + 0.5 + 0.1 * direction.getStepX();
+            double e = blockPos.getY() + 0.5 + 0.1 * direction.getStepY() + 0.2;
+            double g = blockPos.getZ() + 0.5 + 0.1 * direction.getStepZ();
+            levelAccessor.addParticle(new DustParticleOptions(0x540000, f), d, e, g, 0.0, 0.0, 0.0);
+        }
+    }
+
+    @Override
+    public void animateTick(@NonNull BlockState blockState, @NonNull Level level, @NonNull BlockPos blockPos, @NonNull RandomSource randomSource) {
+        makeParticle(blockState, level, blockPos, 0.5f);
     }
 
     @Override
     @NonNull
     protected InteractionResult useWithoutItem(@NonNull BlockState blockState, @NonNull Level level, @NonNull BlockPos blockPos, @NonNull Player player, @NonNull BlockHitResult blockHitResult) {
         if (player.isCrouching()) {
-            level.setBlock(blockPos, blockState.setValue(SINGLE, !blockState.getValue(SINGLE)), Block.UPDATE_ALL);
+            level.setBlock(blockPos, blockState.cycle(SINGLE), Block.UPDATE_ALL);
             return InteractionResult.SUCCESS;
         }
 
@@ -145,6 +180,8 @@ public class FaucetBlock extends BaseEntityBlock {
 
         return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
+
+
 
     @Override
     @NonNull
