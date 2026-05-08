@@ -1,0 +1,8 @@
+{
+  "block.pesticides.faucet": "Faucet",
+  "item.pesticides.pesticide_container": "Pesticide Container",
+  "item.pesticides.pesticide_container.tooltip": "Contains %s",
+  "pesticides.atrazine.name": "Atrazine",
+  "pesticides.endosulfan.name": "Endosulfan",
+  "pesticides.glyphosate.name": "Glyphosate"
+}

@@ -1,7 +1,10 @@
 package fr.geming400.pesticide;
 
+import fr.geming400.pesticide.content.ModDataComponents;
+import fr.geming400.pesticide.content.ModRegistries;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.items.ModItems;
+import fr.geming400.pesticide.content.pesticides.ModPesticides;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -10,19 +13,16 @@ import org.slf4j.LoggerFactory;
 public final class Pesticides implements ModInitializer {
 	public static final String MOD_ID = "pesticides";
 
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	@Override
 	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+		ModRegistries.initialize();
+		ModDataComponents.initialize();
 
 		ModBlocks.initialize();
 		ModItems.initialize();
+		ModPesticides.initialize();
 
 		LOGGER.info("Hello pesticides lover !!");
 	}
