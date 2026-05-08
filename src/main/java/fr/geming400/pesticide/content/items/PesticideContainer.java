@@ -15,4 +15,11 @@ public class PesticideContainer extends Item {
     public PesticideType getPesticideType(ItemStack itemStack) {
         return Objects.requireNonNull(itemStack.get(ModDataComponents.PESTICIDE_TYPE));
     }
+
+    public static ItemStack createItemStack(PesticideType pesticideType) {
+        ItemStack itemStack = new ItemStack(ModItems.PESTICIDE_CONTAINER);
+        itemStack.set(ModDataComponents.PESTICIDE_TYPE, pesticideType);
+
+        return itemStack;
+    }
 }

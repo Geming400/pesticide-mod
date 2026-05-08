@@ -6,25 +6,34 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.Item;
 
 import java.util.function.Function;
 
 public final class ModItems {
-    public static final Item EMPTY_PESTICIDE_CONTAINER = register(
-            "empty_pesticide_container",
+    public static final Item EMPTY_CONTAINER = register(
+            "empty_container",
+            EmptyContainer::new,
+            new Item.Properties()
+    );
+
+    public static final Item WATER_CONTAINER = register(
+            "water_container",
             Item::new,
             new Item.Properties()
+                    .food(ModFoodProperties.PESTICIDE, ModFoodProperties.WATER_BOTTLE_LIKE_CONSUMABLE)
+                    .stacksTo(8)
     );
 
     public static final Item PESTICIDE_CONTAINER = register(
             "pesticide_container",
             PesticideContainer::new,
             new Item.Properties()
-                    .food(ModFoodProperties.PESTICIDE, ModFoodProperties.PESTICIDE_CONSUMABLE)
+                    .food(ModFoodProperties.PESTICIDE, ModFoodProperties.WATER_BOTTLE_LIKE_CONSUMABLE)
                     .fireResistant()
-                    .craftRemainder(EMPTY_PESTICIDE_CONTAINER)
-                    .usingConvertsTo(EMPTY_PESTICIDE_CONTAINER)
+                    .craftRemainder(EMPTY_CONTAINER)
+                    .usingConvertsTo(EMPTY_CONTAINER)
                     .stacksTo(8)
     );
 

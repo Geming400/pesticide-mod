@@ -20,9 +20,10 @@ public class ModEnglishLanguageProvider extends FabricLanguageProvider {
     public void generateTranslations(HolderLookup.@NonNull Provider holderLookup, @NonNull TranslationBuilder translationBuilder) {
         translationBuilder.add(ModBlocks.FAUCET, "Faucet");
 
-        translationBuilder.add(ModItems.EMPTY_PESTICIDE_CONTAINER, "Empty pesticide Container");
+        translationBuilder.add(ModItems.EMPTY_CONTAINER, "Empty Container");
+        translationBuilder.add(ModItems.WATER_CONTAINER, "Water Container");
         translationBuilder.add(ModItems.PESTICIDE_CONTAINER, "Pesticide Container");
-        translationBuilder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip", "Contains %s");
+        translationBuilder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip", "Contains 1b of %s");
 
         createPesticideTranslation(translationBuilder, ModPesticides.ATRAZINE, "Atrazine");
         createPesticideTranslation(translationBuilder, ModPesticides.ENDOSULFAN, "Endosulfan");
@@ -33,4 +34,3 @@ public class ModEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(pesticideType.getNameTranslationKey(), name);
     }
 }
-

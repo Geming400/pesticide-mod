@@ -38,7 +38,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.COBBLED_DEEPSLATE), has(ConventionalItemTags.DEEPSLATE_COBBLESTONES))
                         .save(output);
 
-                shaped(RecipeCategory.MISC, ModItems.EMPTY_PESTICIDE_CONTAINER, 3)
+                shaped(RecipeCategory.MISC, ModItems.EMPTY_CONTAINER, 3)
                         .pattern("  g")
                         .pattern(" gg")
                         .pattern(" gg")

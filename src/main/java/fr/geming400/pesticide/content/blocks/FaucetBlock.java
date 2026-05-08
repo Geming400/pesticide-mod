@@ -5,13 +5,19 @@ import fr.geming400.pesticide.content.ModDataComponents;
 import fr.geming400.pesticide.content.blockentities.FaucetBlockEntity;
 import fr.geming400.pesticide.content.blockentities.ModBlockEntities;
 import fr.geming400.pesticide.content.items.ModItems;
+import fr.geming400.pesticide.content.items.PesticideContainer;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -103,13 +109,37 @@ public class FaucetBlock extends BaseEntityBlock {
             @NonNull InteractionHand interactionHand,
             @NonNull BlockHitResult blockHitResult
     ) {
-        if (itemStack.is(ModItems.PESTICIDE_CONTAINER) && itemStack.has(ModDataComponents.PESTICIDE_TYPE)) {
-            PesticideType itemPesticideType = itemStack.get(ModDataComponents.PESTICIDE_TYPE);
+        BlockEntity blockEntity = level.getBlockEntity(blockPos);
+        if (blockEntity instanceof FaucetBlockEntity faucetBlockEntity) {
+            if (itemStack.is(ModItems.PESTICIDE_CONTAINER) && itemStack.has(ModDataComponents.PESTICIDE_TYPE)) {
+                PesticideType itemPesticideType = itemStack.get(ModDataComponents.PESTICIDE_TYPE);
 
-            BlockEntity blockEntity = level.getBlockEntity(blockPos);
-            if (blockEntity instanceof FaucetBlockEntity faucetBlockEntity) {
                 if (faucetBlockEntity.fill(itemPesticideType)) {
-                    return InteractionResult.SUCCESS;
+                    player.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
+                    level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_EMPTY, SoundSource.NEUTRAL, 1.0F, 1.0F);
+
+                    return InteractionResult.SUCCESS
+                            .heldItemTransformedTo(
+                                    ItemUtils.createFilledResult(
+                                            itemStack,
+                                            player,
+                                            new ItemStack(ModItems.EMPTY_CONTAINER)
+                                    )
+                            );
+                }
+            } else if (itemStack.is(ModItems.EMPTY_CONTAINER)) {
+                if (faucetBlockEntity.getMbLeft() > 1000) {
+                    faucetBlockEntity.drainMb(1000);
+                    level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0F, 1.0F);
+
+                    return InteractionResult.SUCCESS
+                            .heldItemTransformedTo(
+                                    ItemUtils.createFilledResult(
+                                            itemStack,
+                                            player,
+                                            PesticideContainer.createItemStack(faucetBlockEntity.getPesticideType())
+                                    )
+                            );
                 }
             }
         }

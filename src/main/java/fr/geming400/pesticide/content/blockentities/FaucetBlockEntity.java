@@ -60,7 +60,7 @@ public class FaucetBlockEntity extends BlockEntity {
 
     @Override
     @NonNull
-    public CompoundTag getUpdateTag(HolderLookup.Provider registryLookup) {
+    public CompoundTag getUpdateTag(HolderLookup.@NonNull Provider registryLookup) {
         return saveWithoutMetadata(registryLookup);
     }
 
@@ -77,6 +77,9 @@ public class FaucetBlockEntity extends BlockEntity {
 
     public void drainMb() {
         this.mbLeft -= (float) MB_TO_DRAIN / TICKS_TO_FULLY_DRAIN;
+    }
+    public void drainMb(float amount) {
+        this.mbLeft -= amount;
     }
 
     @Nullable

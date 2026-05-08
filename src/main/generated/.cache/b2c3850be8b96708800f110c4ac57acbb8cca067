@@ -1,5 +1,5 @@
 // 1.21.11	-999999999-01-01T00:00:00	Pesticides/Pesticides recipe provider
-d2c567c3413e687889e0b3406b756d028613e546 data/pesticides/advancement/recipes/misc/empty_pesticide_container.json
+bdf3f3028b16a8d32e9386077e18815cbf233787 data/pesticides/advancement/recipes/misc/empty_container.json
 4453be91d8196131d9fe0f8cae8c1ab425f7414f data/pesticides/advancement/recipes/misc/faucet.json
-160a97566643d9c9e08757bd5812c50a16593e30 data/pesticides/recipe/empty_pesticide_container.json
+38b574696d8cbd994a5c81e1f0e6207ba9f5fd06 data/pesticides/recipe/empty_container.json
 eed5be5c52af56a0d46da4f827fec9deace3160d data/pesticides/recipe/faucet.json

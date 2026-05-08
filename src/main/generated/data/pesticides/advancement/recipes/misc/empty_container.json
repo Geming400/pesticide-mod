@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "pesticides:empty_pesticide_container"
+        "recipe": "pesticides:empty_container"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "pesticides:empty_pesticide_container"
+      "pesticides:empty_container"
     ]
   }
 }

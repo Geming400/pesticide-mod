@@ -40,8 +40,9 @@ public final class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(@NonNull ItemModelGenerators itemModelGenerator) {
+        itemModelGenerator.generateFlatItem(ModItems.EMPTY_CONTAINER, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.WATER_CONTAINER, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.PESTICIDE_CONTAINER, ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.EMPTY_PESTICIDE_CONTAINER, ModelTemplates.FLAT_ITEM);
     }
 
 

@@ -10,11 +10,17 @@ public final class ModFoodProperties {
             .alwaysEdible()
             .build();
 
-    public static final Consumable PESTICIDE_CONSUMABLE = Consumable.builder()
+    public static final Consumable PESTICIBLE_CONSUMABLE = Consumable.builder()
             .onConsume(new ModConsumeEffects.PesticideConsumeEffect())
             .animation(ItemUseAnimation.DRINK)
             .sound(SoundEvents.GENERIC_DRINK)
             .build();
+
+    public static final Consumable WATER_BOTTLE_LIKE_CONSUMABLE = Consumable.builder()
+            .animation(ItemUseAnimation.DRINK)
+            .sound(SoundEvents.GENERIC_DRINK)
+            .build();
+
 
     private ModFoodProperties() {}
 }
