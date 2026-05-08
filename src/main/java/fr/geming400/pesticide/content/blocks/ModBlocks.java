@@ -1,6 +1,7 @@
 package fr.geming400.pesticide.content.blocks;
 
 import fr.geming400.pesticide.Pesticides;
+import fr.geming400.pesticide.content.blockentities.ModBlockEntities;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -26,7 +27,9 @@ public final class ModBlocks {
             true
     );
 
-    public static void initialize() {}
+    public static void initialize() {
+        ModBlockEntities.initialize();
+    }
 
     private static <T extends Block> T register(String name, Function<BlockBehaviour.Properties, T> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
         return register(name, blockFactory, settings, new Item.Properties(), shouldRegisterItem);
