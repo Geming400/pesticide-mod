@@ -1,6 +1,7 @@
 package fr.geming400.pesticide.content.blockentities;
 
 import fr.geming400.pesticide.content.ModRegistries;
+import fr.geming400.pesticide.content.blocks.FaucetBlock;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -20,6 +21,7 @@ import java.util.Objects;
 public class FaucetBlockEntity extends BlockEntity {
     public static final long TICKS_TO_FULLY_DRAIN = Duration.ofMinutes(20).getSeconds() * 20;
     public static final int MB_TO_DRAIN = 1000;
+    public static final float DRAINING_AMOUNT = (float) MB_TO_DRAIN / TICKS_TO_FULLY_DRAIN;
 
     private float mbLeft = 0f;
     @Nullable
@@ -75,8 +77,13 @@ public class FaucetBlockEntity extends BlockEntity {
         setChanged();
     }
 
-    public void drainMb() {
-        this.mbLeft -= (float) MB_TO_DRAIN / TICKS_TO_FULLY_DRAIN;
+    public void drainMb(BlockState faucetBlockState) {
+        // We drain more pesticide when there are 2 jets in the faucet block
+        if (faucetBlockState.getValueOrElse(FaucetBlock.SINGLE, false)) {
+            this.mbLeft -= DRAINING_AMOUNT;
+        } else {
+            this.mbLeft -= DRAINING_AMOUNT * 2;
+        }
     }
     public void drainMb(float amount) {
         this.mbLeft -= amount;
@@ -110,6 +117,6 @@ public class FaucetBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, FaucetBlockEntity faucetBlockEntity) {
-        faucetBlockEntity.drainMb();
+        faucetBlockEntity.drainMb(blockState);
     }
 }
