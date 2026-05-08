@@ -1,5 +1,6 @@
 {
   "block.pesticides.faucet": "Faucet",
+  "item.pesticides.empty_pesticide_container": "Empty pesticide Container",
   "item.pesticides.pesticide_container": "Pesticide Container",
   "item.pesticides.pesticide_container.tooltip": "Contains %s",
   "pesticides.atrazine.name": "Atrazine",

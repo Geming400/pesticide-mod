@@ -20,6 +20,7 @@ public class ModEnglishLanguageProvider extends FabricLanguageProvider {
     public void generateTranslations(HolderLookup.@NonNull Provider holderLookup, @NonNull TranslationBuilder translationBuilder) {
         translationBuilder.add(ModBlocks.FAUCET, "Faucet");
 
+        translationBuilder.add(ModItems.EMPTY_PESTICIDE_CONTAINER, "Empty pesticide Container");
         translationBuilder.add(ModItems.PESTICIDE_CONTAINER, "Pesticide Container");
         translationBuilder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip", "Contains %s");
 

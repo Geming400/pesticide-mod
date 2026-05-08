@@ -11,18 +11,26 @@ import net.minecraft.world.item.Item;
 import java.util.function.Function;
 
 public final class ModItems {
+    public static final Item EMPTY_PESTICIDE_CONTAINER = register(
+            "empty_pesticide_container",
+            Item::new,
+            new Item.Properties()
+    );
+
     public static final Item PESTICIDE_CONTAINER = register(
             "pesticide_container",
             PesticideContainer::new,
             new Item.Properties()
-    );
-    public static final Item EMPTY_PESTICIDE_CONTAINER = register(
-            "empty_pesticide_container",
-            PesticideContainer::new,
-            new Item.Properties()
+                    .food(ModFoodProperties.PESTICIDE, ModFoodProperties.PESTICIDE_CONSUMABLE)
+                    .fireResistant()
+                    .craftRemainder(EMPTY_PESTICIDE_CONTAINER)
+                    .usingConvertsTo(EMPTY_PESTICIDE_CONTAINER)
+                    .stacksTo(8)
     );
 
-    public static void initialize() {}
+    public static void initialize() {
+        ModConsumeEffects.initialize();
+    }
 
     private static <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
         ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Pesticides.MOD_ID, name));
