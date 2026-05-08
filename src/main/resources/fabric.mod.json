@@ -3,9 +3,11 @@
 	"id": "pesticides",
 	"version": "${version}",
 	"name": "Pesticides",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Rajoute des pesticides :33",
 	"authors": [
-		"Me!"
+		"Geming400",
+		"Currenttick",
+		"Kayrooxx"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
