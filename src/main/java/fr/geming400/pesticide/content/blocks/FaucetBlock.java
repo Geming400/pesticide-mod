@@ -48,7 +48,7 @@ public class FaucetBlock extends HorizontalDirectionalBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         return this.defaultBlockState()
-                .setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite())
+                .setValue(FACING, blockPlaceContext.getHorizontalDirection())
                 .setValue(SINGLE, true);
     }
 
