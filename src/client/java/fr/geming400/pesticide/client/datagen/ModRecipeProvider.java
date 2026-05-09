@@ -2,14 +2,14 @@ package fr.geming400.pesticide.client.datagen;
 
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.items.ModItems;
+import fr.geming400.pesticide.content.pesticides.PesticideType;
+import fr.geming400.pesticide.content.recipe.PesticideContainerRecipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.jspecify.annotations.NonNull;
@@ -46,6 +46,32 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .group("pesticide_containers")
                         .unlockedBy(getHasName(Items.GLASS), has(ConventionalItemTags.GLASS_BLOCKS))
                         .save(output);
+
+                // TODO: Create custom recipe (see tipped arrow)
+                SpecialRecipeBuilder.special(PesticideContainerRecipe::new)
+                        .save(this.output, "pesticide_container");
+//                createPesticide(ModPesticides.GLYPHOSATE)
+//                        .requires(Items.COAL)
+//                        .requires(Items.BONE_MEAL)
+//                        .unlockedBy(getHasName(ModItems.WATER_CONTAINER), has(ModItems.WATER_CONTAINER))
+//                        .save(output);
+//
+//                createPesticide(ModPesticides.ENDOSULFAN)
+//                        .requires(Items.COAL)
+//                        .requires(Items.QUARTZ)
+//                        .unlockedBy(getHasName(ModItems.WATER_CONTAINER), has(ModItems.WATER_CONTAINER))
+//                        .save(output);
+//
+//                createPesticide(ModPesticides.ATRAZINE)
+//                        .requires(Items.COAL)
+//                        .requires(Items.GUNPOWDER)
+//                        .unlockedBy(getHasName(ModItems.WATER_CONTAINER), has(ModItems.WATER_CONTAINER))
+//                        .save(output);
+            }
+
+            public ShapelessRecipeBuilder createPesticide(PesticideType pesticideType) {
+                return shapeless(RecipeCategory.MISC, pesticideType.createContainer())
+                        .group("pesticides");
             }
         };
     }

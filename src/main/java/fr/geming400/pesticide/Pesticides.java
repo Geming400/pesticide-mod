@@ -6,6 +6,7 @@ import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.effects.ModEffects;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.ModPesticides;
+import fr.geming400.pesticide.content.recipe.ModRecipes;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ public final class Pesticides implements ModInitializer {
 		ModItems.initialize();
 		ModEffects.initialize();
 		ModPesticides.initialize();
+		ModRecipes.initialize();
 
 		LOGGER.info("Hello pesticides lover !!");
 	}
