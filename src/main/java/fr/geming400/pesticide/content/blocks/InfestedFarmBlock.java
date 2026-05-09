@@ -1,11 +1,21 @@
 package fr.geming400.pesticide.content.blocks;
 
 import fr.geming400.pesticide.Pesticides;
+import fr.geming400.pesticide.content.ModAttachments;
 import fr.geming400.pesticide.content.blockentities.InfestedFarmlandBlockEntity;
 import fr.geming400.pesticide.content.blockentities.ModBlockEntities;
+import fr.geming400.pesticide.content.effects.BadFarmerEffect;
+import fr.geming400.pesticide.content.effects.ModEffects;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -17,13 +27,65 @@ import org.jspecify.annotations.Nullable;
 
 public class InfestedFarmBlock extends FarmBlockWithEntity {
     @Range(from = 0, to = 1)
-    public static final double INFECTION_CHANCE = 0.05;
+    public static final double INFECTION_CHANCE = 0.1;
+    @Range(from = 0, to = 1)
+    public static final double MOIST_INFECTION_CHANCE = 0.15;
 
     public InfestedFarmBlock(Properties properties) {
         super(properties);
     }
 
-    public static void infestBlock(Level level, BlockState blockState, BlockPos blockPos) {
+    @Override
+    @SuppressWarnings("UnstableApiUsage")
+    public void stepOn(@NonNull Level level, @NonNull BlockPos blockPos, @NonNull BlockState blockState, @NonNull Entity entity) {
+        if (!level.isClientSide() && entity instanceof LivingEntity livingEntity) {
+            int timeSpentOnInfestedFarmland = entity.getAttachedOrCreate(ModAttachments.TIME_SPENT_ON_INFESTED_FARMLAND) ;
+            entity.setAttached(ModAttachments.TIME_SPENT_ON_INFESTED_FARMLAND, timeSpentOnInfestedFarmland + 1);
+
+            if (timeSpentOnInfestedFarmland >= BadFarmerEffect.TICKS_BEFORE_APPLYING && !livingEntity.hasEffect(ModEffects.BAD_FARMER))
+                livingEntity.addEffect(
+                        new MobEffectInstance(
+                                ModEffects.BAD_FARMER,
+                                BadFarmerEffect.DEFAULT_APPLY_TIME,
+                                0,   // amplifier
+                                false, // ambient
+                                true,  // showParticles
+                                false  // showIcon
+                        )
+                );
+        }
+    }
+
+    @Override
+    protected void randomTick(@NonNull BlockState blockState, @NonNull ServerLevel serverLevel, @NonNull BlockPos blockPos, @NonNull RandomSource randomSource) {
+        super.randomTick(blockState, serverLevel, blockPos, randomSource);
+
+        Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(serverLevel.getRandom());
+        BlockPos chosenPosToInfect = blockPos.relative(direction);
+        BlockState blockToInfect = serverLevel.getBlockState(chosenPosToInfect);
+
+//        double infectionChance = serverLevel.getRandom().nextDouble();
+//        Pesticides.LOGGER.info("Chance to infect: {} <= {}: {}", infectionChance, getInfectionChance(blockToInfect), infectionChance <= getInfectionChance(blockToInfect));
+//        Pesticides.LOGGER.info("Block to infect: {}", blockToInfect);
+//        Pesticides.LOGGER.info("-------------");
+        if (serverLevel.getRandom().nextDouble() <= getInfectionChance(blockToInfect) && blockToInfect.is(Blocks.FARMLAND))
+            infectBlock(serverLevel, blockToInfect, chosenPosToInfect);
+    }
+
+    @Override
+    @Nullable
+    public BlockEntity newBlockEntity(@NonNull BlockPos blockPos, @NonNull BlockState blockState) {
+        return new InfestedFarmlandBlockEntity(blockPos, blockState);
+    }
+
+    @Override
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NonNull Level level, @NonNull BlockState blockState, @NonNull BlockEntityType<T> blockEntityType) {
+        return createTickerHelper(blockEntityType, ModBlockEntities.INFESTED_FARMLAND_BLOCK_ENTITY, InfestedFarmlandBlockEntity::tick);
+    }
+
+
+    public static void infectBlock(Level level, BlockState blockState, BlockPos blockPos) {
         if (blockState.hasProperty(FarmBlock.MOISTURE)) {
             level.setBlock(blockPos, createStateFromFarmland(blockState), Block.UPDATE_ALL);
         } else {
@@ -40,14 +102,9 @@ public class InfestedFarmBlock extends FarmBlockWithEntity {
         }
     }
 
-    @Override
-    @Nullable
-    public BlockEntity newBlockEntity(@NonNull BlockPos blockPos, @NonNull BlockState blockState) {
-        return new InfestedFarmlandBlockEntity(blockPos, blockState);
-    }
-
-    @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NonNull Level level, @NonNull BlockState blockState, @NonNull BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, ModBlockEntities.INFESTED_FARMLAND_BLOCK_ENTITY, InfestedFarmlandBlockEntity::tick);
+    public static double getInfectionChance(BlockState farmBlockState) {
+        return farmBlockState.getValueOrElse(MOISTURE, 0) >= 0
+                ? INFECTION_CHANCE
+                : MOIST_INFECTION_CHANCE;
     }
 }

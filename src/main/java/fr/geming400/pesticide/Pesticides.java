@@ -1,5 +1,6 @@
 package fr.geming400.pesticide;
 
+import fr.geming400.pesticide.content.ModAttachments;
 import fr.geming400.pesticide.content.ModDataComponents;
 import fr.geming400.pesticide.content.ModRegistries;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
@@ -21,6 +22,7 @@ public final class Pesticides implements ModInitializer {
 	public void onInitialize() {
 		ModRegistries.initialize();
 		ModDataComponents.initialize();
+		ModAttachments.initialize();
 
 		ModBlocks.initialize();
 		ModItems.initialize();

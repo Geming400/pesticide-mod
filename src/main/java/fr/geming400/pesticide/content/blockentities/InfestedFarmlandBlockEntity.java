@@ -15,7 +15,7 @@ import org.jspecify.annotations.NonNull;
 import java.time.Duration;
 
 public class InfestedFarmlandBlockEntity extends BlockEntity {
-    private static final float INFECTION_TIME = Duration.ofMinutes(10).getSeconds() * 20;
+    private static final float INFECTION_TIME = Duration.ofMinutes(30).getSeconds() * 20;
     private static final float INFECTION_STEP = 1 / INFECTION_TIME;
     @Range(from = 0, to = 1)
     private float infectionProgress = 0f;

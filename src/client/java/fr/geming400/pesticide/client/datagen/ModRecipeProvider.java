@@ -46,7 +46,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .group("pesticide_containers")
                         .unlockedBy(getHasName(Items.GLASS), has(ConventionalItemTags.GLASS_BLOCKS))
                         .save(output);
-                
+
                 SpecialRecipeBuilder.special(PesticideContainerRecipe::new)
                         .save(this.output, "pesticide_container");
             }

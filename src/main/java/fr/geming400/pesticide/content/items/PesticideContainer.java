@@ -1,21 +1,22 @@
 package fr.geming400.pesticide.content.items;
 
 import fr.geming400.pesticide.content.ModDataComponents;
+import fr.geming400.pesticide.content.pesticides.ModPesticides;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
-
-import java.util.Objects;
 
 public class PesticideContainer extends Item {
     public PesticideContainer(Properties properties) {
         super(properties);
     }
 
+    @NotNull
     public PesticideType getPesticideType(ItemStack itemStack) {
-        return Objects.requireNonNull(itemStack.get(ModDataComponents.PESTICIDE_TYPE));
+        return itemStack.getOrDefault(ModDataComponents.PESTICIDE_TYPE, ModPesticides.ATRAZINE);
     }
 
     @Override

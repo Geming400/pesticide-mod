@@ -4,10 +4,13 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import fr.geming400.pesticide.content.blockentities.FaucetBlockEntity;
 import fr.geming400.pesticide.content.blocks.FaucetBlock;
+import fr.geming400.pesticide.content.blocks.InfestedFarmBlock;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.effects.ModEffects;
+import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -69,54 +72,9 @@ abstract class CropBlockMixin {
         };
     }
 
-    @WrapMethod(method = "mayPlaceOn")
-    private boolean mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Operation<Boolean> original) {
-        return original.call(blockState, blockGetter, blockPos) || blockState.is(ModBlocks.INFESTED_FARMLAND);
-    }
-
-    @Inject(at = @At("TAIL"), method = "entityInside")
-    private void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity, InsideBlockEffectApplier insideBlockEffectApplier, boolean bl, CallbackInfo ci) {
-        if (
-                !level.isClientSide()
-                && entity instanceof LivingEntity livingEntity
-                && livingEntity.hasEffect(ModEffects.BAD_FARMER)
-                && entity.getRandom().nextInt(0, 50) == 0
-        ) {
-            level.destroyBlock(blockPos, true, entity);
-        }
-    }
-
-    @Inject(at = @At("HEAD"), method = "randomTick", cancellable = true)
-    private void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos cropPos, RandomSource randomSource, CallbackInfo ci) {
-        BlockState belowBlockState = serverLevel.getBlockState(cropPos.below());
-        if (belowBlockState.is(ModBlocks.INFESTED_FARMLAND))
-            ci.cancel();
-    }
-
-    @Inject(at = @At("HEAD"), method = "growCrops", cancellable = true)
-    private void growCrops(Level level, BlockPos cropPos, BlockState blockState, CallbackInfo ci) {
-        BlockState belowBlockState = level.getBlockState(cropPos.below());
-        if (belowBlockState.is(ModBlocks.INFESTED_FARMLAND))
-            ci.cancel();
-    }
-
-    @Inject(at = @At("HEAD"), method = "isValidBonemealTarget", cancellable = true)
-    private void isValidBonemealTarget(LevelReader level, BlockPos cropPos, BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
-        BlockState belowBlockState = level.getBlockState(cropPos.below());
-        if (belowBlockState.is(ModBlocks.INFESTED_FARMLAND))
-            cir.setReturnValue(false);
-    }
-
-    @Inject(at = @At("HEAD"), method = "isBonemealSuccess", cancellable = true)
-    private void isBonemealSuccess(Level level, RandomSource randomSource, BlockPos cropPos, BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
-        BlockState belowBlockState = level.getBlockState(cropPos.below());
-        if (belowBlockState.is(ModBlocks.INFESTED_FARMLAND))
-            cir.setReturnValue(false);
-    }
-
-    @ModifyConstant(method = "randomTick", constant = @Constant(floatValue = 25.0f))
-    private float modifyGrowSpeed(float value, BlockState blockState, ServerLevel serverLevel, BlockPos cropPos, RandomSource randomSource) {
-        AtomicReference<Float> growSpeedFactor = new AtomicReference<>();
+    @Unique
+    private static IterationResult checkIfHasFaucetNearCrop(ServerLevel serverLevel, BlockPos cropPos) {
+        AtomicReference<PesticideType> pesticideType = new AtomicReference<>();
         boolean succeeded = iterateOverRadius(
                 FaucetBlock.FIND_RADIUS,
                 cropPos,
@@ -142,7 +100,7 @@ abstract class CropBlockMixin {
                     BlockEntity blockEntity = serverLevel.getBlockEntity(faucetPos);
                     if (blockEntity instanceof FaucetBlockEntity faucetBlockEntity) {
                         if (faucetBlockEntity.getPesticideType() != null && faucetBlockEntity.isActive()) {
-                            growSpeedFactor.set(faucetBlockEntity.getPesticideType().growSpeedFactor());
+                            pesticideType.set(faucetBlockEntity.getPesticideType());
                             return true;
                         }
                     }
@@ -151,8 +109,70 @@ abstract class CropBlockMixin {
                 }
         );
 
-        return succeeded
-                ? value * 1 / (growSpeedFactor.get())
+        return new IterationResult(pesticideType.get(), succeeded);
+    }
+
+    @WrapMethod(method = "mayPlaceOn")
+    private boolean mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Operation<Boolean> original) {
+        return original.call(blockState, blockGetter, blockPos) || blockState.is(ModBlocks.INFESTED_FARMLAND);
+    }
+
+    @Inject(at = @At("TAIL"), method = "entityInside")
+    private void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity, InsideBlockEffectApplier insideBlockEffectApplier, boolean bl, CallbackInfo ci) {
+        if (
+                !level.isClientSide()
+                && entity instanceof LivingEntity livingEntity
+                && livingEntity.hasEffect(ModEffects.BAD_FARMER)
+                && entity.getRandom().nextInt(0, 50) == 0
+        ) {
+            level.destroyBlock(blockPos, true, entity);
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "randomTick", cancellable = true)
+    private void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos cropPos, RandomSource randomSource, CallbackInfo ci) {
+        BlockState farmblockState = serverLevel.getBlockState(cropPos.below());
+        if (farmblockState.is(ModBlocks.INFESTED_FARMLAND)) {
+            ci.cancel();
+        } else if (serverLevel.random.nextDouble() <= InfestedFarmBlock.getInfectionChance(farmblockState) && checkIfHasFaucetNearCrop(serverLevel, cropPos).succeeded()) {
+            InfestedFarmBlock.infectBlock(serverLevel, farmblockState, cropPos.below());
+
+            double x = cropPos.getX() + 0.5;
+            double y = cropPos.getY() + 0.5;
+            double z = cropPos.getZ() + 0.5;
+            serverLevel.addParticle(new DustParticleOptions(0x540000, 0.5f), x, y, z, 0.0, 0.0, 0.0);
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "growCrops", cancellable = true)
+    private void growCrops(Level level, BlockPos cropPos, BlockState blockState, CallbackInfo ci) {
+        BlockState belowBlockState = level.getBlockState(cropPos.below());
+        if (belowBlockState.is(ModBlocks.INFESTED_FARMLAND))
+            ci.cancel();
+    }
+
+    @Inject(at = @At("HEAD"), method = "isValidBonemealTarget", cancellable = true)
+    private void isValidBonemealTarget(LevelReader level, BlockPos cropPos, BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
+        BlockState belowBlockState = level.getBlockState(cropPos.below());
+        if (belowBlockState.is(ModBlocks.INFESTED_FARMLAND))
+            cir.setReturnValue(false);
+    }
+
+    @Inject(at = @At("HEAD"), method = "isBonemealSuccess", cancellable = true)
+    private void isBonemealSuccess(Level level, RandomSource randomSource, BlockPos cropPos, BlockState blockState, CallbackInfoReturnable<Boolean> cir) {
+        BlockState belowBlockState = level.getBlockState(cropPos.below());
+        if (belowBlockState.is(ModBlocks.INFESTED_FARMLAND))
+            cir.setReturnValue(false);
+    }
+
+    @ModifyConstant(method = "randomTick", constant = @Constant(floatValue = 25.0f))
+    private float modifyGrowSpeed(float value, BlockState blockState, ServerLevel serverLevel, BlockPos cropPos, RandomSource randomSource) {
+        IterationResult hasFaucetNearby = checkIfHasFaucetNearCrop(serverLevel, cropPos);
+
+        return hasFaucetNearby.succeeded()
+                ? value * (1 / hasFaucetNearby.pesticideType().growSpeedFactor())
                 : value;
     }
+
+    record IterationResult(PesticideType pesticideType, boolean succeeded) {}
 }
