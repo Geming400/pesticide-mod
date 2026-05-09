@@ -74,6 +74,8 @@ public class FaucetBlockEntity extends BlockEntity {
 
     public void setMbLeft(float mbLeft) {
         this.mbLeft = mbLeft;
+        this.normalizeLeftMb();
+
         setChanged();
     }
 
@@ -84,9 +86,15 @@ public class FaucetBlockEntity extends BlockEntity {
         } else {
             this.mbLeft -= DRAINING_AMOUNT * 2;
         }
+
+        this.normalizeLeftMb();
     }
     public void drainMb(float amount) {
         this.mbLeft -= amount;
+        this.normalizeLeftMb();
+    }
+    public void normalizeLeftMb() {
+        this.mbLeft = Math.max(0, this.mbLeft);
     }
 
     @Nullable
