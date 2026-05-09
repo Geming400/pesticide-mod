@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.Range;
 
 import java.awt.*;
+import java.text.DecimalFormat;
 
 public class PesticidesClient implements ClientModInitializer {
 	@Override
@@ -22,8 +23,12 @@ public class PesticidesClient implements ClientModInitializer {
 			PesticideType pesticideType = stack.get(ModDataComponents.PESTICIDE_TYPE);
 
 			if (pesticideType != null) {
-				tooltip.add(Component.translatable(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip", pesticideType.getName())
+                tooltip.add(Component.translatable(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.volume", pesticideType.getName())
 						.withStyle(ChatFormatting.DARK_GREEN));
+
+				DecimalFormat df = new DecimalFormat("#.00");
+				tooltip.add(Component.translatableEscape(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", df.format(pesticideType.growSpeedFactor()))
+						.withStyle(ChatFormatting.DARK_GRAY));
 			}
 		});
 

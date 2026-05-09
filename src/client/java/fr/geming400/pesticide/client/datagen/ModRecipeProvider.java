@@ -46,27 +46,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .group("pesticide_containers")
                         .unlockedBy(getHasName(Items.GLASS), has(ConventionalItemTags.GLASS_BLOCKS))
                         .save(output);
-
-                // TODO: Create custom recipe (see tipped arrow)
+                
                 SpecialRecipeBuilder.special(PesticideContainerRecipe::new)
                         .save(this.output, "pesticide_container");
-//                createPesticide(ModPesticides.GLYPHOSATE)
-//                        .requires(Items.COAL)
-//                        .requires(Items.BONE_MEAL)
-//                        .unlockedBy(getHasName(ModItems.WATER_CONTAINER), has(ModItems.WATER_CONTAINER))
-//                        .save(output);
-//
-//                createPesticide(ModPesticides.ENDOSULFAN)
-//                        .requires(Items.COAL)
-//                        .requires(Items.QUARTZ)
-//                        .unlockedBy(getHasName(ModItems.WATER_CONTAINER), has(ModItems.WATER_CONTAINER))
-//                        .save(output);
-//
-//                createPesticide(ModPesticides.ATRAZINE)
-//                        .requires(Items.COAL)
-//                        .requires(Items.GUNPOWDER)
-//                        .unlockedBy(getHasName(ModItems.WATER_CONTAINER), has(ModItems.WATER_CONTAINER))
-//                        .save(output);
             }
 
             public ShapelessRecipeBuilder createPesticide(PesticideType pesticideType) {

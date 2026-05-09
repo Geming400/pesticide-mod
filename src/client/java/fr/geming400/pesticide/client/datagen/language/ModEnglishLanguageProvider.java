@@ -26,8 +26,9 @@ public class ModEnglishLanguageProvider extends FabricLanguageProvider {
 
         translationBuilder.add(ModItems.EMPTY_CONTAINER, "Empty Container");
         translationBuilder.add(ModItems.WATER_CONTAINER, "Water Container");
-        translationBuilder.add(ModItems.PESTICIDE_CONTAINER, "Pesticide Container");
-        translationBuilder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip", "Contains 1b of %s");
+        translationBuilder.add(ModItems.PESTICIDE_CONTAINER, "%s Pesticide Container");
+        translationBuilder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.volume", "Contains 1b of %s");
+        translationBuilder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", "Has a growth factor of %s");
 
         createPesticideTranslation(translationBuilder, ModPesticides.ATRAZINE, "Atrazine");
         createPesticideTranslation(translationBuilder, ModPesticides.ENDOSULFAN, "Endosulfan");
