@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/template_farmland",
+  "parent": "pesticides:block/template_infested_farmland",
   "textures": {
     "dirt": "minecraft:block/dirt",
     "top": "pesticides:block/infested_farmland_moist"

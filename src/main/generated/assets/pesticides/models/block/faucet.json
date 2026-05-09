@@ -1,5 +1,5 @@
 {
-  "parent": "pesticides:block/faucet_block",
+  "parent": "pesticides:block/template_faucet",
   "textures": {
     "front": "minecraft:block/iron_block",
     "side": "minecraft:block/cobbled_deepslate"

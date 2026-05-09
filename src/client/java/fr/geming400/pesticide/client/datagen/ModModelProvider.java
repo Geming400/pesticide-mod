@@ -23,8 +23,9 @@ import org.jspecify.annotations.NonNull;
 import java.util.Optional;
 
 public final class ModModelProvider extends FabricModelProvider {
-    public static final ModelTemplate FAUCET = block("faucet_block", TextureSlot.FRONT, TextureSlot.SIDE);
-    public static final ModelTemplate SINGLE_FAUCET = block("single_faucet_block", TextureSlot.FRONT, TextureSlot.SIDE);
+    public static final ModelTemplate FAUCET = block("template_faucet", TextureSlot.FRONT, TextureSlot.SIDE);
+    public static final ModelTemplate SINGLE_FAUCET = block("template_single_faucet", TextureSlot.FRONT, TextureSlot.SIDE);
+    public static final ModelTemplate INFESTED_FARMLAND = block("template_infested_farmland", TextureSlot.DIRT, TextureSlot.TOP);
 
     public ModModelProvider(FabricDataOutput output) {
         super(output);
@@ -87,12 +88,12 @@ public final class ModModelProvider extends FabricModelProvider {
                 .put(TextureSlot.DIRT, TextureMapping.getBlockTexture(dirtBlock))
                 .put(TextureSlot.TOP, TextureMapping.getBlockTexture(farmlandBlock, "_moist"));
 
-        Identifier farmlandModel = ModelTemplates.FARMLAND.create(
+        Identifier farmlandModel = INFESTED_FARMLAND.create(
                 farmlandBlock,
                 textureMapping,
                 generator.modelOutput
         );
-        Identifier moistFarmlandModel = ModelTemplates.FARMLAND.create(
+        Identifier moistFarmlandModel = INFESTED_FARMLAND.create(
                 TextureMapping.getBlockTexture(farmlandBlock, "_moist"),
                 textureMapping2,
                 generator.modelOutput

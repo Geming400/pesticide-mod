@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public final class ModBlockEntities {
     public static final BlockEntityType<FaucetBlockEntity> FAUCET_BLOCK_ENTITY = register("faucet", FaucetBlockEntity::new, ModBlocks.FAUCET);
+    public static final BlockEntityType<InfestedFarmlandBlockEntity> INFESTED_FARMLAND_BLOCK_ENTITY = register("infested_farmland_entity", InfestedFarmlandBlockEntity::new, ModBlocks.INFESTED_FARMLAND);
 
     public static void initialize() {}
 
