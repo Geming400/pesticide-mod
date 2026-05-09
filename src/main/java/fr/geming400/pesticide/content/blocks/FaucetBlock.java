@@ -9,7 +9,7 @@ import fr.geming400.pesticide.content.items.PesticideContainer;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.TrailParticleOption;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -34,6 +34,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -45,7 +46,9 @@ import java.util.Map;
 public class FaucetBlock extends BaseEntityBlock {
     /// The radius {@linkplain CropBlock crop blocks} will try to search
     /// for {@linkplain FaucetBlock faucet blocks}
-    public static final int FIND_RADIUS = 5;
+    public static final int FIND_RADIUS = 6;
+
+    public static final int PARTICLE_COLORS = 0x237700;
 
     public static final BooleanProperty SINGLE = BooleanProperty.create("single");
     public static final BooleanProperty ENABLED = BooleanProperty.create("toggled");
@@ -106,19 +109,25 @@ public class FaucetBlock extends BaseEntityBlock {
         }
     }
 
-    private static void makeParticle(BlockState blockState, LevelAccessor levelAccessor, BlockPos blockPos, float f) {
-        if (!blockState.getValue(ENABLED)) {
-            Direction direction = blockState.getValue(FACING).getOpposite();
-            double d = blockPos.getX() + 0.5 + 0.1 * direction.getStepX();
-            double e = blockPos.getY() + 0.5 + 0.1 * direction.getStepY() + 0.2;
-            double g = blockPos.getZ() + 0.5 + 0.1 * direction.getStepZ();
-            levelAccessor.addParticle(new DustParticleOptions(0x540000, f), d, e, g, 0.0, 0.0, 0.0);
+    private static void makeParticle(BlockState blockState, LevelAccessor levelAccessor, BlockPos blockPos, float size) {
+        boolean hasPesticideInBlock = false;
+        BlockEntity blockEntity = levelAccessor.getBlockEntity(blockPos);
+        if (blockEntity instanceof FaucetBlockEntity faucetBlockEntity)
+            hasPesticideInBlock = faucetBlockEntity.getPesticideType() != null;
+
+        if (blockState.getValue(ENABLED) && hasPesticideInBlock) {
+            double d = blockPos.getX() + 0.5;
+            double e = blockPos.getY() + 0.5 + 0.2;
+            double g = blockPos.getZ() + 0.5;
+
+            int color = levelAccessor.getRandom().nextInt(0x000000, 0x00006F) + PARTICLE_COLORS;
+            levelAccessor.addParticle(new TrailParticleOption(Vec3.atCenterOf(blockPos.below(3)), color, 35), d, e, g, 0, 0, 0);
         }
     }
 
     @Override
     public void animateTick(@NonNull BlockState blockState, @NonNull Level level, @NonNull BlockPos blockPos, @NonNull RandomSource randomSource) {
-        makeParticle(blockState, level, blockPos, 0.5f);
+        makeParticle(blockState, level, blockPos, blockState.getValue(SINGLE) ? 0.5f : 1f);
     }
 
     @Override
