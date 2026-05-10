@@ -1,6 +1,5 @@
 package fr.geming400.pesticide.content.effects;
 
-import fr.geming400.pesticide.content.ModAttachments;
 import fr.geming400.pesticide.content.blocks.InfestedFarmBlock;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
@@ -28,9 +27,9 @@ public class BadFarmerEffect extends MobEffect {
         return true;
     }
 
-    @SuppressWarnings("UnstableApiUsage")
     @Override
     public boolean applyEffectTick(@NonNull ServerLevel serverLevel, @NonNull LivingEntity livingEntity, int amplifier) {
-        return livingEntity.getAttachedOrGet(ModAttachments.TIME_SPENT_ON_INFESTED_FARMLAND, () -> 0) >= TICKS_BEFORE_APPLYING;
+        // return livingEntity.getAttachedOrGet(ModAttachments.TIME_SPENT_ON_INFESTED_FARMLAND, () -> 0) >= TICKS_BEFORE_APPLYING;
+        return true;
     }
 }
