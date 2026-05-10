@@ -42,7 +42,8 @@ public class InfestedFarmBlock extends FarmBlockWithEntity {
             int timeSpentOnInfestedFarmland = entity.getAttachedOrCreate(ModAttachments.TIME_SPENT_ON_INFESTED_FARMLAND) ;
             entity.setAttached(ModAttachments.TIME_SPENT_ON_INFESTED_FARMLAND, timeSpentOnInfestedFarmland + 1);
 
-            if (timeSpentOnInfestedFarmland >= BadFarmerEffect.TICKS_BEFORE_APPLYING && !livingEntity.hasEffect(ModEffects.BAD_FARMER))
+            if (timeSpentOnInfestedFarmland >= BadFarmerEffect.TICKS_BEFORE_APPLYING && !livingEntity.hasEffect(ModEffects.BAD_FARMER)) {
+                livingEntity.setAttached(ModAttachments.TIME_SPENT_ON_INFESTED_FARMLAND, 0);
                 livingEntity.addEffect(
                         new MobEffectInstance(
                                 ModEffects.BAD_FARMER,
@@ -53,6 +54,7 @@ public class InfestedFarmBlock extends FarmBlockWithEntity {
                                 false  // showIcon
                         )
                 );
+            }
         }
     }
 
