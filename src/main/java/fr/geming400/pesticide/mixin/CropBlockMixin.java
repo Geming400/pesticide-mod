@@ -126,7 +126,7 @@ abstract class CropBlockMixin {
                 && livingEntity.hasEffect(ModEffects.BAD_FARMER)
                 && entity.getRandom().nextDouble() <= BadFarmerEffect.CHANCE_TO_BREAK_CROP
         ) {
-            level.destroyBlock(blockPos, true, entity);
+            level.destroyBlock(blockPos, false, entity);
         }
     }
 
