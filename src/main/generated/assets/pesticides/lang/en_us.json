@@ -32,7 +32,9 @@
   "item.pesticides.zombie_bone": "Zombie Bone",
   "item.pesticides.zombie_bone.info": "Zombie Bones have a high chance of dropping from zombies. They are very useful to the creation of pesticides.",
   "itemGroup.pesticides": "Pesticides",
+  "pesticides.afidopyropen.name": "Afidopyropen",
+  "pesticides.ampropylfos.name": "Ampropylfos",
   "pesticides.atrazine.name": "Atrazine",
   "pesticides.endosulfan.name": "Endosulfan",
-  "pesticides.glyphosate.name": "Glyphosate"
+  "pesticides.terpinolene.name": "Terpinolene"
 }

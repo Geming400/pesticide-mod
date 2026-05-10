@@ -62,8 +62,10 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
                 "Zombie Bones have a high chance of dropping from zombies. They are very useful to the creation of pesticides."
         );
 
+        tu.createPesticideTranslation(ModPesticides.TERPINOLENE, "Terpinolene");
         tu.createPesticideTranslation(ModPesticides.ATRAZINE, "Atrazine");
         tu.createPesticideTranslation(ModPesticides.ENDOSULFAN, "Endosulfan");
-        tu.createPesticideTranslation(ModPesticides.GLYPHOSATE, "Glyphosate");
+        tu.createPesticideTranslation(ModPesticides.ADIFIDOPYROPEN, "Afidopyropen");
+        tu.createPesticideTranslation(ModPesticides.AMPROPYFLOS, "Ampropylfos");
     }
 }
