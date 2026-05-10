@@ -5,6 +5,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.consume_effects.ConsumeEffect;
 
 public final class ModFoodProperties {
     public static final FoodProperties PESTICIDE = new FoodProperties.Builder()
@@ -19,7 +20,7 @@ public final class ModFoodProperties {
             .build();
 
     /**
-     * Mimics another {@link Consumable}'s property to
+     * Mimics another {@link Consumable} to infect it with a {@linkplain PesticideType pesticide}
      * @param from the {@link Consumable} to mimic
      * @param pesticideType the {@link PesticideType} to infect to {@link Consumable} with
      * @return the {@link Consumable} infected by the given {@linkplain PesticideType pesticide}
@@ -32,6 +33,35 @@ public final class ModFoodProperties {
                 .consumeSeconds(from.consumeSeconds())
                 .soundAfterConsume(from.sound())
                 .build();
+    }
+
+    /**
+     * Mimics another {@link Consumable} to remove the 'on consume' property
+     * @param from the {@link Consumable} to mimic
+     * @return the {@link Consumable} without the on consume property
+     * @see Consumable.Builder#onConsume(ConsumeEffect)
+     */
+    public static Consumable createEmptyConsumable(Consumable from) {
+        return Consumable.builder()
+                .hasConsumeParticles(from.hasConsumeParticles())
+                .animation(from.animation())
+                .consumeSeconds(from.consumeSeconds())
+                .soundAfterConsume(from.sound())
+                .build();
+    }
+
+    /**
+     * Mimics another {@link FoodProperties} to remove the 'on consume' property
+     * @param from the {@link Consumable} to mimic
+     * @return the {@link Consumable} without the on consume property
+     * @see Consumable.Builder#onConsume(ConsumeEffect)
+     */
+    public static FoodProperties createEmptyFoodProperties(FoodProperties from) {
+        FoodProperties.Builder builder = new FoodProperties.Builder();
+        if (from.canAlwaysEat())
+            builder.alwaysEdible();
+
+        return builder.build();
     }
 
     public static Consumable.Builder createDrinkConsumable() {

@@ -10,6 +10,7 @@ import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -33,6 +34,7 @@ public class BlockBehaviourMixin {
 
         if (blockState.getBlock() instanceof CropBlock) {
             Vec3 origin = builder.getOptionalParameter(LootContextParams.ORIGIN);
+            Entity thisEntity = builder.getOptionalParameter(LootContextParams.THIS_ENTITY);
             if (origin != null) {
                 BlockPos cropPos = BlockPos.containing(origin);
 
@@ -47,6 +49,17 @@ public class BlockBehaviourMixin {
                     //noinspection DataFlowIssue
                     drops.forEach(itemStack ->
                             itemStack.set(DataComponents.CONSUMABLE, ModFoodProperties.createPesticibleConsumable(itemStack.get(DataComponents.CONSUMABLE), pesticideType)));
+
+                    return drops;
+                } else if (thisEntity != null) {
+                    List<ItemStack> drops = original.call(blockState, builder);
+
+                    drops.forEach(itemStack -> {
+                        //noinspection DataFlowIssue
+                        itemStack.set(DataComponents.CONSUMABLE, ModFoodProperties.createEmptyConsumable(itemStack.get(DataComponents.CONSUMABLE)));
+                        //noinspection DataFlowIssue
+                        itemStack.set(DataComponents.FOOD, ModFoodProperties.createEmptyFoodProperties(itemStack.get(DataComponents.FOOD)));
+                    });
 
                     return drops;
                 }
