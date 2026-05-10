@@ -30,7 +30,7 @@ public final class ModPesticides {
 
     public static final PesticideType ENDOSULFAN = of(
             "endosulfan",
-            new PesticideType(2.15f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.QUARTZ), new MobEffectInstance(MobEffects.WITHER, 15*20, 0))
+            new PesticideType(2.15f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.QUARTZ), new MobEffectInstance(MobEffects.WITHER, 15*20, 2))
     );
 
     public static final PesticideType ADIFIDOPYROPEN = of(
