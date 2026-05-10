@@ -1,5 +1,6 @@
 package fr.geming400.pesticide.client.datagen.language;
 
+import fr.geming400.pesticide.Pesticides;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.effects.ModEffects;
 import fr.geming400.pesticide.content.items.ModItems;
@@ -23,6 +24,8 @@ public class ModEnglishLanguageProvider extends FabricLanguageProvider {
 
         translationBuilder.add(ModBlocks.FAUCET, "Faucet");
         translationBuilder.add(ModBlocks.INFESTED_FARMLAND, "Infested Farmland");
+
+        translationBuilder.add("itemGroup." + Pesticides.MOD_ID, "Pesticides");
 
         translationBuilder.add(ModItems.EMPTY_CONTAINER, "Empty Container");
         translationBuilder.add(ModItems.WATER_CONTAINER, "Water Container");

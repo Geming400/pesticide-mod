@@ -29,6 +29,10 @@ public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEff
         return Component.translatable(this.getNameTranslationKey());
     }
 
+    /**
+     * Creates the {@linkplain PesticideContainer container item} linked to this {@link PesticideType}
+     * @return the {@linkplain PesticideContainer container item} linked to this {@link PesticideType}
+     */
     public ItemStack createContainer() {
         return PesticideContainer.createItemStack(this);
     }

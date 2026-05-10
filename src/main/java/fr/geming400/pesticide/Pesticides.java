@@ -4,6 +4,7 @@ import fr.geming400.pesticide.content.ModAttachments;
 import fr.geming400.pesticide.content.ModDataComponents;
 import fr.geming400.pesticide.content.ModRegistries;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
+import fr.geming400.pesticide.content.creativetab.ModCreativeTab;
 import fr.geming400.pesticide.content.effects.ModEffects;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.ModPesticides;
@@ -29,6 +30,7 @@ public final class Pesticides implements ModInitializer {
 		ModEffects.initialize();
 		ModPesticides.initialize();
 		ModRecipes.initialize();
+		ModCreativeTab.initialize();
 
 		LOGGER.info("Hello pesticides lover !!");
 	}
