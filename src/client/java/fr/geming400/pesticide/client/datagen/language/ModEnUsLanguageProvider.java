@@ -63,6 +63,7 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
         );
 
         tu.createPesticideTranslation(ModPesticides.TERPINOLENE, "Terpinolene");
+        tu.createPesticideTranslation(ModPesticides.GLYPHOSATE, "Glyphosate");
         tu.createPesticideTranslation(ModPesticides.ATRAZINE, "Atrazine");
         tu.createPesticideTranslation(ModPesticides.ENDOSULFAN, "Endosulfan");
         tu.createPesticideTranslation(ModPesticides.ADIFIDOPYROPEN, "Afidopyropen");

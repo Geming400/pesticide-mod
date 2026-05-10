@@ -1,6 +1,6 @@
 {
   "block.pesticides.faucet": "Faucet",
-  "block.pesticides.faucet.info": "A faucet lets you dispense pesticide on crops.",
+  "block.pesticides.faucet.info": "A faucet lets you dispense pesticide on crops. By providing it a redstone signal you can disable it.",
   "block.pesticides.infested_farmland": "Infested Farmland",
   "effect.pesticides.bad_farmer": "Bad Farmer",
   "effect.pesticides.burning": "Burning",
@@ -36,5 +36,6 @@
   "pesticides.ampropylfos.name": "Ampropylfos",
   "pesticides.atrazine.name": "Atrazine",
   "pesticides.endosulfan.name": "Endosulfan",
+  "pesticides.glyphosate.name": "Glyphosate",
   "pesticides.terpinolene.name": "Terpinolene"
 }
