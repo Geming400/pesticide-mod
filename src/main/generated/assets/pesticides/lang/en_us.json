@@ -4,7 +4,7 @@
   "block.pesticides.infested_farmland": "Infested Farmland",
   "effect.pesticides.bad_farmer": "Bad Farmer",
   "item.pesticides.empty_container": "Empty Container",
-  "item.pesticides.faucet_analyser": "Faucet analyser",
+  "item.pesticides.faucet_analyser": "Faucet Analyser",
   "item.pesticides.faucet_analyser.info": "A faucet analyser allows to know the amount of pesticide left in a faucet",
   "item.pesticides.faucet_analyser.onUse": "This faucet has %s mb of %s and is currently %s",
   "item.pesticides.faucet_analyser.onUse.empty": "This faucet is empty",
