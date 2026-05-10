@@ -19,7 +19,7 @@ public class BadFarmerEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(@NonNull ServerLevel serverLevel, @NonNull LivingEntity livingEntity, int i) {
+    public boolean applyEffectTick(@NonNull ServerLevel serverLevel, @NonNull LivingEntity livingEntity, int amplifier) {
         return true;
     }
 }
