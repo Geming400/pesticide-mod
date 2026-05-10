@@ -171,7 +171,7 @@ abstract class CropBlockMixin {
         IterationResult hasFaucetNearby = checkIfHasFaucetNearCrop(serverLevel, cropPos);
 
         return hasFaucetNearby.succeeded()
-                ? value * (1 / hasFaucetNearby.pesticideType().growSpeedFactor())
+                ? value / hasFaucetNearby.pesticideType().growSpeedFactor()
                 : value;
     }
 
