@@ -14,15 +14,15 @@ import java.util.Set;
 public final class ModPesticides {
     public static final PesticideType GLYPHOSATE = of(
             "glyphosate",
-            new PesticideType(1.35f, Set.of(ModItems.WATER_CONTAINER, Items.COAL, Items.BONE_MEAL))
+            new PesticideType(1.35f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.BONE_MEAL))
     );
     public static final PesticideType ATRAZINE = of(
             "atrazine",
-            new PesticideType(1.65f, Set.of(ModItems.WATER_CONTAINER, Items.COAL, Items.GUNPOWDER), new MobEffectInstance(MobEffects.POISON, 30*20, 2))
+            new PesticideType(1.65f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.GUNPOWDER), new MobEffectInstance(MobEffects.POISON, 30*20, 2))
     );
     public static final PesticideType ENDOSULFAN = of(
             "endosulfan",
-            new PesticideType(2.15f, Set.of(ModItems.WATER_CONTAINER, Items.COAL, Items.QUARTZ), new MobEffectInstance(MobEffects.WITHER, 15*20, 0))
+            new PesticideType(2.15f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.QUARTZ), new MobEffectInstance(MobEffects.WITHER, 15*20, 0))
     );
 
     private static PesticideType of(String name, PesticideType pesticideType) {
