@@ -40,7 +40,7 @@ public final class ModPesticides {
 
     public static final PesticideType AMPROPYFLOS = of(
             "ampropylfos",
-            new PesticideType(Float.MAX_VALUE, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.BEDROCK), new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 20, 255))
+            new PesticideType(Float.MAX_VALUE, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.BEDROCK), new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 20, 50))
     );
 
 
