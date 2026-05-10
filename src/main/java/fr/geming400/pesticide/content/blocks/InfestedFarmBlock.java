@@ -64,11 +64,7 @@ public class InfestedFarmBlock extends FarmBlockWithEntity {
         BlockPos chosenPosToInfect = blockPos.relative(direction);
         BlockState blockToInfect = serverLevel.getBlockState(chosenPosToInfect);
 
-//        double infectionChance = serverLevel.getRandom().nextDouble();
-//        Pesticides.LOGGER.info("Chance to infect: {} <= {}: {}", infectionChance, getInfectionChance(blockToInfect), infectionChance <= getInfectionChance(blockToInfect));
-//        Pesticides.LOGGER.info("Block to infect: {}", blockToInfect);
-//        Pesticides.LOGGER.info("-------------");
-        if (serverLevel.getRandom().nextDouble() <= getInfectionChance(blockToInfect) && blockToInfect.is(Blocks.FARMLAND))
+        if (serverLevel.getRandom().nextDouble() <= getInfectionChance(blockToInfect, false) && blockToInfect.is(Blocks.FARMLAND))
             infectBlock(serverLevel, blockToInfect, chosenPosToInfect);
     }
 
@@ -102,9 +98,13 @@ public class InfestedFarmBlock extends FarmBlockWithEntity {
         }
     }
 
-    public static double getInfectionChance(BlockState farmBlockState) {
-        return farmBlockState.getValueOrElse(MOISTURE, 0) >= 0
-                ? INFECTION_CHANCE
-                : MOIST_INFECTION_CHANCE;
+    public static double getInfectionChance(BlockState farmBlockState, boolean isFaucet) {
+        if (isFaucet) {
+            return INFECTION_CHANCE;
+        } else {
+            return farmBlockState.getValueOrElse(MOISTURE, 0) >= 0
+                    ? INFECTION_CHANCE
+                    : MOIST_INFECTION_CHANCE;
+        }
     }
 }

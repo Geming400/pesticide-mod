@@ -134,7 +134,7 @@ abstract class CropBlockMixin {
         BlockState farmblockState = serverLevel.getBlockState(cropPos.below());
         if (farmblockState.is(ModBlocks.INFESTED_FARMLAND)) {
             ci.cancel();
-        } else if (serverLevel.random.nextDouble() <= InfestedFarmBlock.getInfectionChance(farmblockState) && checkIfHasFaucetNearCrop(serverLevel, cropPos).succeeded()) {
+        } else if (serverLevel.random.nextDouble() <= InfestedFarmBlock.getInfectionChance(farmblockState, true) && checkIfHasFaucetNearCrop(serverLevel, cropPos).succeeded()) {
             InfestedFarmBlock.infectBlock(serverLevel, farmblockState, cropPos.below());
 
             double x = cropPos.getX() + 0.5;
