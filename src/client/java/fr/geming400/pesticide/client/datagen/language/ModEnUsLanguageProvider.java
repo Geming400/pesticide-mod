@@ -36,7 +36,7 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
         builder.add(ModBlocks.FAUCET, "Faucet");
         builder.add(
                 ModBlocks.FAUCET.getDescriptionId() + ".info",
-                "A faucet lets you dispense pesticide on crops."
+                "A faucet lets you dispense pesticide on crops. By providing it a redstone signal you can disable it."
         );
         builder.add(ModBlocks.INFESTED_FARMLAND, "Infested Farmland");
 
