@@ -1,6 +1,8 @@
 package fr.geming400.pesticide.content.items;
 
 import fr.geming400.pesticide.Pesticides;
+import fr.geming400.pesticide.content.items.food.ModConsumeEffects;
+import fr.geming400.pesticide.content.items.food.ModFoodProperties;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -34,6 +36,13 @@ public final class ModItems {
                     .craftRemainder(EMPTY_CONTAINER)
                     .usingConvertsTo(EMPTY_CONTAINER)
                     .stacksTo(8)
+    );
+
+    public static final Item FAUCET_ANALYSER = register(
+            "faucet_analyser",
+            FaucetAnalyser::new,
+            new Item.Properties()
+                    .stacksTo(1)
     );
 
     public static final Item ZOMBIE_BONE = register(

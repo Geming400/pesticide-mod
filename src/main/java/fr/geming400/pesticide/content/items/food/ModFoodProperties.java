@@ -1,4 +1,4 @@
-package fr.geming400.pesticide.content.items;
+package fr.geming400.pesticide.content.items.food;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.food.FoodProperties;

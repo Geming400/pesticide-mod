@@ -29,6 +29,7 @@ public final class ModCreativeTab {
                 output.accept(ModItems.ZOMBIE_BONE);
 
                 output.accept(ModBlocks.FAUCET);
+                output.accept(ModItems.FAUCET_ANALYSER);
 
                 output.accept(ModItems.EMPTY_CONTAINER);
                 output.accept(ModItems.WATER_CONTAINER);

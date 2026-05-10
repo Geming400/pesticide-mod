@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "pesticide_containers",
+  "key": {
+    "i": "#c:nuggets/iron",
+    "s": "#c:rods/wooden"
+  },
+  "pattern": [
+    "  i",
+    " s ",
+    "s  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:faucet_analyser"
+  }
+}

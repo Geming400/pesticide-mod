@@ -47,6 +47,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.GLASS), has(ConventionalItemTags.GLASS_BLOCKS))
                         .save(output);
 
+                shaped(RecipeCategory.TOOLS, ModItems.FAUCET_ANALYSER)
+                        .pattern("  i")
+                        .pattern(" s ")
+                        .pattern("s  ")
+                        .define('i', ConventionalItemTags.IRON_NUGGETS)
+                        .define('s', ConventionalItemTags.WOODEN_RODS)
+                        .group("pesticide_containers")
+                        .unlockedBy(getHasName(Items.IRON_NUGGET), has(ConventionalItemTags.IRON_NUGGETS))
+                        .unlockedBy(getHasName(Items.STICK), has(ConventionalItemTags.WOODEN_RODS))
+                        .save(output);
+
                 SpecialRecipeBuilder.special(PesticideContainerRecipe::new)
                         .save(this.output, "pesticide_container");
             }

@@ -1,7 +1,8 @@
-package fr.geming400.pesticide.content.items;
+package fr.geming400.pesticide.content.items.food;
 
 import com.mojang.serialization.MapCodec;
 import fr.geming400.pesticide.Pesticides;
+import fr.geming400.pesticide.content.items.PesticideContainer;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
