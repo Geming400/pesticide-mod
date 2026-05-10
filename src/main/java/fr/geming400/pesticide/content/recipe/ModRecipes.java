@@ -1,9 +1,13 @@
 package fr.geming400.pesticide.content.recipe;
 
 import fr.geming400.pesticide.Pesticides;
+import fr.geming400.pesticide.content.items.ModPotions;
+import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -15,7 +19,25 @@ public final class ModRecipes {
         return Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, Identifier.fromNamespaceAndPath(Pesticides.MOD_ID, name), recipeSerializer);
     }
 
-    public static void initialize() {}
+    public static void initialize() {
+        FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
+            builder.addMix(
+                    Potions.AWKWARD,
+                    Items.BLAZE_ROD,
+                    ModPotions.BURNING_POTION
+            );
+            builder.addMix(
+                    Potions.AWKWARD,
+                    Items.PACKED_ICE,
+                    ModPotions.FREEZING_POTION
+            );
+            builder.addMix(
+                    Potions.AWKWARD,
+                    Items.TROPICAL_FISH,
+                    ModPotions.DROWNING_POTION
+            );
+        });
+    }
 
     private ModRecipes() {}
 }

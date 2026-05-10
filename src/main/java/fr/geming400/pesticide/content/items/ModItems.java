@@ -53,6 +53,7 @@ public final class ModItems {
 
     public static void initialize() {
         ModConsumeEffects.initialize();
+        ModPotions.initialize();
     }
 
     private static <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {

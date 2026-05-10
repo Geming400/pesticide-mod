@@ -9,6 +9,9 @@ import net.minecraft.world.effect.MobEffect;
 
 public final class ModEffects {
     public static final Holder<MobEffect> BAD_FARMER = create("bad_farmer", new BadFarmerEffect());
+    public static final Holder<MobEffect> DROWNING = create("drowning", new DrowningEffect());
+    public static final Holder<MobEffect> BURNING = create("burning", new BurningEffect());
+    public static final Holder<MobEffect> FREEZING = create("freezing", new FreezingEffect());
 
     private static Holder<MobEffect> create(String name, MobEffect mobEffect) {
         return Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, Identifier.fromNamespaceAndPath(Pesticides.MOD_ID, name), mobEffect);
