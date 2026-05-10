@@ -14,10 +14,12 @@ public class PesticidesDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 		pack.addProvider(ModModelProvider::new);
-		pack.addProvider(ModEnglishLanguageProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModBlockLoottableProvider::new);
 		pack.addProvider(ModItemTagProvider::new);
 		pack.addProvider(ModEntityLoottableProvider::new);
+
+		// Languages
+		pack.addProvider(ModEnglishLanguageProvider::new);
 	}
 }

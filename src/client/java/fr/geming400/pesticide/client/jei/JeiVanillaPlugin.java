@@ -3,6 +3,7 @@ package fr.geming400.pesticide.client.jei;
 import fr.geming400.pesticide.Pesticides;
 import fr.geming400.pesticide.content.ModDataComponents;
 import fr.geming400.pesticide.content.ModRegistries;
+import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import mezz.jei.api.IModPlugin;
@@ -16,6 +17,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
@@ -77,5 +79,9 @@ public class JeiVanillaPlugin implements IModPlugin {
         }
 
         registration.addRecipes(RecipeTypes.CRAFTING, recipes);
+
+        registration.addIngredientInfo(ModItems.ZOMBIE_BONE, Component.translatable(ModItems.ZOMBIE_BONE.getDescriptionId() + ".info"));
+        registration.addIngredientInfo(ModItems.FAUCET_ANALYSER, Component.translatable(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".info"));
+        registration.addIngredientInfo(ModBlocks.FAUCET, Component.translatable(ModBlocks.FAUCET.getDescriptionId() + ".info"));
     }
 }
