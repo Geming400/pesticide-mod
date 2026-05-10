@@ -23,7 +23,7 @@ public class PesticidesClient implements ClientModInitializer {
 			PesticideType pesticideType = stack.get(ModDataComponents.PESTICIDE_TYPE);
 
 			if (pesticideType != null) {
-				ChatFormatting tooltipColor = pesticideType.growSpeedFactor() > 0
+				ChatFormatting tooltipColor = pesticideType.growSpeedFactor() > 1
 						? ChatFormatting.DARK_GREEN
 						: ChatFormatting.DARK_RED;
 
