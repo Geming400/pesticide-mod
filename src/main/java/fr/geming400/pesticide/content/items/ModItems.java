@@ -31,7 +31,7 @@ public final class ModItems {
             "pesticide_container",
             PesticideContainer::new,
             new Item.Properties()
-                    .food(ModFoodProperties.PESTICIDE, ModFoodProperties.WATER_BOTTLE_LIKE_CONSUMABLE)
+                    .food(ModFoodProperties.PESTICIDE, ModFoodProperties.PESTICIBLE_CONSUMABLE)
                     .fireResistant()
                     .craftRemainder(EMPTY_CONTAINER)
                     .usingConvertsTo(EMPTY_CONTAINER)
