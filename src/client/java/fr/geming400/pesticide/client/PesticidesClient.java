@@ -41,7 +41,7 @@ public class PesticidesClient implements ClientModInitializer {
 							// by this will change nothing
 							// aka we keep the original block color
 							int startColor = 0xFFFFFF;
-							int endColor = 0x00820F;
+							int endColor = 0x75C5FF;
 							return lerpColor(startColor, endColor, infestedFarmland.getInfectionProgress());
 						}
 					}
