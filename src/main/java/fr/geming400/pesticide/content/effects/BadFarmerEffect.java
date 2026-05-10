@@ -30,7 +30,7 @@ public class BadFarmerEffect extends MobEffect {
 
     @SuppressWarnings("UnstableApiUsage")
     @Override
-    public boolean applyEffectTick(@NonNull ServerLevel serverLevel, @NonNull LivingEntity livingEntity, int i) {
+    public boolean applyEffectTick(@NonNull ServerLevel serverLevel, @NonNull LivingEntity livingEntity, int amplifier) {
         return livingEntity.getAttachedOrGet(ModAttachments.TIME_SPENT_ON_INFESTED_FARMLAND, () -> 0) >= TICKS_BEFORE_APPLYING;
     }
 }
