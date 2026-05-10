@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEffectInstance... effects) {
@@ -18,7 +19,7 @@ public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEff
 
 
     public Identifier getID() {
-        return ModRegistries.PESTICIDE_TYPE.getKey(this);
+        return Objects.requireNonNull(ModRegistries.PESTICIDE_TYPE.getKey(this));
     }
 
     public String getNameTranslationKey() {
@@ -44,5 +45,9 @@ public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEff
                         .map(ItemStack::getItem)
                         .toList()
         ).containsAll(ingredients);
+    }
+
+    public static PesticideType fromID(Identifier id) {
+        return Objects.requireNonNull(ModRegistries.PESTICIDE_TYPE.getValue(id));
     }
 }

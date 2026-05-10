@@ -3,9 +3,10 @@
   "package": "fr.geming400.pesticide.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BlockBehaviourMixin",
     "CropBlockMixin",
-    "HoeItemMixin",
-    "EntityMixin"
+    "EntityMixin",
+    "HoeItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

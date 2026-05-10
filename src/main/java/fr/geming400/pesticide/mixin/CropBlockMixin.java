@@ -133,15 +133,19 @@ abstract class CropBlockMixin {
     @Inject(at = @At("HEAD"), method = "randomTick", cancellable = true)
     private void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos cropPos, RandomSource randomSource, CallbackInfo ci) {
         BlockState farmblockState = serverLevel.getBlockState(cropPos.below());
+
         if (farmblockState.is(ModBlocks.INFESTED_FARMLAND)) {
             ci.cancel();
-        } else if (serverLevel.random.nextDouble() <= InfestedFarmBlock.getInfectionChance(farmblockState, true) && checkIfHasFaucetNearCrop(serverLevel, cropPos).succeeded()) {
-            InfestedFarmBlock.infectBlock(serverLevel, farmblockState, cropPos.below());
+        } else if (serverLevel.random.nextDouble() <= InfestedFarmBlock.getInfectionChance(farmblockState, true)) {
+            IterationResult iterResult = checkIfHasFaucetNearCrop(serverLevel, cropPos);
+            if (iterResult.succeeded()) {
+                InfestedFarmBlock.infectBlock(serverLevel, farmblockState, cropPos.below(), iterResult.pesticideType);
 
-            double x = cropPos.getX() + 0.5;
-            double y = cropPos.getY() + 0.5;
-            double z = cropPos.getZ() + 0.5;
-            serverLevel.addParticle(new DustParticleOptions(0x540000, 0.5f), x, y, z, 0.0, 0.0, 0.0);
+                double x = cropPos.getX() + 0.5;
+                double y = cropPos.getY() + 0.5;
+                double z = cropPos.getZ() + 0.5;
+                serverLevel.addParticle(new DustParticleOptions(0x540000, 0.5f), x, y, z, 0.0, 0.0, 0.0);
+            }
         }
     }
 

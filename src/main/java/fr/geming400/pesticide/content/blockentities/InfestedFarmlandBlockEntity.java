@@ -1,8 +1,11 @@
 package fr.geming400.pesticide.content.blockentities;
 
+import fr.geming400.pesticide.content.ModRegistries;
+import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -13,12 +16,19 @@ import org.jetbrains.annotations.Range;
 import org.jspecify.annotations.NonNull;
 
 import java.time.Duration;
+import java.util.Objects;
 
 public class InfestedFarmlandBlockEntity extends BlockEntity {
+    /// The time for an infest farmland to fully show as "infected" (aka the block has finished tinting)
     private static final float INFECTION_TIME = Duration.ofMinutes(30).getSeconds() * 20;
     private static final float INFECTION_STEP = 1 / INFECTION_TIME;
+
+    /// Used to prevent crashing
+    private static final PesticideType DEFAULT_PESTICIDE_TYPE = Objects.requireNonNull(ModRegistries.PESTICIDE_TYPE.byId(0));
+
     @Range(from = 0, to = 1)
     private float infectionProgress = 0f;
+    private PesticideType pesticideType;
 
     public InfestedFarmlandBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(ModBlockEntities.INFESTED_FARMLAND_BLOCK_ENTITY, blockPos, blockState);
@@ -29,6 +39,10 @@ public class InfestedFarmlandBlockEntity extends BlockEntity {
         if (this.infectionProgress != 0)
             output.putFloat("infectionProgress", this.infectionProgress);
 
+        // Should never happen but we never know ig
+        if (this.pesticideType != null)
+            output.putString("pesticideType", this.pesticideType.getID().toString());
+
         super.saveAdditional(output);
     }
 
@@ -37,6 +51,11 @@ public class InfestedFarmlandBlockEntity extends BlockEntity {
         super.loadAdditional(input);
 
         this.infectionProgress = input.getFloatOr("infectionProgress", 0);
+        this.pesticideType = PesticideType.fromID(
+                Identifier.parse(
+                        input.getStringOr("pesticideType", DEFAULT_PESTICIDE_TYPE.getID().toString())
+                )
+        );
     }
 
     @Override
@@ -68,6 +87,15 @@ public class InfestedFarmlandBlockEntity extends BlockEntity {
                 );
             }
         }
+    }
+
+    @NonNull
+    public PesticideType getPesticideType() {
+        return this.pesticideType == null ? DEFAULT_PESTICIDE_TYPE : this.pesticideType;
+    }
+
+    public void setPesticideType(PesticideType pesticideType) {
+        this.pesticideType = pesticideType;
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, InfestedFarmlandBlockEntity blockEntity) {
