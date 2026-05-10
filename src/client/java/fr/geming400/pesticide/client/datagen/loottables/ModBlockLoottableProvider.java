@@ -1,4 +1,4 @@
-package fr.geming400.pesticide.client.datagen;
+package fr.geming400.pesticide.client.datagen.loottables;
 
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;

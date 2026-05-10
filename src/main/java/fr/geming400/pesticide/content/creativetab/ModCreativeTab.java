@@ -26,6 +26,8 @@ public final class ModCreativeTab {
             .icon(() -> new ItemStack(ModItems.PESTICIDE_CONTAINER))
             .title(Component.translatable("itemGroup." + Pesticides.MOD_ID))
             .displayItems((params, output) -> {
+                output.accept(ModItems.ZOMBIE_BONE);
+
                 output.accept(ModBlocks.FAUCET);
 
                 output.accept(ModItems.EMPTY_CONTAINER);

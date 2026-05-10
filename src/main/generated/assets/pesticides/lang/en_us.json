@@ -7,6 +7,7 @@
   "item.pesticides.pesticide_container.tooltip.growthFactor": "Has a growth factor of %s",
   "item.pesticides.pesticide_container.tooltip.volume": "Contains 1b of %s",
   "item.pesticides.water_container": "Water Container",
+  "item.pesticides.zombie_bone": "Zombie Bone",
   "itemGroup.pesticides": "Pesticides",
   "pesticides.atrazine.name": "Atrazine",
   "pesticides.endosulfan.name": "Endosulfan",

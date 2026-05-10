@@ -36,6 +36,12 @@ public final class ModItems {
                     .stacksTo(8)
     );
 
+    public static final Item ZOMBIE_BONE = register(
+            "zombie_bone",
+            Item::new,
+            new Item.Properties()
+    );
+
     public static void initialize() {
         ModConsumeEffects.initialize();
     }
