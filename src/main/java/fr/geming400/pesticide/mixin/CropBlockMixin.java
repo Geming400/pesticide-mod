@@ -6,6 +6,7 @@ import fr.geming400.pesticide.content.blockentities.FaucetBlockEntity;
 import fr.geming400.pesticide.content.blocks.FaucetBlock;
 import fr.geming400.pesticide.content.blocks.InfestedFarmBlock;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
+import fr.geming400.pesticide.content.effects.BadFarmerEffect;
 import fr.geming400.pesticide.content.effects.ModEffects;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
@@ -123,7 +124,7 @@ abstract class CropBlockMixin {
                 !level.isClientSide()
                 && entity instanceof LivingEntity livingEntity
                 && livingEntity.hasEffect(ModEffects.BAD_FARMER)
-                && entity.getRandom().nextInt(0, 50) == 0
+                && entity.getRandom().nextDouble() <= BadFarmerEffect.CHANCE_TO_BREAK_CROP
         ) {
             level.destroyBlock(blockPos, true, entity);
         }

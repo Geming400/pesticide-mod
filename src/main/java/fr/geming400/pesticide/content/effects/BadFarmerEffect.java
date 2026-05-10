@@ -14,8 +14,10 @@ import java.time.Duration;
 // in CropBlockMixin and HoeItemMixin
 public class BadFarmerEffect extends MobEffect {
     /// The number of ticks the player needs to step on {@link InfestedFarmBlock}s to get infected
-    public static final long TICKS_BEFORE_APPLYING = Duration.ofSeconds(20).getSeconds() * 20;
+    public static final long TICKS_BEFORE_APPLYING = Duration.ofMinutes(2).getSeconds() * 20;
     public static final int DEFAULT_APPLY_TIME = Math.toIntExact(Duration.ofMinutes(20).getSeconds() * 20);
+
+    public static final double CHANCE_TO_BREAK_CROP = 0.01;
 
     protected BadFarmerEffect() {
         super(MobEffectCategory.HARMFUL, 0x966C4A);
