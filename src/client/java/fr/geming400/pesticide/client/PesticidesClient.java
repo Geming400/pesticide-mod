@@ -23,8 +23,12 @@ public class PesticidesClient implements ClientModInitializer {
 			PesticideType pesticideType = stack.get(ModDataComponents.PESTICIDE_TYPE);
 
 			if (pesticideType != null) {
+				ChatFormatting tooltipColor = pesticideType.growSpeedFactor() > 0
+						? ChatFormatting.DARK_GREEN
+						: ChatFormatting.DARK_RED;
+
                 tooltip.add(Component.translatable(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.volume", pesticideType.getName())
-						.withStyle(ChatFormatting.DARK_GREEN));
+						.withStyle(tooltipColor));
 
 				DecimalFormat df = new DecimalFormat("#.00");
 				tooltip.add(Component.translatableEscape(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", df.format(pesticideType.growSpeedFactor()))
