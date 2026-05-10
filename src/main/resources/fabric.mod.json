@@ -6,7 +6,6 @@
 	"description": "Rajoute des pesticides :33",
 	"authors": [
 		"Geming400",
-		"Currenttick",
 		"Kayrooxx"
 	],
 	"contact": {
@@ -25,6 +24,9 @@
 		],
 		"fabric-datagen": [
 			"fr.geming400.pesticide.client.PesticidesDataGenerator"
+		],
+		"jei_mod_plugin": [
+			"fr.geming400.pesticide.client.jei.JeiVanillaPlugin"
 		]
 	},
 	"mixins": [
