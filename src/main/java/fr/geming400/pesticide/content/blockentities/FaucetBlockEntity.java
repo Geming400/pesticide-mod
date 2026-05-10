@@ -125,6 +125,7 @@ public class FaucetBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, FaucetBlockEntity faucetBlockEntity) {
-        faucetBlockEntity.drainMb(blockState);
+        if (blockState.getValueOrElse(FaucetBlock.ENABLED, false))
+            faucetBlockEntity.drainMb(blockState);
     }
 }
