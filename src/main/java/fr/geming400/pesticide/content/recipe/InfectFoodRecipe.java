@@ -6,6 +6,7 @@ import fr.geming400.pesticide.content.items.food.ModFoodProperties;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
@@ -26,11 +27,11 @@ public final class InfectFoodRecipe extends CustomRecipe {
             PesticideType pesticideType = null;
             ItemStack consumableItem = null;
             for (ItemStack itemstack : recipeInput.items()) {
-                if (Utils.isInfectable(itemstack))
+                if (Utils.isInfectable(itemstack)) {
                     consumableItem = itemstack;
-
-                if (itemstack.has(ModDataComponents.PESTICIDE_TYPE))
+                } else if (itemstack.has(ModDataComponents.PESTICIDE_TYPE)) {
                     pesticideType = itemstack.get(ModDataComponents.PESTICIDE_TYPE);
+                }
             }
 
             return pesticideType != null && consumableItem != null;
@@ -43,13 +44,15 @@ public final class InfectFoodRecipe extends CustomRecipe {
     @NonNull
     public ItemStack assemble(@NonNull CraftingInput recipeInput, HolderLookup.@NonNull Provider provider) {
         PesticideType pesticideType = null;
+        Item pesticideContainer = null;
         ItemStack consumableItem = null;
-        for (ItemStack item : recipeInput.items()) {
-            if (item.has(DataComponents.CONSUMABLE))
-                consumableItem = item.copyWithCount(1);
-
-            if (item.has(ModDataComponents.PESTICIDE_TYPE))
-                pesticideType = item.get(ModDataComponents.PESTICIDE_TYPE);
+        for (ItemStack itemstack : recipeInput.items()) {
+            if (itemstack.has(ModDataComponents.PESTICIDE_TYPE)) {
+                pesticideType = itemstack.get(ModDataComponents.PESTICIDE_TYPE);
+                pesticideContainer = itemstack.getItem();
+            } else if (itemstack.has(DataComponents.CONSUMABLE) && !itemstack.is(pesticideContainer)) {
+                consumableItem = itemstack.copyWithCount(1);
+            }
         }
 
 
