@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "got_zombie_bone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pesticides:zombie_bone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:gui/advancements/backgrounds/stone",
+    "description": {
+      "translate": "advancements.pesticides.core.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "pesticides:empty_container"
+    },
+    "title": {
+      "translate": "advancements.pesticides.core.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_zombie_bone"
+    ]
+  ]
+}

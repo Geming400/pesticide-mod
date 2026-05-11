@@ -74,5 +74,11 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
         tu.createPesticideTranslation(ModPesticides.ENDOSULFAN, "Endosulfan");
         tu.createPesticideTranslation(ModPesticides.ADIFIDOPYROPEN, "Afidopyropen");
         tu.createPesticideTranslation(ModPesticides.AMPROPYFLOS, "Ampropylfos");
+
+        tu.advancement("core")
+                .root("Pesticides", "The start of every pesticide industry, zombie bones !")
+                .add("a_new_farmer_era", "A new farmer era", "All hail pesticides !")
+                .add("first_pesticides" ,"First pesticides", "And that's how you make ecologists happy !")
+                .add("a_true_farmer" ,"A true farmer", "Get the \"bad farmer\" effect");
     }
 }

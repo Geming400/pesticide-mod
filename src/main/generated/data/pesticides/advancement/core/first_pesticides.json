@@ -1,0 +1,34 @@
+{
+  "parent": "pesticides:core/a_new_farmer_era",
+  "criteria": {
+    "got_pesticides": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pesticides:pesticide_container"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:gui/advancements/backgrounds/stone",
+    "description": {
+      "translate": "advancements.pesticides.core.first_pesticides.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "pesticides:pesticide_container"
+    },
+    "title": {
+      "translate": "advancements.pesticides.core.first_pesticides.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_pesticides"
+    ]
+  ]
+}

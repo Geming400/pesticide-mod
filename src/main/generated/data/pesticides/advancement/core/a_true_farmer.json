@@ -1,0 +1,33 @@
+{
+  "parent": "pesticides:core/first_pesticides",
+  "criteria": {
+    "got_bad_farmer_effect": {
+      "conditions": {
+        "effects": {
+          "pesticides:bad_farmer": {}
+        }
+      },
+      "trigger": "minecraft:effects_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:gui/advancements/backgrounds/stone",
+    "description": {
+      "translate": "advancements.pesticides.core.a_true_farmer.description"
+    },
+    "frame": "goal",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "minecraft:diamond_hoe"
+    },
+    "title": {
+      "translate": "advancements.pesticides.core.a_true_farmer.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_bad_farmer_effect"
+    ]
+  ]
+}

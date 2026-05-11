@@ -1,4 +1,12 @@
 {
+  "advancements.pesticides.core.a_new_farmer_era.description": "All hail pesticides !",
+  "advancements.pesticides.core.a_new_farmer_era.title": "A new farmer era",
+  "advancements.pesticides.core.a_true_farmer.description": "Get the \"bad farmer\" effect",
+  "advancements.pesticides.core.a_true_farmer.title": "A true farmer",
+  "advancements.pesticides.core.first_pesticides.description": "And that's how you make ecologists happy !",
+  "advancements.pesticides.core.first_pesticides.title": "First pesticides",
+  "advancements.pesticides.core.root.description": "The start of every pesticide industry, zombie bones !",
+  "advancements.pesticides.core.root.title": "Pesticides",
   "block.pesticides.faucet": "Faucet",
   "block.pesticides.faucet.info": "A faucet lets you dispense pesticide on crops. By providing it a redstone signal you can disable it.",
   "block.pesticides.infested_farmland": "Infested Farmland",
