@@ -1,9 +1,13 @@
 # Pesticides
 
-## Setup
+Little silly mod I made for me and my friends.
+This is literally food poisoning simulator but like in Minecraft idk.
 
-For setup instructions, please see the [Fabric Documentation page](https://docs.fabricmc.net/develop/getting-started/creating-a-project#setting-up) related to the IDE that you are using.
+You can create a faucet, put pesticide in it, and it'll make plants grow faster in a **5x3x5 blocks radius**.
+By shift clicking, you can put it in **double mode**, allowing you to have pesticide applied in both directions (not just in front of the faucet),
+but **its pesticide consumption will double**. It has a radius of **5x5x5 blocks**
 
-## License
+## JEI Integration
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+There's basic integration with jei for crafts.
+It's very recommended to use it with this mod because some recipes won't appear in the recipe book !
