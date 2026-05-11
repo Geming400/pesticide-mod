@@ -3,14 +3,14 @@
 	"id": "pesticides",
 	"version": "${version}",
 	"name": "Pesticides",
-	"description": "Rajoute des pesticides :33",
+	"description": "Adds very healthy pesticides to the game",
 	"authors": [
 		"Geming400",
 		"Kayrooxx"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"issues": "https://github.com/Geming400/pesticide-mod/issues",
+		"sources": "https://github.com/Geming400/pesticide-mod"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/pesticides/icon.png",
