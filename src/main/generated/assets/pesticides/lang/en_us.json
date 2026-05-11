@@ -8,7 +8,7 @@
   "advancements.pesticides.core.root.description": "The start of every pesticide industry, zombie bones !",
   "advancements.pesticides.core.root.title": "Pesticides",
   "block.pesticides.faucet": "Faucet",
-  "block.pesticides.faucet.info": "A faucet lets you dispense pesticide on crops. By providing it a redstone signal you can disable it.",
+  "block.pesticides.faucet.info": "A faucet lets you dispense pesticide on crops. By providing it a redstone signal you can disable it.\nYou can also SHIFT+CLICK on it to toggle cycle between its 2 modes: 'single' and 'double'.\n\nWhen in single mode, pesticides only get fired in front of the faucet and it has a radius of 5x3x5\nWhen in double mode, its pesticide consumption doubles and also fires pesticide in both sides and it has a radius of 5x5x5\n",
   "block.pesticides.infested_farmland": "Infested Farmland",
   "effect.pesticides.bad_farmer": "Bad Farmer",
   "effect.pesticides.burning": "Burning",

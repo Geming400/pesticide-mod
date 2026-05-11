@@ -37,7 +37,13 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
         builder.add(ModBlocks.FAUCET, "Faucet");
         builder.add(
                 ModBlocks.FAUCET.getDescriptionId() + ".info",
-                "A faucet lets you dispense pesticide on crops. By providing it a redstone signal you can disable it."
+                """
+                        A faucet lets you dispense pesticide on crops. By providing it a redstone signal you can disable it.
+                        You can also SHIFT+CLICK on it to toggle cycle between its 2 modes: 'single' and 'double'.
+                        
+                        When in single mode, pesticides only get fired in front of the faucet and it has a radius of 5x3x5
+                        When in double mode, its pesticide consumption doubles and also fires pesticide in both sides and it has a radius of 5x5x5
+                        """
         );
         builder.add(ModBlocks.INFESTED_FARMLAND, "Infested Farmland");
 
