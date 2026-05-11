@@ -26,7 +26,7 @@ public class PesticideContainer extends Item {
         if (itemStack.has(ModDataComponents.PESTICIDE_TYPE)) {
             return Component.translatable(this.descriptionId, this.getPesticideType(itemStack).getName());
         } else {
-            return Component.translatable(this.descriptionId, "Empty");
+            return Component.translatable(this.descriptionId, Component.translatable(this.descriptionId + ".unknownType"));
         }
     }
 

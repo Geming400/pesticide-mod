@@ -11,7 +11,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
-public class PesticideContainerRecipe extends CustomRecipe {
+public final class PesticideContainerRecipe extends CustomRecipe {
     public PesticideContainerRecipe(CraftingBookCategory craftingBookCategory) {
         super(craftingBookCategory);
     }
@@ -40,7 +40,7 @@ public class PesticideContainerRecipe extends CustomRecipe {
 
     @Override
     @NonNull
-    public RecipeSerializer<? extends CustomRecipe> getSerializer() {
+    public RecipeSerializer<PesticideContainerRecipe> getSerializer() {
         return ModRecipes.PESTICIDE_CONTAINER_RECIPE;
     }
 }

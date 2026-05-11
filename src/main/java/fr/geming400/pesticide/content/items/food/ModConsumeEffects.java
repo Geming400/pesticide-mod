@@ -68,16 +68,16 @@ public final class ModConsumeEffects {
         }
     }
 
-    public record PesticideConsumeEffect(PesticideType type) implements ConsumeEffect {
-        public static final MapCodec<PesticideConsumeEffect> CODEC = MapCodec.assumeMapUnsafe(RecordCodecBuilder.create(instance -> instance.group(
-                PesticideType.CODEC.fieldOf("pesticideType").forGetter(PesticideConsumeEffect::type)
-        ).apply(instance, PesticideConsumeEffect::new)));
+    public record PesticideConsumeEffect(Identifier pesticideID) implements ConsumeEffect {
+        public static final MapCodec<PesticideConsumeEffect> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+                Identifier.CODEC.fieldOf("pesticideID").forGetter(PesticideConsumeEffect::pesticideID)
+        ).apply(instance, PesticideConsumeEffect::new));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, PesticideConsumeEffect> STREAM_CODEC = StreamCodec.of(
                 (bytebuf, pesticideConsumeEffect) ->
-                        bytebuf.writeIdentifier(pesticideConsumeEffect.type.getID()),
+                        bytebuf.writeIdentifier(pesticideConsumeEffect.pesticideID),
                 byteBuf ->
-                        new PesticideConsumeEffect(PesticideType.fromID(byteBuf.readIdentifier()))
+                        new PesticideConsumeEffect(byteBuf.readIdentifier())
         );
 
         @Override
@@ -89,13 +89,25 @@ public final class ModConsumeEffects {
         @Override
         public boolean apply(@NonNull Level level, @NonNull ItemStack itemStack, @NonNull LivingEntity livingEntity) {
             boolean res = false;
-            for (MobEffectInstance mobEffectInstance : this.type.effects()) {
-                if (livingEntity.addEffect(new MobEffectInstance(mobEffectInstance))) {
-                    res = true;
+
+            try {
+                PesticideType pesticideType = PesticideType.fromID(this.pesticideID);
+
+                for (MobEffectInstance mobEffectInstance : pesticideType.effects()) {
+                    if (livingEntity.addEffect(new MobEffectInstance(mobEffectInstance))) {
+                        res = true;
+                    }
                 }
+            } catch (NullPointerException e) {
+                // noinspection StringConcatenationArgumentToLogCall
+                Pesticides.LOGGER.error("Tried to apply PesticideConsumeEffect for pesticide %s but failed because it doesn't seem to exist !".formatted(this.pesticideID), e);
             }
 
             return res;
+        }
+
+        public static PesticideConsumeEffect of(PesticideType pesticideType) {
+            return new PesticideConsumeEffect(pesticideType.getID());
         }
     }
 

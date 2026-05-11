@@ -27,11 +27,11 @@ public final class ModFoodProperties {
      */
     public static Consumable createPesticibleConsumable(Consumable from, PesticideType pesticideType) {
         return Consumable.builder()
-                .onConsume(new ModConsumeEffects.PesticideConsumeEffect(pesticideType))
+                .onConsume(ModConsumeEffects.PesticideConsumeEffect.of(pesticideType))
                 .hasConsumeParticles(from.hasConsumeParticles())
                 .animation(from.animation())
                 .consumeSeconds(from.consumeSeconds())
-                .soundAfterConsume(from.sound())
+                .sound(from.sound())
                 .build();
     }
 

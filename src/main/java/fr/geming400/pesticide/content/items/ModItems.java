@@ -1,7 +1,6 @@
 package fr.geming400.pesticide.content.items;
 
 import fr.geming400.pesticide.Pesticides;
-import fr.geming400.pesticide.content.items.food.ModConsumeEffects;
 import fr.geming400.pesticide.content.items.food.ModFoodProperties;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -52,7 +51,6 @@ public final class ModItems {
     );
 
     public static void initialize() {
-        ModConsumeEffects.initialize();
         ModPotions.initialize();
     }
 

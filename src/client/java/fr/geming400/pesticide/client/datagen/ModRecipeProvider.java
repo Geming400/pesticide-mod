@@ -3,6 +3,7 @@ package fr.geming400.pesticide.client.datagen;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
+import fr.geming400.pesticide.content.recipe.InfectFoodRecipe;
 import fr.geming400.pesticide.content.recipe.PesticideContainerRecipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -60,6 +61,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
                 SpecialRecipeBuilder.special(PesticideContainerRecipe::new)
                         .save(this.output, "pesticide_container");
+
+                SpecialRecipeBuilder.special(InfectFoodRecipe::new)
+                        .save(this.output, "infected_food");
             }
 
             public ShapelessRecipeBuilder createPesticide(PesticideType pesticideType) {

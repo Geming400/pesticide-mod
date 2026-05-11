@@ -13,9 +13,14 @@ import net.minecraft.world.item.Items;
 import java.util.Set;
 
 public final class ModPesticides {
+    public static final PesticideType AMPROPYFLOS = of(
+            "ampropylfos",
+            new PesticideType(0.01f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.COBBLESTONE), new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 1, 0))
+    );
+
     public static final PesticideType TERPINOLENE = of(
             "terpinolene",
-            new PesticideType(0.45f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.WHEAT_SEEDS), new MobEffectInstance(ModEffects.BURNING, 20*20, 0))
+            new PesticideType(0.45f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.WHEAT_SEEDS), new MobEffectInstance(ModEffects.FREEZING, 20*20, 0))
     );
 
     public static final PesticideType GLYPHOSATE = of(
@@ -30,17 +35,12 @@ public final class ModPesticides {
 
     public static final PesticideType ENDOSULFAN = of(
             "endosulfan",
-            new PesticideType(2.15f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.QUARTZ), new MobEffectInstance(MobEffects.WITHER, 15*20, 2))
+            new PesticideType(2.15f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.QUARTZ), new MobEffectInstance(ModEffects.BURNING, 15*20, 2))
     );
 
     public static final PesticideType ADIFIDOPYROPEN = of(
             "afidopyropen",
-            new PesticideType(5.65f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.SCULK), new MobEffectInstance(ModEffects.FREEZING, 20*20, 0))
-    );
-
-    public static final PesticideType AMPROPYFLOS = of(
-            "ampropylfos",
-            new PesticideType(Float.MAX_VALUE, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.BEDROCK), new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 20, 50))
+            new PesticideType(5.65f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.SCULK), new MobEffectInstance(MobEffects.WITHER, 20*20, 0))
     );
 
 
