@@ -14,11 +14,11 @@ import org.jspecify.annotations.NonNull;
 import java.util.concurrent.CompletableFuture;
 
 public class ModEnUsLanguageProvider extends FabricLanguageProvider {
-    public static final TranslationUtils.PotionPrefix POTION_PREFIX = new TranslationUtils.PotionPrefix(
-            "Potion of",
-            "Splash Potion of",
-            "Lingering Potion of",
-            "Arrow of"
+    public static final TranslationUtils.PotionFormatting POTION_FORMATTING = new TranslationUtils.PotionFormatting(
+            "Potion of %s",
+            "Splash Potion of %s",
+            "Lingering Potion of %s",
+            "Arrow of %s"
     );
 
     public ModEnUsLanguageProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
@@ -30,9 +30,9 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
         TranslationUtils tu = new TranslationUtils(builder);
 
         builder.add(ModEffects.BAD_FARMER.value(), "Bad Farmer");
-        tu.createPotionTranslations(ModEffects.DROWNING, POTION_PREFIX, "Drowning");
-        tu.createPotionTranslations(ModEffects.FREEZING, POTION_PREFIX, "Freezing");
-        tu.createPotionTranslations(ModEffects.BURNING, POTION_PREFIX, "Burning");
+        tu.createPotionTranslations(ModEffects.DROWNING, POTION_FORMATTING, "Drowning");
+        tu.createPotionTranslations(ModEffects.FREEZING, POTION_FORMATTING, "Freezing");
+        tu.createPotionTranslations(ModEffects.BURNING, POTION_FORMATTING, "Burning");
 
         builder.add(ModBlocks.FAUCET, "Faucet");
         builder.add(
@@ -51,7 +51,7 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
 
         builder.add(ModItems.EMPTY_CONTAINER, "Empty Container");
         builder.add(ModItems.WATER_CONTAINER, "Water Container");
-        builder.add(ModItems.PESTICIDE_CONTAINER, "%s Pesticide Container");
+        builder.add(ModItems.PESTICIDE_CONTAINER, "%s Container");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".infectedTooltip", "Infected with pesticide (this doesn't normally show up)");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".unknownType", "Unknown");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.volume", "Contains 1b of %s");
@@ -63,7 +63,7 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.notActive", "not active");
         builder.add(
                 ModItems.FAUCET_ANALYSER.getDescriptionId() + ".info",
-                "A faucet analyser allows to know the amount of pesticide left in a faucet"
+                "A faucet analyser allows to know the volume of pesticide left in a faucet"
         );
         builder.add(ModItems.ZOMBIE_BONE, "Zombie Bone");
         builder.add(

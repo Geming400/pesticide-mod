@@ -1,0 +1,90 @@
+package fr.geming400.pesticide.client.datagen.language;
+
+import fr.geming400.pesticide.Pesticides;
+import fr.geming400.pesticide.content.blocks.ModBlocks;
+import fr.geming400.pesticide.content.effects.ModEffects;
+import fr.geming400.pesticide.content.items.ModItems;
+import fr.geming400.pesticide.content.pesticides.ModPesticides;
+import fr.geming400.pesticide.content.tags.ModItemTags;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.core.HolderLookup;
+import org.jspecify.annotations.NonNull;
+
+import java.util.concurrent.CompletableFuture;
+
+public class ModFrFrLanguageProvider extends FabricLanguageProvider {
+    public static final TranslationUtils.PotionFormatting POTION_FORMATTING = new TranslationUtils.PotionFormatting(
+            "Potion de %s",
+            "Potion de %s jetable",
+            "Potion de %s persistante",
+            "Flèche de %s"
+    );
+
+    public ModFrFrLanguageProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        super(dataOutput, "fr_fr", registryLookup);
+    }
+
+    @Override
+    public void generateTranslations(HolderLookup.@NonNull Provider holderLookup, @NonNull TranslationBuilder builder) {
+        TranslationUtils tu = new TranslationUtils(builder);
+
+        builder.add(ModEffects.BAD_FARMER.value(), "Mauvais Fermier");
+        tu.createPotionTranslations(ModEffects.DROWNING, POTION_FORMATTING, "Noyade");
+        tu.createPotionTranslations(ModEffects.FREEZING, POTION_FORMATTING, "Gel");
+        tu.createPotionTranslations(ModEffects.BURNING, POTION_FORMATTING, "Brûlure");
+
+        builder.add(ModBlocks.FAUCET, "Robinet");
+        builder.add(
+                ModBlocks.FAUCET.getDescriptionId() + ".info",
+                """
+                        Un robinet permet de mettre des pesticides sur des plantations. En lui donnant un signal de redstone, tu peux le désactiver.
+                        Il est aussi possible de faire SHIFT + CLIC pour changer entre ses différents modes : 'simple' et 'double'.
+                        
+                        Quand il est en mode 'simple', les pesticides sont seulement envoyés en face du robinet, dans une zone de 5x3x5.
+                        Quand il est en mode 'double', sa consommation de pesticides double et il envoie des pesticides dans les deux directions, il couvre donc une zone de 5x5x5.
+                        """
+        );
+        builder.add(ModBlocks.INFESTED_FARMLAND, "Terre labourée infectée");
+
+        builder.add("itemGroup." + Pesticides.MOD_ID, "Pesticides");
+
+        builder.add(ModItems.EMPTY_CONTAINER, "Bidon vide");
+        builder.add(ModItems.WATER_CONTAINER, "Bidon d'eau");
+        builder.add(ModItems.PESTICIDE_CONTAINER, "Bidon de %s");
+        builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".infectedTooltip", "Nourriture infectée par des pesticides (ceci n'est pas affiché sur l'objet crafté)");
+        builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".unknownType", "Inconnu");
+        builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.volume", "Contient 1b de %s");
+        builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", "Possède un facteur de croissance de %s");
+        builder.add(ModItems.FAUCET_ANALYSER, "Analyseur de robinet");
+        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse", "Ce robinet contient %s mb de %s et est %s");
+        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.empty", "Ce robinet est vide");
+        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.active", "actif");
+        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.notActive", "inactif");
+        builder.add(
+                ModItems.FAUCET_ANALYSER.getDescriptionId() + ".info",
+                "Un analyseur de robinet permet de connaître le volume de pesticides contenu dans un robinet."
+        );
+        builder.add(ModItems.ZOMBIE_BONE, "Os de zombie");
+        builder.add(
+                ModItems.ZOMBIE_BONE.getDescriptionId() + ".info",
+                "Les os de zombies ont une forte chance d'être lâchés par les zombies. Ils sont très utiles pour la fabrication de pesticides."
+        );
+
+        builder.add(ModItemTags.CONTAINERS, "Bidons");
+        builder.add(ModItemTags.INFECTABLE_FOOD, "Nourriture infectable");
+
+        tu.createPesticideTranslation(ModPesticides.TERPINOLENE, "Terpinolène");
+        tu.createPesticideTranslation(ModPesticides.GLYPHOSATE, "Glyphosate");
+        tu.createPesticideTranslation(ModPesticides.ATRAZINE, "Atrazine");
+        tu.createPesticideTranslation(ModPesticides.ENDOSULFAN, "Endosulfan");
+        tu.createPesticideTranslation(ModPesticides.ADIFIDOPYROPEN, "Afidopyropen");
+        tu.createPesticideTranslation(ModPesticides.AMPROPYFLOS, "Ampropylfos");
+
+        tu.advancement("core")
+                .root("Pesticides", "Le début de toute entreprise de pesticides: les os de zombies !")
+                .add("a_new_farmer_era", "Une nouvelle ère dans l'agriculture", "Tous hail les pesticides !")
+                .add("first_pesticides" ,"Les premiers pesticides", "Et voilà comment rendre les écolos heureux !")
+                .add("a_true_farmer" ,"Un vrai fermier", "Obtenir l'effet \"Mauvais fermier\"");
+    }
+}

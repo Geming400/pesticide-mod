@@ -21,7 +21,7 @@ public final class TranslationUtils {
 
     public void createPotionTranslations(
             Holder<MobEffect> effect,
-            PotionPrefix potionPrefix,
+            PotionFormatting potionFormatting,
             String name
     ) {
         this.translationBuilder.add(effect.value(), name);
@@ -29,19 +29,19 @@ public final class TranslationUtils {
         String potionID = Identifier.parse(effect.getRegisteredName()).getPath();
         this.translationBuilder.add(
                 "item.minecraft.potion.effect.%s".formatted(potionID),
-                "%s %s".formatted(potionPrefix.potion, name)
+                potionFormatting.potion.formatted(name)
         );
         this.translationBuilder.add(
                 "item.minecraft.splash_potion.effect.%s".formatted(potionID),
-                "%s %s".formatted(potionPrefix.splashPotion, name)
+                potionFormatting.splashPotion.formatted(name)
         );
         this.translationBuilder.add(
                 "item.minecraft.lingering_potion.effect.%s".formatted(potionID),
-                "%s %s".formatted(potionPrefix.lingeringPotion, name)
+                potionFormatting.lingeringPotion.formatted(name)
         );
         this.translationBuilder.add(
                 "item.minecraft.tipped_arrow.effect.%s".formatted(potionID),
-                "%s %s".formatted(potionPrefix.tippedArrow, name)
+                potionFormatting.tippedArrow.formatted(name)
         );
     }
 
@@ -79,7 +79,7 @@ public final class TranslationUtils {
         }
     }
 
-    public record PotionPrefix(
+    public record PotionFormatting(
             String potion,
             String splashPotion,
             String lingeringPotion,

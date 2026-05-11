@@ -1,6 +1,7 @@
 package fr.geming400.pesticide.client;
 
 import fr.geming400.pesticide.client.datagen.ModAdvancementProvider;
+import fr.geming400.pesticide.client.datagen.language.ModFrFrLanguageProvider;
 import fr.geming400.pesticide.client.datagen.loottables.ModBlockLoottableProvider;
 import fr.geming400.pesticide.client.datagen.ModItemTagProvider;
 import fr.geming400.pesticide.client.datagen.ModModelProvider;
@@ -23,5 +24,6 @@ public class PesticidesDataGenerator implements DataGeneratorEntrypoint {
 
 		// Languages
 		pack.addProvider(ModEnUsLanguageProvider::new);
+		pack.addProvider(ModFrFrLanguageProvider::new);
 	}
 }
