@@ -1,5 +1,7 @@
 # Pesticides
 
+<img alt="Mod icon" height="128" width="128" src="./src/main/resources/assets/pesticides/icon.png"/>
+
 Little silly mod I made for me and my friends.
 This is literally food poisoning simulator but like in Minecraft idk.
 
