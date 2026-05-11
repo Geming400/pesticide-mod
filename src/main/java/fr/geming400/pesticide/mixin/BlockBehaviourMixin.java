@@ -5,12 +5,14 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import fr.geming400.pesticide.content.blockentities.InfestedFarmlandBlockEntity;
 import fr.geming400.pesticide.content.blocks.InfestedFarmBlock;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
+import fr.geming400.pesticide.content.effects.ModEffects;
 import fr.geming400.pesticide.content.items.food.ModFoodProperties;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -52,16 +54,18 @@ public class BlockBehaviourMixin {
 
                     return drops;
                 } else if (thisEntity != null) {
-                    List<ItemStack> drops = original.call(blockState, builder);
+                    if (thisEntity instanceof LivingEntity livingEntity && livingEntity.hasEffect(ModEffects.BAD_FARMER)) {
+                        List<ItemStack> drops = original.call(blockState, builder);
 
-                    drops.forEach(itemStack -> {
-                        //noinspection DataFlowIssue
-                        itemStack.set(DataComponents.CONSUMABLE, ModFoodProperties.createEmptyConsumable(itemStack.get(DataComponents.CONSUMABLE)));
-                        //noinspection DataFlowIssue
-                        itemStack.set(DataComponents.FOOD, ModFoodProperties.createEmptyFoodProperties(itemStack.get(DataComponents.FOOD)));
-                    });
+                        drops.forEach(itemStack -> {
+                            //noinspection DataFlowIssue
+                            itemStack.set(DataComponents.CONSUMABLE, ModFoodProperties.createEmptyConsumable(itemStack.get(DataComponents.CONSUMABLE)));
+                            //noinspection DataFlowIssue
+                            itemStack.set(DataComponents.FOOD, ModFoodProperties.createEmptyFoodProperties(itemStack.get(DataComponents.FOOD)));
+                        });
 
-                    return drops;
+                        return drops;
+                    }
                 }
             }
         }
