@@ -38,6 +38,7 @@
   "item.pesticides.pesticide_container.tooltip.growthFactor": "Possède un facteur de croissance de %s",
   "item.pesticides.pesticide_container.tooltip.volume": "Contient 1b de %s",
   "item.pesticides.pesticide_container.unknownType": "Inconnu",
+  "item.pesticides.suspicious_wheat": "Blé suspect",
   "item.pesticides.water_container": "Bidon d'eau",
   "item.pesticides.zombie_bone": "Os de zombie",
   "item.pesticides.zombie_bone.info": "Les os de zombies ont une forte chance d'être lâchés par les zombies. Ils sont très utiles pour la fabrication de pesticides.",

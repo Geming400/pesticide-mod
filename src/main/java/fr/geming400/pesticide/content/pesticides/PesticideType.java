@@ -2,9 +2,10 @@ package fr.geming400.pesticide.content.pesticides;
 
 import com.mojang.serialization.Codec;
 import fr.geming400.pesticide.Pesticides;
+import fr.geming400.pesticide.content.ModDataComponents;
 import fr.geming400.pesticide.content.ModRegistries;
+import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.items.PesticideContainer;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -43,6 +44,13 @@ public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEff
         return PesticideContainer.createItemStack(this);
     }
 
+    public ItemStack createSuspiciousWheat() {
+        ItemStack itemStack = new ItemStack(ModItems.SUSPICIOUS_WHEAT);
+        itemStack.set(ModDataComponents.PESTICIDE_TYPE, this);
+
+        return itemStack;
+    }
+
     public boolean ingredientMatches(Collection<ItemStack> items) {
         return new HashSet<>(
                 items
@@ -52,7 +60,7 @@ public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEff
         ).containsAll(ingredients);
     }
 
-    public RecipeHolder<CraftingRecipe> createJeiRecipe(HolderLookup<Item> itemLookup) {
+    public RecipeHolder<CraftingRecipe> createJeiRecipe() {
         CraftingRecipe recipe = new ShapelessRecipe(
                 "pesticide_container",
                 CraftingBookCategory.MISC,

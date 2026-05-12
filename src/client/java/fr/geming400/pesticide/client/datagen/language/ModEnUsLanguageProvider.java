@@ -55,6 +55,7 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".infectedTooltip", "Infected with pesticide (this doesn't normally show up)");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".unknownType", "Unknown");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.volume", "Contains 1b of %s");
+        builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.general", "Contains %s");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", "Has a growth factor of %s");
         builder.add(ModItems.FAUCET_ANALYSER, "Faucet Analyser");
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse", "This faucet has %s mb of %s and is currently %s");
@@ -70,6 +71,7 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
                 ModItems.ZOMBIE_BONE.getDescriptionId() + ".info",
                 "Zombie Bones have a high chance of dropping from zombies. They are very useful to the creation of pesticides."
         );
+        builder.add(ModItems.SUSPICIOUS_WHEAT, "Suspicious Wheat");
 
         builder.add(ModItemTags.CONTAINERS, "Containers");
         builder.add(ModItemTags.INFECTABLE_FOOD, "Infectable Food");

@@ -70,6 +70,7 @@ public class ModFrFrLanguageProvider extends FabricLanguageProvider {
                 ModItems.ZOMBIE_BONE.getDescriptionId() + ".info",
                 "Les os de zombies ont une forte chance d'être lâchés par les zombies. Ils sont très utiles pour la fabrication de pesticides."
         );
+        builder.add(ModItems.SUSPICIOUS_WHEAT, "Blé suspect");
 
         builder.add(ModItemTags.CONTAINERS, "Bidons");
         builder.add(ModItemTags.INFECTABLE_FOOD, "Nourriture infectable");

@@ -2,6 +2,7 @@ package fr.geming400.pesticide.content.recipe;
 
 import fr.geming400.pesticide.Pesticides;
 import fr.geming400.pesticide.content.items.ModPotions;
+import net.fabricmc.fabric.api.recipe.v1.sync.RecipeSynchronization;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,9 +16,13 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 public final class ModRecipes {
     public static final RecipeSerializer<PesticideContainerRecipe> PESTICIDE_CONTAINER_RECIPE = register("crafting_special_pesticide_container", new CustomRecipe.Serializer<>(PesticideContainerRecipe::new));
     public static final RecipeSerializer<InfectFoodRecipe> INFECT_FOOD_RECIPE = register("infect_food", new CustomRecipe.Serializer<>(InfectFoodRecipe::new));
+    public static final RecipeSerializer<InfectedBreadRecipe> INFECTED_BREAD_RECIPE = register("infect_bread", new CustomRecipe.Serializer<>(InfectedBreadRecipe::new));
 
     private static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(String name, S recipeSerializer) {
-        return Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, Identifier.fromNamespaceAndPath(Pesticides.MOD_ID, name), recipeSerializer);
+        S serializer = Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, Identifier.fromNamespaceAndPath(Pesticides.MOD_ID, name), recipeSerializer);
+        RecipeSynchronization.synchronizeRecipeSerializer(serializer);
+
+        return serializer;
     }
 
     public static void initialize() {

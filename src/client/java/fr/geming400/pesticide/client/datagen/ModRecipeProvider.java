@@ -4,18 +4,26 @@ import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import fr.geming400.pesticide.content.recipe.InfectFoodRecipe;
+import fr.geming400.pesticide.content.recipe.InfectedBreadRecipe;
+import fr.geming400.pesticide.content.recipe.ModRecipes;
 import fr.geming400.pesticide.content.recipe.PesticideContainerRecipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import org.jspecify.annotations.NonNull;
 
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
     public ModRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
@@ -62,13 +70,19 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 SpecialRecipeBuilder.special(PesticideContainerRecipe::new)
                         .save(this.output, "pesticide_container");
 
-                SpecialRecipeBuilder.special(InfectFoodRecipe::new)
-                        .save(this.output, "infected_food");
+                this.addSpecialRecipe(PesticideContainerRecipe::new, ModRecipes.PESTICIDE_CONTAINER_RECIPE);
+                this.addSpecialRecipe(InfectFoodRecipe::new, ModRecipes.INFECT_FOOD_RECIPE);
+                this.addSpecialRecipe(InfectedBreadRecipe::new, ModRecipes.INFECTED_BREAD_RECIPE);
             }
 
             public ShapelessRecipeBuilder createPesticide(PesticideType pesticideType) {
                 return shapeless(RecipeCategory.MISC, pesticideType.createContainer())
                         .group("pesticides");
+            }
+
+            public void addSpecialRecipe(Function<CraftingBookCategory, Recipe<?>> customRecipeFactory, RecipeSerializer<?> serializer) {
+                SpecialRecipeBuilder.special(customRecipeFactory)
+                        .save(this.output, Objects.requireNonNull(BuiltInRegistries.RECIPE_SERIALIZER.getKey(serializer)).getPath());
             }
         };
     }

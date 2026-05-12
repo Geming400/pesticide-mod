@@ -48,6 +48,7 @@ public final class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(ModItems.PESTICIDE_CONTAINER, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.ZOMBIE_BONE, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.FAUCET_ANALYSER, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.SUSPICIOUS_WHEAT, ModelTemplates.FLAT_ITEM);
     }
 
 

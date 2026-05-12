@@ -50,6 +50,12 @@ public final class ModItems {
             new Item.Properties()
     );
 
+    public static final Item SUSPICIOUS_WHEAT = register(
+            "suspicious_wheat",
+            Item::new,
+            new Item.Properties()
+    );
+
     public static void initialize() {
         ModPotions.initialize();
     }

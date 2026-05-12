@@ -26,6 +26,14 @@ public final class ModCreativeTab {
             .icon(() -> new ItemStack(ModItems.PESTICIDE_CONTAINER))
             .title(Component.translatable("itemGroup." + Pesticides.MOD_ID))
             .displayItems((params, output) -> {
+                List<PesticideType> sortedPesticides = ModRegistries.PESTICIDE_TYPE
+                        .stream()
+                        .sorted(Comparator.comparingDouble(PesticideType::growSpeedFactor))
+                        .toList();
+
+                for (PesticideType pesticideType : sortedPesticides)
+                    output.accept(pesticideType.createSuspiciousWheat());
+
                 output.accept(ModItems.ZOMBIE_BONE);
 
                 output.accept(ModBlocks.FAUCET);
@@ -34,10 +42,7 @@ public final class ModCreativeTab {
                 output.accept(ModItems.EMPTY_CONTAINER);
                 output.accept(ModItems.WATER_CONTAINER);
 
-                List<PesticideType> sortedPesticides = ModRegistries.PESTICIDE_TYPE
-                        .stream()
-                        .sorted(Comparator.comparingDouble(PesticideType::growSpeedFactor))
-                        .toList();
+
                 for (PesticideType pesticideType : sortedPesticides)
                     output.accept(pesticideType.createContainer());
             })

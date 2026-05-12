@@ -14,6 +14,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -23,6 +24,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +39,7 @@ public class BlockBehaviourMixin {
         if (blockState.getBlock() instanceof CropBlock) {
             Vec3 origin = builder.getOptionalParameter(LootContextParams.ORIGIN);
             Entity thisEntity = builder.getOptionalParameter(LootContextParams.THIS_ENTITY);
+
             if (origin != null) {
                 BlockPos cropPos = BlockPos.containing(origin);
 
@@ -48,11 +51,24 @@ public class BlockBehaviourMixin {
 
                     List<ItemStack> drops = original.call(blockState, builder);
 
-                    //noinspection DataFlowIssue
-                    drops.forEach(itemStack ->
-                            itemStack.set(DataComponents.CONSUMABLE, ModFoodProperties.createPesticibleConsumable(itemStack.get(DataComponents.CONSUMABLE), pesticideType)));
+                    // Special case for wheat blocks (because they drop wheat and not food)
+                    if (blockState.is(Blocks.WHEAT)) {
+                        List<ItemStack> newDrops = new ArrayList<>();
 
-                    return drops;
+                        // We don't return an item stack with 'drops.size()' suspicious wheats because some
+                        // mods might add their own output
+                        drops.forEach(
+                                itemStack -> newDrops.add(pesticideType.createSuspiciousWheat())
+                        );
+
+                        return newDrops;
+                    } else {
+                        //noinspection DataFlowIssue
+                        drops.forEach(itemStack ->
+                                itemStack.set(DataComponents.CONSUMABLE, ModFoodProperties.createPesticibleConsumable(itemStack.get(DataComponents.CONSUMABLE), pesticideType)));
+
+                        return drops;
+                    }
                 } else if (thisEntity != null) {
                     if (thisEntity instanceof LivingEntity livingEntity && livingEntity.hasEffect(ModEffects.BAD_FARMER)) {
                         List<ItemStack> drops = original.call(blockState, builder);

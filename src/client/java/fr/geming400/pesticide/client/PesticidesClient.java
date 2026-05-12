@@ -5,6 +5,7 @@ import fr.geming400.pesticide.content.blockentities.InfestedFarmlandBlockEntity;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
+import fr.geming400.pesticide.content.tags.ModItemTags;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -23,16 +24,21 @@ public class PesticidesClient implements ClientModInitializer {
 			PesticideType pesticideType = stack.get(ModDataComponents.PESTICIDE_TYPE);
 
 			if (pesticideType != null) {
-				ChatFormatting tooltipColor = pesticideType.growSpeedFactor() > 1
-						? ChatFormatting.DARK_GREEN
-						: ChatFormatting.DARK_RED;
+				if (stack.is(ModItemTags.CONTAINERS)) {
+					ChatFormatting tooltipColor = pesticideType.growSpeedFactor() > 1
+							? ChatFormatting.DARK_GREEN
+							: ChatFormatting.DARK_RED;
 
-                tooltip.add(Component.translatable(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.volume", pesticideType.getName())
-						.withStyle(tooltipColor));
+					tooltip.add(Component.translatable(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.volume", pesticideType.getName())
+							.withStyle(tooltipColor));
 
-				DecimalFormat df = new DecimalFormat("#.00");
-				tooltip.add(Component.translatableEscape(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", df.format(pesticideType.growSpeedFactor()))
-						.withStyle(ChatFormatting.DARK_GRAY));
+					DecimalFormat df = new DecimalFormat("#.00");
+					tooltip.add(Component.translatableEscape(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", df.format(pesticideType.growSpeedFactor()))
+							.withStyle(ChatFormatting.DARK_GRAY));
+				} else {
+					tooltip.add(Component.translatable(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.general", pesticideType.getName())
+							.withStyle(ChatFormatting.DARK_GREEN));
+				}
 			}
 		});
 
