@@ -8,6 +8,7 @@ import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.effects.ModEffects;
 import fr.geming400.pesticide.content.items.food.ModFoodProperties;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
@@ -57,8 +58,12 @@ public class BlockBehaviourMixin {
 
                         // We don't return an item stack with 'drops.size()' suspicious wheats because some
                         // mods might add their own output
+                        // + wheat drops seed by default
                         drops.forEach(
-                                itemStack -> newDrops.add(pesticideType.createSuspiciousWheat())
+                                itemStack -> {
+                                    if (itemStack.is(ConventionalItemTags.WHEAT_CROPS))
+                                        newDrops.add(pesticideType.createSuspiciousWheat());
+                                }
                         );
 
                         return newDrops;
