@@ -9,6 +9,13 @@ You can create a faucet, put pesticide in it, and it'll make plants grow faster 
 By shift clicking, you can put it in **double mode**, allowing you to have pesticide applied in both directions (not just in front of the faucet),
 but **its pesticide consumption will double**. It has a radius of **5x5x5 blocks**
 
+## Food poisoning
+
+Yes, you can poison food !
+Just put a pesticide container next to any food and it will **poison it** !
+
+How cool is that
+
 ## JEI Integration
 
 There's basic integration with jei for crafts.
