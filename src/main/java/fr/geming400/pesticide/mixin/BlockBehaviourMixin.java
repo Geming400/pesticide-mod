@@ -61,8 +61,11 @@ public class BlockBehaviourMixin {
                         // + wheat drops seed by default
                         drops.forEach(
                                 itemStack -> {
-                                    if (itemStack.is(ConventionalItemTags.WHEAT_CROPS))
+                                    if (itemStack.is(ConventionalItemTags.WHEAT_CROPS)) {
                                         newDrops.add(pesticideType.createSuspiciousWheat());
+                                    } else { // We drop everything else left as is (even seeds)
+                                        newDrops.add(itemStack);
+                                    }
                                 }
                         );
 
