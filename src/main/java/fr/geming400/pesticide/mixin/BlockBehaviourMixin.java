@@ -71,7 +71,7 @@ public class BlockBehaviourMixin {
 
                         return newDrops;
                     } else {
-                        //noinspection DataFlowIssue
+                        // noinspection DataFlowIssue
                         drops.forEach(itemStack ->
                                 itemStack.set(DataComponents.CONSUMABLE, ModFoodProperties.createPesticibleConsumable(itemStack.get(DataComponents.CONSUMABLE), pesticideType)));
 
@@ -82,9 +82,9 @@ public class BlockBehaviourMixin {
                         List<ItemStack> drops = original.call(blockState, builder);
 
                         drops.forEach(itemStack -> {
-                            //noinspection DataFlowIssue
+                            // noinspection DataFlowIssue
                             itemStack.set(DataComponents.CONSUMABLE, ModFoodProperties.createEmptyConsumable(itemStack.get(DataComponents.CONSUMABLE)));
-                            //noinspection DataFlowIssue
+                            // noinspection DataFlowIssue
                             itemStack.set(DataComponents.FOOD, ModFoodProperties.createEmptyFoodProperties(itemStack.get(DataComponents.FOOD)));
                         });
 
