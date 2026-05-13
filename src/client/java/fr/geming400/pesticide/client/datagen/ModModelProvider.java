@@ -47,15 +47,15 @@ public final class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(ModItems.EMPTY_CONTAINER, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.WATER_CONTAINER, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.PESTICIDE_CONTAINER, ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.ZOMBIE_BONE, ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.FAUCET_ANALYSER, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.ZOMBIE_BONE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.FAUCET_ANALYSER, ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.SUSPICIOUS_WHEAT, ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(ModItems.WOOL_ROD, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.WOOL_ROD, ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModelGenerator.generateBooleanDispatch(
                 ModItems.COTTON_SWAB,
                 ItemModelUtils.hasComponent(ModDataComponents.COTTON_SWAB_USED),
-                ItemModelUtils.plainModel(itemModelGenerator.createFlatItemModel(ModItems.COTTON_SWAB, "_dirty", ModelTemplates.FLAT_ITEM)),
-                ItemModelUtils.plainModel(itemModelGenerator.createFlatItemModel(ModItems.COTTON_SWAB, ModelTemplates.FLAT_ITEM))
+                ItemModelUtils.plainModel(itemModelGenerator.createFlatItemModel(ModItems.COTTON_SWAB, "_dirty", ModelTemplates.FLAT_HANDHELD_ITEM)),
+                ItemModelUtils.plainModel(itemModelGenerator.createFlatItemModel(ModItems.COTTON_SWAB, ModelTemplates.FLAT_HANDHELD_ITEM))
         );
     }
 
