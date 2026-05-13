@@ -12,7 +12,7 @@ but **its pesticide consumption will double**. It has a radius of **5x5x5 blocks
 ## Food poisoning
 
 Yes, you can poison food !
-Just put a pesticide container next to any food and it will **poison it** !
+Just put a pesticide container next to any food in a crafting table and it will **poison it** !
 
 How cool is that
 
