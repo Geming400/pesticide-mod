@@ -73,6 +73,7 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         );
         builder.add(ModItems.SUSPICIOUS_WHEAT, "Blé suspect");
         builder.add(ModItems.WOOL_ROD, "Tige de laine");
+        builder.add(ModItems.COTTON_SWAB, "Coton-tige");
         builder.add(ModItems.COTTON_SWAB.getDescriptionId() + ".dirty", "Coton-tige sale");
         builder.add(ModItems.COTTON_SWAB.getDescriptionId() + ".infected", "Coton-tige infecté");
         builder.add(

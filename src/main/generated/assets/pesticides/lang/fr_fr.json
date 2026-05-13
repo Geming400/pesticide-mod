@@ -26,6 +26,7 @@
   "item.minecraft.tipped_arrow.effect.burning": "Flèche de Brûlure",
   "item.minecraft.tipped_arrow.effect.drowning": "Flèche de Noyade",
   "item.minecraft.tipped_arrow.effect.freezing": "Flèche de Gel",
+  "item.pesticides.cotton_swab": "Coton-tige",
   "item.pesticides.cotton_swab.dirty": "Coton-tige sale",
   "item.pesticides.cotton_swab.infected": "Coton-tige infecté",
   "item.pesticides.cotton_swab.info": "Les coton-tiges sont utiles pour savoir si de la terre labourée ou une plante à été infectée par du pesticide.\nLe plus la terre à été infectée, le plus le coton tige à de chance de fonctionner.",
