@@ -6,6 +6,7 @@ import fr.geming400.pesticide.content.blockentities.InfestedFarmlandBlockEntity;
 import fr.geming400.pesticide.content.blockentities.ModBlockEntities;
 import fr.geming400.pesticide.content.effects.BadFarmerEffect;
 import fr.geming400.pesticide.content.effects.ModEffects;
+import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -41,7 +42,7 @@ public class InfestedFarmBlock extends FarmBlockWithEntity {
     @Override
     @SuppressWarnings("UnstableApiUsage")
     public void stepOn(@NonNull Level level, @NonNull BlockPos blockPos, @NonNull BlockState blockState, @NonNull Entity entity) {
-        if (!level.isClientSide() && entity instanceof LivingEntity livingEntity) {
+        if (!level.isClientSide() && entity instanceof LivingEntity livingEntity && ModItems.HAZMAT_SUIT.isWearing(livingEntity)) {
             int timeSpentOnInfestedFarmland = entity.getAttachedOrCreate(ModAttachments.TIME_SPENT_ON_INFESTED_FARMLAND) ;
             entity.setAttached(ModAttachments.TIME_SPENT_ON_INFESTED_FARMLAND, timeSpentOnInfestedFarmland + 1);
 

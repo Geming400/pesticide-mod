@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "equipment",
+  "category": "misc",
   "group": "wool_rod",
   "key": {
     "w": "#minecraft:wool"

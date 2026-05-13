@@ -29,6 +29,12 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.WATER_CONTAINER)
                 .add(ModItems.PESTICIDE_CONTAINER);
 
+        this.valueLookupBuilder(ModItemTags.PLASTIC_SHEETS)
+                .add(ModItems.PLASTIC_SHEET);
+
+        this.valueLookupBuilder(ConventionalItemTags.MILK_BUCKETS)
+                .add(ModItems.HOT_MILK_BUCKET);
+
         TagAppender<Item, Item> infectableFoodBuilder = this.valueLookupBuilder(ModItemTags.INFECTABLE_FOOD);
         for (Item item : BuiltInRegistries.ITEM) {
             if (

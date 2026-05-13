@@ -1,17 +1,16 @@
 package fr.geming400.pesticide.client;
 
-import fr.geming400.pesticide.client.datagen.ModAdvancementProvider;
+import fr.geming400.pesticide.client.datagen.*;
 import fr.geming400.pesticide.client.datagen.language.ModFrFrLanguageProvider;
 import fr.geming400.pesticide.client.datagen.loottables.ModBlockLoottableProvider;
-import fr.geming400.pesticide.client.datagen.ModItemTagProvider;
-import fr.geming400.pesticide.client.datagen.ModModelProvider;
-import fr.geming400.pesticide.client.datagen.ModRecipeProvider;
 import fr.geming400.pesticide.client.datagen.language.ModEnUsLanguageProvider;
 import fr.geming400.pesticide.client.datagen.loottables.ModEntityLoottableProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
 public class PesticidesDataGenerator implements DataGeneratorEntrypoint {
+	public static final PesticidesLanguageProvider.LanguageMap LANGUAGE_MAP = new PesticidesLanguageProvider.LanguageMap();
+
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();

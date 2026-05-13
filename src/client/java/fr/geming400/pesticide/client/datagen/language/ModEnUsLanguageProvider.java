@@ -1,19 +1,20 @@
 package fr.geming400.pesticide.client.datagen.language;
 
 import fr.geming400.pesticide.Pesticides;
+import fr.geming400.pesticide.client.PesticidesDataGenerator;
+import fr.geming400.pesticide.client.datagen.PesticidesLanguageProvider;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.effects.ModEffects;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.ModPesticides;
 import fr.geming400.pesticide.content.tags.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.HolderLookup;
 import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModEnUsLanguageProvider extends FabricLanguageProvider {
+public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
     public static final TranslationUtils.PotionFormatting POTION_FORMATTING = new TranslationUtils.PotionFormatting(
             "Potion of %s",
             "Splash Potion of %s",
@@ -22,7 +23,7 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
     );
 
     public ModEnUsLanguageProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-        super(dataOutput, "en_us", registryLookup);
+        super(dataOutput, registryLookup, PesticidesDataGenerator.LANGUAGE_MAP);
     }
 
     @Override
@@ -80,6 +81,12 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
                 ModItems.COTTON_SWAB.getDescriptionId() + ".info",
                 "Cotton swabs are used to find out if a farmland or crop has been infected.\nThe more the land has been infected the more likely it is to work."
         );
+        builder.add(ModItems.HOT_MILK_BUCKET, "Hot Milk Bucket");
+        builder.add(ModItems.PLASTIC_SHEET, "Plastic Sheet");
+        builder.add(ModItems.HAZMAT_SUIT.helmet(), "Casque de protection Hazmat");
+        builder.add(ModItems.HAZMAT_SUIT.chestplate(), "Plastron de protection Hazmat");
+        builder.add(ModItems.HAZMAT_SUIT.leggings(), "Jambières de protection Hazmat");
+        builder.add(ModItems.HAZMAT_SUIT.boots(), "Bottes de protection Hazmat");
 
         builder.add(ModItemTags.CONTAINERS, "Containers");
         builder.add(ModItemTags.INFECTABLE_FOOD, "Infectable Food");

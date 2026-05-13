@@ -1,10 +1,9 @@
 package fr.geming400.pesticide.content.items.food;
 
 import fr.geming400.pesticide.content.pesticides.PesticideType;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.consume_effects.ConsumeEffect;
 
 public final class ModFoodProperties {
@@ -12,11 +11,17 @@ public final class ModFoodProperties {
             .alwaysEdible()
             .build();
 
-    public static final Consumable PESTICIBLE_CONTAINER_CONSUMABLE = createDrinkConsumable()
+    public static final FoodProperties HOT_MILK_BUCKET = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.1f)
+            .build();
+
+
+    public static final Consumable PESTICIBLE_CONTAINER_CONSUMABLE = Consumables.defaultDrink()
             .onConsume(new ModConsumeEffects.PesticideContainerConsumeEffect())
             .build();
 
-    public static final Consumable WATER_BOTTLE_LIKE_CONSUMABLE = createDrinkConsumable()
+    public static final Consumable WATER_BOTTLE_LIKE_CONSUMABLE = Consumables.defaultDrink()
             .build();
 
     /**
@@ -62,13 +67,6 @@ public final class ModFoodProperties {
             builder.alwaysEdible();
 
         return builder.build();
-    }
-
-    public static Consumable.Builder createDrinkConsumable() {
-        return Consumable.builder()
-                .animation(ItemUseAnimation.DRINK)
-                .sound(SoundEvents.GENERIC_DRINK)
-                .hasConsumeParticles(false);
     }
 
 

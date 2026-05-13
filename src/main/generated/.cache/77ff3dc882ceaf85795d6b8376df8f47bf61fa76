@@ -1,4 +1,6 @@
 // 1.21.11	-999999999-01-01T00:00:00	Pesticides/Tags for minecraft:item
 e132c83be84a5c66815ae5cf80d86fbdac83e61e data/c/tags/item/bones.json
+5ad7725f7e9662c7339a2c9931ead168b5239d7b data/c/tags/item/buckets/milk.json
+39711bbd0aea617196488e69f559a11630d4e5f5 data/c/tags/item/plates/plastic.json
 9165cad1766fa925f5e40ebaf2e18336e8e2ac0c data/pesticides/tags/item/containers.json
-6cd0e8de228bbf9c1a7f34a398208f2f02158897 data/pesticides/tags/item/infectable_foods.json
+aef1e1de81ee9c8fe250a7bb58219e1469b49c8a data/pesticides/tags/item/infectable_foods.json

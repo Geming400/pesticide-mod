@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "pesticides:hot_milk_bucket",
+    "minecraft:paper",
+    "minecraft:coal",
+    "minecraft:coal",
+    "minecraft:coal",
+    "minecraft:coal"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:plastic_sheet"
+  }
+}

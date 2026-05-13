@@ -37,6 +37,11 @@ public final class ModCreativeTab {
                 output.accept(ModItems.ZOMBIE_BONE);
                 output.accept(ModItems.WOOL_ROD);
                 output.accept(ModItems.COTTON_SWAB);
+                output.accept(ModItems.HOT_MILK_BUCKET);
+                output.accept(ModItems.PLASTIC_SHEET);
+
+                ModItems.HAZMAT_SUIT.getAllArmorItem()
+                        .forEach(output::accept);
 
                 output.accept(ModBlocks.FAUCET);
                 output.accept(ModItems.FAUCET_ANALYSER);

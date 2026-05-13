@@ -76,7 +76,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .save(output);
 
 
-                shaped(RecipeCategory.TOOLS, ModItems.WOOL_ROD, 8)
+                shaped(RecipeCategory.MISC, ModItems.WOOL_ROD, 8)
                         .pattern(" w ")
                         .pattern(" w ")
                         .define('w', ItemTags.WOOL)
@@ -84,7 +84,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
                         .save(output, "wool_rod/wool");
 
-                shaped(RecipeCategory.TOOLS, ModItems.WOOL_ROD, 2)
+                shaped(RecipeCategory.MISC, ModItems.WOOL_ROD, 2)
                         .pattern(" s ")
                         .pattern(" s ")
                         .define('s', Items.STRING)
@@ -114,9 +114,25 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(ModItems.COTTON_SWAB), has(ModItems.COTTON_SWAB))
                         .save(output, "cotton_swab/clean");
 
+                shapeless(RecipeCategory.MISC, ModItems.PLASTIC_SHEET)
+                        .requires(ModItems.HOT_MILK_BUCKET)
+                        .requires(Items.PAPER)
+                        .requires(Items.COAL, 4)
+                        .unlockedBy(getHasName(Items.COAL), has(ConventionalItemTags.COAL_ORES))
+                        .save(output);
+
+                SimpleCookingRecipeBuilder.smoking(
+                        Ingredient.of(Items.MILK_BUCKET),
+                        RecipeCategory.FOOD,
+                        ModItems.HOT_MILK_BUCKET,
+                        0.25f,
+                        300
+                )
+                        .unlockedBy(getHasName(Items.MILK_BUCKET), has(ConventionalItemTags.MILK_BUCKETS))
+                        .save(output);
+
                 this.addPesticideContainerRecipes();
 
-//                this.addSpecialRecipe(PesticideContainerRecipe::new, ModRecipes.PESTICIDE_CONTAINER_RECIPE);
                 this.addSpecialRecipe(InfectFoodRecipe::new, ModRecipes.INFECT_FOOD_RECIPE);
                 this.addSpecialRecipe(InfectedBreadRecipe::new, ModRecipes.INFECTED_BREAD_RECIPE);
             }

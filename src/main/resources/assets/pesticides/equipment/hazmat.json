@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "pesticides:hazmat"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "pesticides:hazmat"
+      }
+    ]
+  }
+}
