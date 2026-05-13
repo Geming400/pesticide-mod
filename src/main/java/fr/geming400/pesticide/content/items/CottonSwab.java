@@ -6,6 +6,7 @@ import fr.geming400.pesticide.content.blocks.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -24,7 +25,7 @@ public class CottonSwab extends Item {
         super(properties);
     }
 
-    private InteractionResult tryUsing(ServerLevel level, BlockPos infectedFarmlandPos, ItemStack itemStack) {
+    private InteractionResult tryUsing(ServerLevel level, ServerPlayer player, BlockPos infectedFarmlandPos, ItemStack itemStack, InteractionHand interactionHand) {
         BlockEntity blockEntity = level.getBlockEntity(infectedFarmlandPos);
         if (blockEntity instanceof InfestedFarmlandBlockEntity infestedFarmlandBlockEntity) {
             // When the infection progress it at 50%, the cotton swab
@@ -35,7 +36,7 @@ public class CottonSwab extends Item {
                 itemStack.set(ModDataComponents.PESTICIDE_TYPE, infestedFarmlandBlockEntity.getPesticideType());
             }
 
-            setUsed(itemStack);
+            setUsed(itemStack, player, interactionHand);
             return InteractionResult.SUCCESS_SERVER;
         }
 
@@ -51,28 +52,29 @@ public class CottonSwab extends Item {
 
         if (!useOnContext.getLevel().isClientSide()) {
             ServerLevel level = (ServerLevel) useOnContext.getLevel();
+            ServerPlayer player = (ServerPlayer) useOnContext.getPlayer();
 
             boolean markUsed = false;
 
-            BlockPos block = useOnContext.getClickedPos();
-            BlockState blockState = level.getBlockState(block);
+            BlockPos blockpos = useOnContext.getClickedPos();
+            BlockState blockState = level.getBlockState(blockpos);
             if (blockState.getBlock() instanceof CropBlock) {
-                BlockPos farmlandPos = block.below();
+                BlockPos farmlandPos = blockpos.below();
                 BlockState farmlandState = level.getBlockState(farmlandPos);
 
                 if (farmlandState.is(Blocks.FARMLAND)) {
                     markUsed = true;
                 } else if (farmlandState.is(ModBlocks.INFESTED_FARMLAND)) {
-                    return this.tryUsing(level, farmlandPos, itemStack);
+                    return this.tryUsing(level, player, farmlandPos, itemStack, useOnContext.getHand());
                 }
             } else if (blockState.is(ModBlocks.INFESTED_FARMLAND)) {
-                return this.tryUsing(level, useOnContext.getClickedPos(), itemStack);
+                return this.tryUsing(level, player, blockpos, itemStack, useOnContext.getHand());
             } else if (blockState.is(Blocks.FARMLAND)) {
                 markUsed = true;
             }
 
             if (markUsed) {
-                setUsed(itemStack);
+                setUsed(itemStack, player, useOnContext.getHand());
                 return InteractionResult.SUCCESS;
             }
 
@@ -113,8 +115,9 @@ public class CottonSwab extends Item {
         return itemStack.has(ModDataComponents.COTTON_SWAB_USED);
     }
 
-    private static ItemStack setUsed(ItemStack itemStack) {
+    private static ItemStack setUsed(ItemStack itemStack, ServerPlayer player, InteractionHand interactionHand) {
         itemStack.set(ModDataComponents.COTTON_SWAB_USED, true);
+        itemStack.hurtAndBreak(1, player, interactionHand.asEquipmentSlot());
         return itemStack;
     }
 

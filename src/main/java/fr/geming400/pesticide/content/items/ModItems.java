@@ -50,7 +50,7 @@ public final class ModItems {
             "cotton_swab",
             CottonSwab::new,
             new Item.Properties()
-                    .stacksTo(1)
+                    .durability(8)
     );
 
     public static final Item ZOMBIE_BONE = register(
