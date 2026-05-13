@@ -71,6 +71,13 @@ public class ModFrFrLanguageProvider extends FabricLanguageProvider {
                 "Les os de zombies ont une forte chance d'être lâchés par les zombies. Ils sont très utiles pour la fabrication de pesticides."
         );
         builder.add(ModItems.SUSPICIOUS_WHEAT, "Blé suspect");
+        builder.add(ModItems.WOOL_ROD, "Tige de laine");
+        builder.add(ModItems.COTTON_SWAB.getDescriptionId() + ".dirty", "Coton-tige sale");
+        builder.add(ModItems.COTTON_SWAB.getDescriptionId() + ".infected", "Coton-tige infecté");
+        builder.add(
+                ModItems.COTTON_SWAB.getDescriptionId() + ".info",
+                "Les coton-tiges sont utiles pour savoir si de la terre labourée ou une plante à été infectée par du pesticide.\nLe plus la terre à été infectée, le plus le coton tige à de chance de fonctionner."
+        );
 
         builder.add(ModItemTags.CONTAINERS, "Bidons");
         builder.add(ModItemTags.INFECTABLE_FOOD, "Nourriture infectable");

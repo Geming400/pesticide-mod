@@ -1,6 +1,7 @@
 package fr.geming400.pesticide.client.datagen;
 
 import fr.geming400.pesticide.Pesticides;
+import fr.geming400.pesticide.content.ModDataComponents;
 import fr.geming400.pesticide.content.blocks.FaucetBlock;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.items.ModItems;
@@ -49,6 +50,13 @@ public final class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(ModItems.ZOMBIE_BONE, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.FAUCET_ANALYSER, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.SUSPICIOUS_WHEAT, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.WOOL_ROD, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateBooleanDispatch(
+                ModItems.COTTON_SWAB,
+                ItemModelUtils.hasComponent(ModDataComponents.COTTON_SWAB_USED),
+                ItemModelUtils.plainModel(itemModelGenerator.createFlatItemModel(ModItems.COTTON_SWAB, "_dirty", ModelTemplates.FLAT_ITEM)),
+                ItemModelUtils.plainModel(itemModelGenerator.createFlatItemModel(ModItems.COTTON_SWAB, ModelTemplates.FLAT_ITEM))
+        );
     }
 
 

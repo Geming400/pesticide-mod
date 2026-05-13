@@ -15,6 +15,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import org.jspecify.annotations.NonNull;
 
 import java.util.Objects;
@@ -43,8 +44,12 @@ public class JeiVanillaPlugin implements IModPlugin {
         registration.addRecipes(RecipeTypes.CRAFTING, JeiRecipes.createFoodInfectionRecipes());
         registration.addRecipes(RecipeTypes.CRAFTING, JeiRecipes.createBreadInfectionRecipe());
 
-        registration.addIngredientInfo(ModItems.ZOMBIE_BONE, Component.translatable(ModItems.ZOMBIE_BONE.getDescriptionId() + ".info"));
-        registration.addIngredientInfo(ModItems.FAUCET_ANALYSER, Component.translatable(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".info"));
-        registration.addIngredientInfo(ModBlocks.FAUCET, Component.translatable(ModBlocks.FAUCET.getDescriptionId() + ".info"));
+        this.addIngredientInfo(registration, ModItems.FAUCET_ANALYSER);
+        this.addIngredientInfo(registration, ModItems.ZOMBIE_BONE);
+        this.addIngredientInfo(registration, ModBlocks.FAUCET);
+    }
+
+    private void addIngredientInfo(@NonNull IRecipeRegistration registration, ItemLike itemLike) {
+        registration.addIngredientInfo(itemLike, Component.translatable(itemLike.asItem().getDescriptionId() + ".info"));
     }
 }

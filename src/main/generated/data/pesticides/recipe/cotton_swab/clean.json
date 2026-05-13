@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "cotton_swab",
+  "ingredients": [
+    {
+      "fabric:type": "fabric:components",
+      "base": "pesticides:cotton_swab",
+      "components": {
+        "pesticides:cotton_swab_used": true
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:cotton_swab"
+  }
+}

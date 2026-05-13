@@ -44,8 +44,21 @@ public final class ModItems {
                     .stacksTo(1)
     );
 
+    public static final Item COTTON_SWAB = register(
+            "cotton_swab",
+            CottonSwab::new,
+            new Item.Properties()
+                    .stacksTo(1)
+    );
+
     public static final Item ZOMBIE_BONE = register(
             "zombie_bone",
+            Item::new,
+            new Item.Properties()
+    );
+
+    public static final Item WOOL_ROD = register(
+            "wool_rod",
             Item::new,
             new Item.Properties()
     );

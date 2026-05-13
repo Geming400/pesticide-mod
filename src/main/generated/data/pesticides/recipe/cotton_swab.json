@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "cotton_swab",
+  "key": {
+    "s": "pesticides:wool_rod",
+    "w": "minecraft:white_wool"
+  },
+  "pattern": [
+    "  w",
+    " s ",
+    "w  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:cotton_swab"
+  }
+}

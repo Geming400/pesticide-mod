@@ -72,6 +72,14 @@ public class ModEnUsLanguageProvider extends FabricLanguageProvider {
                 "Zombie Bones have a high chance of dropping from zombies. They are very useful to the creation of pesticides."
         );
         builder.add(ModItems.SUSPICIOUS_WHEAT, "Suspicious Wheat");
+        builder.add(ModItems.WOOL_ROD, "Wool Rod");
+        builder.add(ModItems.COTTON_SWAB, "Cotton Swab");
+        builder.add(ModItems.COTTON_SWAB.getDescriptionId() + ".dirty", "Dirty Cotton Swab");
+        builder.add(ModItems.COTTON_SWAB.getDescriptionId() + ".infected", "Infected Cotton Swab");
+        builder.add(
+                ModItems.COTTON_SWAB.getDescriptionId() + ".info",
+                "Cotton swabs are used to find out if a farmland or crop has been infected.\nThe more the land has been infected the more likely it is to work."
+        );
 
         builder.add(ModItemTags.CONTAINERS, "Containers");
         builder.add(ModItemTags.INFECTABLE_FOOD, "Infectable Food");

@@ -35,6 +35,8 @@ public final class ModCreativeTab {
                     output.accept(pesticideType.createSuspiciousWheat());
 
                 output.accept(ModItems.ZOMBIE_BONE);
+                output.accept(ModItems.WOOL_ROD);
+                output.accept(ModItems.COTTON_SWAB);
 
                 output.accept(ModBlocks.FAUCET);
                 output.accept(ModItems.FAUCET_ANALYSER);

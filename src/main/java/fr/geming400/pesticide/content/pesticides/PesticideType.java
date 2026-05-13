@@ -8,7 +8,9 @@ import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.items.PesticideContainer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -22,6 +24,11 @@ import java.util.*;
 
 public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEffectInstance... effects) implements ItemLike {
     public static final Codec<PesticideType> CODEC = ModRegistries.createRegistryCodec(ModRegistries.PESTICIDE_TYPE);
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, PesticideType> STREAM_CODEC = StreamCodec.composite(
+            Identifier.STREAM_CODEC, PesticideType::getID,
+            PesticideType::fromID
+    );
 
 
     public Identifier getID() {

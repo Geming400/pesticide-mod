@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "wool_rod",
+  "key": {
+    "s": "minecraft:string"
+  },
+  "pattern": [
+    " s ",
+    " s "
+  ],
+  "result": {
+    "count": 2,
+    "id": "pesticides:wool_rod"
+  }
+}
