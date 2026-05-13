@@ -83,10 +83,10 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         );
         builder.add(ModItems.HOT_MILK_BUCKET, "Hot Milk Bucket");
         builder.add(ModItems.PLASTIC_SHEET, "Plastic Sheet");
-        builder.add(ModItems.HAZMAT_SUIT.helmet(), "Casque de protection Hazmat");
-        builder.add(ModItems.HAZMAT_SUIT.chestplate(), "Plastron de protection Hazmat");
-        builder.add(ModItems.HAZMAT_SUIT.leggings(), "Jambières de protection Hazmat");
-        builder.add(ModItems.HAZMAT_SUIT.boots(), "Bottes de protection Hazmat");
+        builder.add(ModItems.HAZMAT_SUIT.helmet(), "Hazmat Helmet");
+        builder.add(ModItems.HAZMAT_SUIT.chestplate(), "Hazmat Chestplate");
+        builder.add(ModItems.HAZMAT_SUIT.leggings(), "Hazmat Leggings");
+        builder.add(ModItems.HAZMAT_SUIT.boots(), "Hazmat Boots");
 
         builder.add(ModItemTags.CONTAINERS, "Containers");
         builder.add(ModItemTags.INFECTABLE_FOOD, "Infectable Food");
