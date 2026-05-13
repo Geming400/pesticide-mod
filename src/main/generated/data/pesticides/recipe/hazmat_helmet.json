@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "s": "#c:plates/plastic",
+    "w": "#c:dyes/orange"
+  },
+  "pattern": [
+    "sws",
+    "s s"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:hazmat_helmet"
+  }
+}

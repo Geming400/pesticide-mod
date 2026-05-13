@@ -121,6 +121,40 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.COAL), has(ConventionalItemTags.COAL_ORES))
                         .save(output);
 
+                shaped(RecipeCategory.TOOLS, ModItems.HAZMAT_SUIT.helmet())
+                        .pattern("sws")
+                        .pattern("s s")
+                        .define('s', ModItemTags.PLASTIC_SHEETS)
+                        .define('w', ConventionalItemTags.ORANGE_DYES)
+                        .unlockedBy(getHasName(ModItems.PLASTIC_SHEET), has(ModItemTags.PLASTIC_SHEETS))
+                        .save(output);
+
+                shaped(RecipeCategory.TOOLS, ModItems.HAZMAT_SUIT.chestplate())
+                        .pattern("s s")
+                        .pattern("sws")
+                        .pattern("sws")
+                        .define('s', ModItemTags.PLASTIC_SHEETS)
+                        .define('w', ConventionalItemTags.ORANGE_DYES)
+                        .unlockedBy(getHasName(ModItems.PLASTIC_SHEET), has(ModItemTags.PLASTIC_SHEETS))
+                        .save(output);
+
+                shaped(RecipeCategory.TOOLS, ModItems.HAZMAT_SUIT.leggings())
+                        .pattern("sws")
+                        .pattern("s s")
+                        .pattern("s s")
+                        .define('s', ModItemTags.PLASTIC_SHEETS)
+                        .define('w', ConventionalItemTags.ORANGE_DYES)
+                        .unlockedBy(getHasName(ModItems.PLASTIC_SHEET), has(ModItemTags.PLASTIC_SHEETS))
+                        .save(output);
+
+                shaped(RecipeCategory.TOOLS, ModItems.HAZMAT_SUIT.boots())
+                        .pattern("s s")
+                        .pattern("sws")
+                        .define('s', ModItemTags.PLASTIC_SHEETS)
+                        .define('w', ConventionalItemTags.ORANGE_DYES)
+                        .unlockedBy(getHasName(ModItems.PLASTIC_SHEET), has(ModItemTags.PLASTIC_SHEETS))
+                        .save(output);
+
                 SimpleCookingRecipeBuilder.smoking(
                         Ingredient.of(Items.MILK_BUCKET),
                         RecipeCategory.FOOD,
