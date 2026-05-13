@@ -90,6 +90,7 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
 
         builder.add(ModItemTags.CONTAINERS, "Bidons");
         builder.add(ModItemTags.INFECTABLE_FOOD, "Nourriture infectable");
+        builder.add(ModItemTags.PLASTIC_SHEETS, "Plastiques");
 
         tu.createPesticideTranslation(ModPesticides.TERPINOLENE, "Terpinolène");
         tu.createPesticideTranslation(ModPesticides.GLYPHOSATE, "Glyphosate");

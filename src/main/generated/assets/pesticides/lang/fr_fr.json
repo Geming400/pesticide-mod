@@ -60,6 +60,7 @@
   "pesticides.endosulfan.name": "Endosulfan",
   "pesticides.glyphosate.name": "Glyphosate",
   "pesticides.terpinolene.name": "Terpinolène",
+  "tag.item.c.plates.plastic": "Plastiques",
   "tag.item.pesticides.containers": "Bidons",
   "tag.item.pesticides.infectable_foods": "Nourriture infectable"
 }
