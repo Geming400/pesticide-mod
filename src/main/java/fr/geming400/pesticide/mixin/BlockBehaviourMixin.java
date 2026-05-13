@@ -61,37 +61,42 @@ public class BlockBehaviourMixin {
 
                         return drops;
                     }
-                } else if (farmlandBlockState.is(ModBlocks.INFESTED_FARMLAND) && blockEntity instanceof InfestedFarmlandBlockEntity infestedFarmlandBlockEntity) {
+                }
+
+                if (
+                        farmlandBlockState.is(ModBlocks.INFESTED_FARMLAND)
+                        && blockEntity instanceof InfestedFarmlandBlockEntity infestedFarmlandBlockEntity
+                        && infestedFarmlandBlockEntity.getInfectionProgress() >= 0.15
+                ) {
                     PesticideType pesticideType = infestedFarmlandBlockEntity.getPesticideType();
 
                     List<ItemStack> drops = original.call(blockState, builder);
 
-                    if (infestedFarmlandBlockEntity.getInfectionProgress() >= 0.15) {
-                        // Special case for wheat blocks (because they drop wheat and not food)
-                        if (blockState.is(Blocks.WHEAT)) {
-                            List<ItemStack> newDrops = new ArrayList<>();
 
-                            // We don't return an item stack with 'drops.size()' suspicious wheats because some
-                            // mods might add their own output
-                            // + wheat drops seed by default
-                            drops.forEach(
-                                    itemStack -> {
-                                        if (itemStack.is(ConventionalItemTags.WHEAT_CROPS)) {
-                                            newDrops.add(pesticideType.createSuspiciousWheat());
-                                        } else { // We drop everything else left as is (even seeds)
-                                            newDrops.add(itemStack);
-                                        }
+                    // Special case for wheat blocks (because they drop wheat and not food)
+                    if (blockState.is(Blocks.WHEAT)) {
+                        List<ItemStack> newDrops = new ArrayList<>();
+
+                        // We don't return an item stack with 'drops.size()' suspicious wheats because some
+                        // mods might add their own output
+                        // + wheat drops seed by default
+                        drops.forEach(
+                                itemStack -> {
+                                    if (itemStack.is(ConventionalItemTags.WHEAT_CROPS)) {
+                                        newDrops.add(pesticideType.createSuspiciousWheat());
+                                    } else { // We drop everything else left as is (even seeds)
+                                        newDrops.add(itemStack);
                                     }
-                            );
+                                }
+                        );
 
-                            return newDrops;
-                        } else {
-                            // noinspection DataFlowIssue
-                            drops.forEach(itemStack ->
-                                    itemStack.set(DataComponents.CONSUMABLE, ModFoodProperties.createPesticibleConsumable(itemStack.get(DataComponents.CONSUMABLE), pesticideType)));
+                        return newDrops;
+                    } else {
+                        // noinspection DataFlowIssue
+                        drops.forEach(itemStack ->
+                                itemStack.set(DataComponents.CONSUMABLE, ModFoodProperties.createPesticibleConsumable(itemStack.get(DataComponents.CONSUMABLE), pesticideType)));
 
-                            return drops;
-                        }
+                        return drops;
                     }
                 }
             }
