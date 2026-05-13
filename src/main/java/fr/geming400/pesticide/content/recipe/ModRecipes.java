@@ -14,7 +14,6 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public final class ModRecipes {
-    public static final RecipeSerializer<PesticideContainerRecipe> PESTICIDE_CONTAINER_RECIPE = register("crafting_special_pesticide_container", new CustomRecipe.Serializer<>(PesticideContainerRecipe::new));
     public static final RecipeSerializer<InfectFoodRecipe> INFECT_FOOD_RECIPE = register("infect_food", new CustomRecipe.Serializer<>(InfectFoodRecipe::new));
     public static final RecipeSerializer<InfectedBreadRecipe> INFECTED_BREAD_RECIPE = register("infect_bread", new CustomRecipe.Serializer<>(InfectedBreadRecipe::new));
 

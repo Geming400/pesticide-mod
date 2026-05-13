@@ -40,7 +40,7 @@ public final class ModPesticides {
 
     public static final PesticideType ADIFIDOPYROPEN = of(
             "afidopyropen",
-            new PesticideType(5.65f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.SCULK), new MobEffectInstance(MobEffects.WITHER, 20*20, 0))
+            new PesticideType(6.45f, Set.of(ModItems.WATER_CONTAINER, ModItems.ZOMBIE_BONE, Items.COAL, Items.DRAGON_BREATH), new MobEffectInstance(MobEffects.WITHER, 20*20, 0))
     );
 
 

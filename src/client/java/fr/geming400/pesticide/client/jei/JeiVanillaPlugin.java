@@ -40,7 +40,6 @@ public class JeiVanillaPlugin implements IModPlugin {
     public void registerRecipes(@NonNull IRecipeRegistration registration) {
         HolderLookup<Item> itemLookup = Objects.requireNonNull(Minecraft.getInstance().level).holderLookup(Registries.ITEM);
 
-        registration.addRecipes(RecipeTypes.CRAFTING, JeiRecipes.createPesticideContainerRecipes());
         registration.addRecipes(RecipeTypes.CRAFTING, JeiRecipes.createFoodInfectionRecipes());
         registration.addRecipes(RecipeTypes.CRAFTING, JeiRecipes.createBreadInfectionRecipe());
 

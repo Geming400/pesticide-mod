@@ -1,13 +1,14 @@
 package fr.geming400.pesticide.client.datagen;
 
 import fr.geming400.pesticide.content.ModDataComponents;
+import fr.geming400.pesticide.content.ModRegistries;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import fr.geming400.pesticide.content.recipe.InfectFoodRecipe;
 import fr.geming400.pesticide.content.recipe.InfectedBreadRecipe;
 import fr.geming400.pesticide.content.recipe.ModRecipes;
-import fr.geming400.pesticide.content.recipe.PesticideContainerRecipe;
+import fr.geming400.pesticide.content.tags.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.recipe.v1.ingredient.DefaultCustomIngredients;
@@ -26,6 +27,8 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import org.jspecify.annotations.NonNull;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
@@ -111,14 +114,36 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(ModItems.COTTON_SWAB), has(ModItems.COTTON_SWAB))
                         .save(output, "cotton_swab/clean");
 
-                this.addSpecialRecipe(PesticideContainerRecipe::new, ModRecipes.PESTICIDE_CONTAINER_RECIPE);
+                this.addPesticideContainerRecipes();
+
+//                this.addSpecialRecipe(PesticideContainerRecipe::new, ModRecipes.PESTICIDE_CONTAINER_RECIPE);
                 this.addSpecialRecipe(InfectFoodRecipe::new, ModRecipes.INFECT_FOOD_RECIPE);
                 this.addSpecialRecipe(InfectedBreadRecipe::new, ModRecipes.INFECTED_BREAD_RECIPE);
             }
 
-            public ShapelessRecipeBuilder createPesticide(PesticideType pesticideType) {
-                return shapeless(RecipeCategory.MISC, pesticideType.createContainer())
-                        .group("pesticides");
+            public void addPesticideContainerRecipes() {
+                for (PesticideType pesticideType : ModRegistries.PESTICIDE_TYPE) {
+                    createPesticideContainerRecipe(pesticideType)
+                            .save(output, "pesticide_container/" + pesticideType.getID().getPath());
+                }
+            }
+
+            public ShapelessRecipeBuilder createPesticideContainerRecipe(PesticideType pesticideType) {
+                ShapelessRecipeBuilder recipeBuilder = shapeless(RecipeCategory.MISC, pesticideType.createContainer())
+                        .group("pesticide_container");
+
+                List<Ingredient> sortedIngredients = pesticideType.ingredients()
+                        .stream()
+                        .sorted(Comparator.comparingInt(BuiltInRegistries.ITEM::getId))
+                        .map(Ingredient::of)
+                        .toList();
+
+                sortedIngredients.forEach(item -> {
+                    recipeBuilder.requires(item);
+                    recipeBuilder.unlockedBy(getHasName(ModItems.EMPTY_CONTAINER), has(ModItemTags.CONTAINERS));
+                });
+
+                return recipeBuilder;
             }
 
             public void addSpecialRecipe(Function<CraftingBookCategory, Recipe<?>> customRecipeFactory, RecipeSerializer<?> serializer) {

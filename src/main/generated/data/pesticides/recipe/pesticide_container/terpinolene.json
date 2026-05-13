@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "pesticide_container",
+  "ingredients": [
+    "minecraft:coal",
+    "minecraft:wheat_seeds",
+    "pesticides:water_container",
+    "pesticides:zombie_bone"
+  ],
+  "result": {
+    "components": {
+      "pesticides:pesticide_type": "pesticides:terpinolene"
+    },
+    "count": 1,
+    "id": "pesticides:pesticide_container"
+  }
+}
