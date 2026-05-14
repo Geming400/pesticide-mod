@@ -1,6 +1,5 @@
 package fr.geming400.pesticide.client.datagen;
 
-import fr.geming400.pesticide.content.ModDataComponents;
 import fr.geming400.pesticide.content.ModRegistries;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.items.ModItems;
@@ -11,10 +10,8 @@ import fr.geming400.pesticide.content.recipe.ModRecipes;
 import fr.geming400.pesticide.content.tags.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.fabricmc.fabric.api.recipe.v1.ingredient.DefaultCustomIngredients;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
@@ -102,17 +99,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.WHITE_WOOL), has(Items.WHITE_WOOL))
                         .unlockedBy(getHasName(Items.STICK), has(ConventionalItemTags.WOODEN_RODS))
                         .save(output);
-
-                shapeless(RecipeCategory.TOOLS, ModItems.COTTON_SWAB)
-                        .requires(DefaultCustomIngredients.components(
-                                Ingredient.of(ModItems.COTTON_SWAB),
-                                DataComponentPatch.builder()
-                                        .set(ModDataComponents.COTTON_SWAB_USED, true)
-                                        .build()
-                        ))
-                        .group("cotton_swab")
-                        .unlockedBy(getHasName(ModItems.COTTON_SWAB), has(ModItems.COTTON_SWAB))
-                        .save(output, "cotton_swab/clean");
 
                 shapeless(RecipeCategory.MISC, ModItems.PLASTIC_SHEET)
                         .requires(ModItems.HOT_MILK_BUCKET)
