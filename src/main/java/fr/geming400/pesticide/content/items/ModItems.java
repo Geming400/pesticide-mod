@@ -22,7 +22,11 @@ import java.util.List;
 import java.util.function.Function;
 
 public final class ModItems {
-    public static final Item EMPTY_CONTAINER = register("empty_container");
+    public static final Item EMPTY_CONTAINER = register(
+            "empty_container",
+            EmptyContainer::new,
+            new Item.Properties()
+    );
 
     public static final Item WATER_CONTAINER = register(
             "water_container",
