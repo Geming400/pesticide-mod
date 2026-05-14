@@ -20,3 +20,7 @@ How cool is that
 
 There's basic integration with jei for crafts.
 It's very recommended to use it with this mod because some recipes won't appear in the recipe book !
+
+## TODO
+
+idk yet

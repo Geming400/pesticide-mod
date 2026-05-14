@@ -33,7 +33,6 @@ public final class ModItems {
             Item::new,
             new Item.Properties()
                     .food(ModFoodProperties.PESTICIDE, ModFoodProperties.WATER_BOTTLE_LIKE_CONSUMABLE)
-                    .craftRemainder(EMPTY_CONTAINER)
                     .usingConvertsTo(EMPTY_CONTAINER)
                     .stacksTo(8)
     );
