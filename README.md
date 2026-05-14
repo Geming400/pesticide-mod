@@ -23,4 +23,4 @@ It's very recommended to use it with this mod because some recipes won't appear 
 
 ## TODO
 
-idk yet
+- [ ] fix zombie loot table overriding vanilla's one
