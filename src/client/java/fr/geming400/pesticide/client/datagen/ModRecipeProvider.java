@@ -152,6 +152,26 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.MILK_BUCKET), has(ConventionalItemTags.MILK_BUCKETS))
                         .save(output);
 
+                shapeless(RecipeCategory.MISC, ModItems.BIOMASS)
+                        .requires(ItemTags.SAPLINGS)
+                        .requires(ItemTags.DIRT)
+                        .requires(ConventionalItemTags.SEEDS)
+                        .requires(ConventionalItemTags.FLOWERS)
+                        .unlockedBy("has_flowers", has(ConventionalItemTags.FLOWERS))
+                        .save(output);
+
+                shapeless(RecipeCategory.MISC, ModItems.SULFUR_POWDER)
+                        .requires(Items.BLAZE_POWDER)
+                        .requires(Items.CHARCOAL)
+                        .unlockedBy(getHasName(Items.BLAZE_POWDER), has(Items.BLAZE_POWDER))
+                        .save(output);
+
+                shapeless(RecipeCategory.MISC, ModItems.TOXIC_COMPOUND)
+                        .requires(Items.FERMENTED_SPIDER_EYE)
+                        .requires(ConventionalItemTags.GUNPOWDERS)
+                        .unlockedBy(getHasName(Items.GUNPOWDER), has(ConventionalItemTags.GUNPOWDERS))
+                        .save(output);
+
                 this.addPesticideContainerRecipes();
 
                 this.addSpecialRecipe(InfectFoodRecipe::new, ModRecipes.INFECT_FOOD_RECIPE);

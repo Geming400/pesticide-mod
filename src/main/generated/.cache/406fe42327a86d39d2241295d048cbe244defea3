@@ -1,6 +1,7 @@
 // 1.21.11	-999999999-01-01T00:00:00	Pesticides/ModModelProvider
 569f281e5b0e3e15653fda6e2e68ef9b008f9494 assets/pesticides/blockstates/faucet.json
 499c2895f7650a6df63d1474606679d0a816f68e assets/pesticides/blockstates/infested_farmland.json
+9f5dee27eb59eb9b0a890d3e173f8fa70bb799ef assets/pesticides/items/biomass.json
 775b604083497cc25735bb9a4bb70949d09b31ac assets/pesticides/items/cotton_swab.json
 fff79e31bbdc08c349161ecba4b88741f8fa91a6 assets/pesticides/items/empty_container.json
 6f2cc134cb324ea7eaab87798763e42eafedcc77 assets/pesticides/items/faucet.json
@@ -13,7 +14,9 @@ f54ea9478186a2bbb05b867d48a156bb68a8977a assets/pesticides/items/hot_milk_bucket
 8f6aa8fbb858ec2e599ffd9f36b6ed9be265f3d7 assets/pesticides/items/infested_farmland.json
 86088150e70b11e6a2aa47473162e09a070bb4c9 assets/pesticides/items/pesticide_container.json
 a03702c5253b65e13aaa6b96ce7878a39958f744 assets/pesticides/items/plastic_sheet.json
+c2b88806da63c697d3e9b0dc0c413b90b3e74149 assets/pesticides/items/sulfur_powder.json
 b61733f07f5468033387d52273b6f3cecb3a2d18 assets/pesticides/items/suspicious_wheat.json
+ccf483a64f7e2fd542274a9d0b1ec9f2ceb1fca2 assets/pesticides/items/toxic_compound.json
 560c154fb20c08b7d81c652c5ee3d83e3a7ce960 assets/pesticides/items/water_container.json
 c01e479401a7145b03f156b6e0a156bea83be70d assets/pesticides/items/wool_rod.json
 51f5f58f9dfe616659fb27709b4abab93c945c8d assets/pesticides/items/zombie_bone.json
@@ -21,6 +24,7 @@ ac36acc326c0ddd3c922f13503e5d0d16f4fc326 assets/pesticides/models/block/faucet.j
 e8c786b950c24df1043c1b3aeb8320f99327cd5f assets/pesticides/models/block/faucet_single.json
 2ffeca3a19524f6a06055d6508d4a3f69b5e3087 assets/pesticides/models/block/infested_farmland.json
 88697dc4324492cefb6a58958edea3f78196f65c assets/pesticides/models/block/infested_farmland_moist.json
+535044b50ead12ddd4e28fdb0b970d3dccb64e04 assets/pesticides/models/item/biomass.json
 c7fe372ed88377ab1e33e8a3bf2f7fac5640a273 assets/pesticides/models/item/cotton_swab.json
 04ba138cfe0e17085d2676d7d53b805be0beff40 assets/pesticides/models/item/cotton_swab_dirty.json
 de148612b4c97715cd7dd27a774cb1091e183d07 assets/pesticides/models/item/empty_container.json
@@ -32,7 +36,9 @@ ccdab38536736c3c957c9258d9e32359e999aea9 assets/pesticides/models/item/hazmat_he
 ac882b1e8739a9d7eb71119dd15f206de3774e01 assets/pesticides/models/item/hot_milk_bucket.json
 eaaa6ab362f723bc82ee0e88c227a9922d20a196 assets/pesticides/models/item/pesticide_container.json
 be1cf42f5795a94c346cc50fad203d072bd5f44b assets/pesticides/models/item/plastic_sheet.json
+981df36428212a3b51fd53e108d3073109c01190 assets/pesticides/models/item/sulfur_powder.json
 7d51485b05d4d43faea7d78a15d0110477a06fa2 assets/pesticides/models/item/suspicious_wheat.json
+012a086b673e1944a5cd8d9c14d82d83f8828f16 assets/pesticides/models/item/toxic_compound.json
 aa32c8e27a0576156d6c388668fb942274106292 assets/pesticides/models/item/water_container.json
 b011b6f5b171932d74bc3e1b91882918d09186dd assets/pesticides/models/item/wool_rod.json
 e59d3490c0ea4ac79220d84c803a4c120354556c assets/pesticides/models/item/zombie_bone.json

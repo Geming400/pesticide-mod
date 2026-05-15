@@ -53,6 +53,9 @@ public final class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(ModItems.WOOL_ROD, ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.HOT_MILK_BUCKET, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.PLASTIC_SHEET, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.BIOMASS, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.SULFUR_POWDER, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.TOXIC_COMPOUND, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateBooleanDispatch(
                 ModItems.COTTON_SWAB,
                 ItemModelUtils.hasComponent(ModDataComponents.COTTON_SWAB_USED),

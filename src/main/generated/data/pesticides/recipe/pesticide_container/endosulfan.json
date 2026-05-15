@@ -4,7 +4,7 @@
   "group": "pesticide_container",
   "ingredients": [
     "minecraft:coal",
-    "minecraft:quartz",
+    "minecraft:blaze_powder",
     {
       "fabric:type": "fabric:components",
       "base": "pesticides:pesticide_container",

@@ -84,6 +84,12 @@ public final class ModItems {
 
     public static final Item PLASTIC_SHEET = register("plastic_sheet");
 
+    public static final Item BIOMASS = register("biomass");
+
+    public static final Item SULFUR_POWDER = register("sulfur_powder");
+
+    public static final Item TOXIC_COMPOUND = register("toxic_compound");
+
     public static final ArmorItems HAZMAT_SUIT = ArmorItems.of("hazmat", HazmatArmorMaterial.INSTANCE, HazmatArmorMaterial.BASE_DURABILITY);
 
     public static void initialize() {

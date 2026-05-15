@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#minecraft:saplings",
+    "#minecraft:dirt",
+    "#c:seeds",
+    "#c:flowers"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:biomass"
+  }
+}

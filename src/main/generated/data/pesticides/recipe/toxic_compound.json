@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:fermented_spider_eye",
+    "#c:gunpowders"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:toxic_compound"
+  }
+}

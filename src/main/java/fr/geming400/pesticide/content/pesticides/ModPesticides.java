@@ -35,7 +35,7 @@ public final class ModPesticides {
                             AMPROPYFLOS.createContainer(),
                             ModItems.ZOMBIE_BONE.getDefaultInstance(),
                             Items.COAL.getDefaultInstance(),
-                            Items.WHEAT_SEEDS.getDefaultInstance()
+                            ModItems.BIOMASS.getDefaultInstance()
                     ),
                     new MobEffectInstance(ModEffects.FREEZING, 20*20, 0)
             )
@@ -63,7 +63,7 @@ public final class ModPesticides {
                             GLYPHOSATE.createContainer(),
                             ModItems.ZOMBIE_BONE.getDefaultInstance(),
                             Items.COAL.getDefaultInstance(),
-                            Items.GUNPOWDER.getDefaultInstance()
+                            ModItems.SULFUR_POWDER.getDefaultInstance()
                     ),
                     new MobEffectInstance(MobEffects.POISON, 30*20, 2)
             )
@@ -77,7 +77,7 @@ public final class ModPesticides {
                             ATRAZINE.createContainer(),
                             ModItems.ZOMBIE_BONE.getDefaultInstance(),
                             Items.COAL.getDefaultInstance(),
-                            Items.QUARTZ.getDefaultInstance()
+                            ModItems.TOXIC_COMPOUND.getDefaultInstance()
                     ),
                     new MobEffectInstance(ModEffects.BURNING, 15*20, 2)
             )

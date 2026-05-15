@@ -4,7 +4,6 @@
   "group": "pesticide_container",
   "ingredients": [
     "minecraft:coal",
-    "minecraft:wheat_seeds",
     {
       "fabric:type": "fabric:components",
       "base": "pesticides:pesticide_container",
@@ -12,7 +11,8 @@
         "pesticides:pesticide_type": "pesticides:ampropylfos"
       }
     },
-    "pesticides:zombie_bone"
+    "pesticides:zombie_bone",
+    "pesticides:biomass"
   ],
   "result": {
     "components": {

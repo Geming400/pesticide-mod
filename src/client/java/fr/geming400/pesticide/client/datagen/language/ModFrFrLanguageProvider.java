@@ -82,6 +82,9 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         );
         builder.add(ModItems.HOT_MILK_BUCKET, "Seau de lait chaud");
         builder.add(ModItems.PLASTIC_SHEET, "Plastique");
+        builder.add(ModItems.BIOMASS, "Biomasse");
+        builder.add(ModItems.SULFUR_POWDER, "Poudre de soufre");
+        builder.add(ModItems.TOXIC_COMPOUND, "Composé toxique");
 
         builder.add(ModItems.HAZMAT_SUIT.helmet(), "Casque de protection Hazmat");
         builder.add(ModItems.HAZMAT_SUIT.chestplate(), "Plastron de protection Hazmat");

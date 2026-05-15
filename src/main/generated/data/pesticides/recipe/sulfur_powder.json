@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:blaze_powder",
+    "minecraft:charcoal"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:sulfur_powder"
+  }
+}
