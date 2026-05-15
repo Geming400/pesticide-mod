@@ -4,7 +4,6 @@ import fr.geming400.pesticide.client.datagen.*;
 import fr.geming400.pesticide.client.datagen.language.ModFrFrLanguageProvider;
 import fr.geming400.pesticide.client.datagen.loottables.ModBlockLoottableProvider;
 import fr.geming400.pesticide.client.datagen.language.ModEnUsLanguageProvider;
-import fr.geming400.pesticide.client.datagen.loottables.ModEntityLoottableProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -18,7 +17,6 @@ public class PesticidesDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModBlockLoottableProvider::new);
 		pack.addProvider(ModItemTagProvider::new);
-		pack.addProvider(ModEntityLoottableProvider::new);
 		pack.addProvider(ModAdvancementProvider::new);
 
 		// Languages
