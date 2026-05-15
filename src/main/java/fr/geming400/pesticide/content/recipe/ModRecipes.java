@@ -32,14 +32,31 @@ public final class ModRecipes {
                     ModPotions.BURNING_POTION
             );
             builder.addMix(
+                    ModPotions.BURNING_POTION,
+                    Items.GLOWSTONE,
+                    ModPotions.BURNING_POTION_LONG
+            );
+
+            builder.addMix(
                     Potions.AWKWARD,
                     Items.PACKED_ICE,
                     ModPotions.FREEZING_POTION
             );
             builder.addMix(
+                    ModPotions.FREEZING_POTION,
+                    Items.GLOWSTONE,
+                    ModPotions.FREEZING_POTION_LONG
+            );
+
+            builder.addMix(
                     Potions.AWKWARD,
                     Items.TROPICAL_FISH,
                     ModPotions.DROWNING_POTION
+            );
+            builder.addMix(
+                    ModPotions.DROWNING_POTION,
+                    Items.GLOWSTONE,
+                    ModPotions.DROWNING_POTION_LONG
             );
         });
     }

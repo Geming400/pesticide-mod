@@ -3,8 +3,8 @@
   "category": "misc",
   "group": "pesticide_container",
   "ingredients": [
-    "minecraft:cobblestone",
     "minecraft:coal",
+    "minecraft:clay_ball",
     "pesticides:water_container",
     "pesticides:zombie_bone"
   ],

@@ -21,7 +21,7 @@ public final class ModPesticides {
                             ModItems.WATER_CONTAINER.getDefaultInstance(),
                             ModItems.ZOMBIE_BONE.getDefaultInstance(),
                             Items.COAL.getDefaultInstance(),
-                            Items.COBBLESTONE.getDefaultInstance()
+                            Items.CLAY_BALL.getDefaultInstance()
                     ),
                     new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 1, 0)
             )

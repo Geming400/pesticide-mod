@@ -31,9 +31,9 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         TranslationUtils tu = new TranslationUtils(builder);
 
         builder.add(ModEffects.BAD_FARMER.value(), "Bad Farmer");
-        tu.createPotionTranslations(ModEffects.DROWNING, POTION_FORMATTING, "Drowning");
-        tu.createPotionTranslations(ModEffects.FREEZING, POTION_FORMATTING, "Freezing");
-        tu.createPotionTranslations(ModEffects.BURNING, POTION_FORMATTING, "Burning");
+        tu.createPotionTranslations(ModEffects.DROWNING, POTION_FORMATTING, "Drowning", true);
+        tu.createPotionTranslations(ModEffects.FREEZING, POTION_FORMATTING, "Freezing", true);
+        tu.createPotionTranslations(ModEffects.BURNING, POTION_FORMATTING, "Burning", true);
 
         builder.add(ModBlocks.FAUCET, "Faucet");
         builder.add(

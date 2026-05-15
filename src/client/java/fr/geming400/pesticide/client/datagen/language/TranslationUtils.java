@@ -19,14 +19,18 @@ public final class TranslationUtils {
         this.translationBuilder.add(pesticideType.getNameTranslationKey(), name);
     }
 
-    public void createPotionTranslations(
+    private void createPotionTranslations(
+            String potionID,
             Holder<MobEffect> effect,
             PotionFormatting potionFormatting,
-            String name
+            String name,
+            boolean hasLongVariant
     ) {
-        this.translationBuilder.add(effect.value(), name);
+        if (hasLongVariant)
+            this.createPotionTranslations(potionID + "_long", effect, potionFormatting, name, false);
 
-        String potionID = Identifier.parse(effect.getRegisteredName()).getPath();
+        this.translationBuilder.add("effect.%s.%s".formatted(Pesticides.MOD_ID, potionID), name);
+
         this.translationBuilder.add(
                 "item.minecraft.potion.effect.%s".formatted(potionID),
                 potionFormatting.potion.formatted(name)
@@ -43,6 +47,16 @@ public final class TranslationUtils {
                 "item.minecraft.tipped_arrow.effect.%s".formatted(potionID),
                 potionFormatting.tippedArrow.formatted(name)
         );
+    }
+
+    public void createPotionTranslations(
+            Holder<MobEffect> effect,
+            PotionFormatting potionFormatting,
+            String name,
+            boolean hasLongVariant
+    ) {
+        String potionID = Identifier.parse(effect.getRegisteredName()).getPath();
+        this.createPotionTranslations(potionID, effect, potionFormatting, name, hasLongVariant);
     }
 
     public AdvancementTranslationBuilder advancement(String id) {

@@ -16,13 +16,32 @@ public final class ModPotions {
             "burning",
             new MobEffectInstance(ModEffects.BURNING, 10 * 20)
     );
+
+    public static final Holder<Potion> BURNING_POTION_LONG = create(
+            "burning_long",
+            new MobEffectInstance(ModEffects.BURNING, 20 * 20, 1)
+    );
+
+
     public static final Holder<Potion> FREEZING_POTION = create(
             "freezing",
             new MobEffectInstance(ModEffects.FREEZING, 10 * 20)
     );
+
+    public static final Holder<Potion> FREEZING_POTION_LONG = create(
+            "freezing_long",
+            new MobEffectInstance(ModEffects.FREEZING, 20 * 20, 1)
+    );
+
+
     public static final Holder<Potion> DROWNING_POTION = create(
             "drowning",
-            new MobEffectInstance(ModEffects.DROWNING, 25 * 20)
+            new MobEffectInstance(ModEffects.DROWNING, 10 * 20)
+    );
+
+    public static final Holder<Potion> DROWNING_POTION_LONG = create(
+            "drowning_long",
+            new MobEffectInstance(ModEffects.DROWNING, 20 * 20)
     );
 
 
