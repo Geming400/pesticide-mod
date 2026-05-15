@@ -54,7 +54,7 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.WATER_CONTAINER, "Water Container");
         builder.add(ModItems.PESTICIDE_CONTAINER, "%s Container");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".infectedTooltip", "Infected with pesticide (this doesn't normally show up)");
-        builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".unknownType", "Unknown");
+        builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".unknownType", "Unknown Pesticide");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.volume", "Contains 1b of %s");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.general", "Contains %s");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", "Has a growth factor of %s");
@@ -79,7 +79,7 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.COTTON_SWAB.getDescriptionId() + ".infected", "Infected Cotton Swab");
         builder.add(
                 ModItems.COTTON_SWAB.getDescriptionId() + ".info",
-                "Cotton swabs are used to find out if a farmland or crop has been infected.\nThe more the land has been infected the more likely it is to work."
+                "Cotton swabs are used to find out if a farmland or crop has been infected. The more the land has been infected the more likely it is to work.\nYou can SHIFT+CLICK in the air to clean it"
         );
         builder.add(ModItems.HOT_MILK_BUCKET, "Hot Milk Bucket");
         builder.add(ModItems.PLASTIC_SHEET, "Plastic Sheet");

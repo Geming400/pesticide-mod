@@ -54,7 +54,7 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.WATER_CONTAINER, "Bidon d'eau");
         builder.add(ModItems.PESTICIDE_CONTAINER, "Bidon de %s");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".infectedTooltip", "Nourriture infectée par des pesticides (ceci n'est pas affiché sur l'objet crafté)");
-        builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".unknownType", "Inconnu");
+        builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".unknownType", "pesticide inconnu");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.volume", "Contient 1b de %s");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", "Possède un facteur de croissance de %s");
         builder.add(ModItems.FAUCET_ANALYSER, "Analyseur de robinet");
@@ -78,7 +78,7 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.COTTON_SWAB.getDescriptionId() + ".infected", "Coton-tige infecté");
         builder.add(
                 ModItems.COTTON_SWAB.getDescriptionId() + ".info",
-                "Les coton-tiges sont utiles pour savoir si de la terre labourée ou une plante à été infectée par du pesticide.\nLe plus la terre à été infectée, le plus le coton tige à de chance de fonctionner."
+                "Les coton-tiges sont utiles pour savoir si de la terre labourée ou une plante à été infectée par du pesticide. Le plus la terre à été infectée, le plus le coton tige à de chance de fonctionner.\nTu peut faire SHIFT+CLICK dans l'air pour le nettoyer."
         );
         builder.add(ModItems.HOT_MILK_BUCKET, "Seau de lait chaud");
         builder.add(ModItems.PLASTIC_SHEET, "Plastique");

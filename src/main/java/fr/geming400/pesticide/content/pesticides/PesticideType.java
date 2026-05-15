@@ -7,7 +7,6 @@ import fr.geming400.pesticide.content.ModRegistries;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.items.PesticideContainer;
 import net.fabricmc.fabric.api.recipe.v1.ingredient.DefaultCustomIngredients;
-import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
