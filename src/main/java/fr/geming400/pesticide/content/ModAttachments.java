@@ -8,6 +8,7 @@ import net.minecraft.resources.Identifier;
 
 @SuppressWarnings("UnstableApiUsage")
 public final class ModAttachments {
+    // Not synced because this is only handled on the server
     public static final AttachmentType<Integer> TIME_SPENT_ON_INFESTED_FARMLAND = AttachmentRegistry.create(
             Identifier.fromNamespaceAndPath(Pesticides.MOD_ID, "time_spent_on_infested_farmland"),
             builder -> builder
