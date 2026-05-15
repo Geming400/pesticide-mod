@@ -6,6 +6,8 @@ import fr.geming400.pesticide.content.ModDataComponents;
 import fr.geming400.pesticide.content.ModRegistries;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.items.PesticideContainer;
+import net.fabricmc.fabric.api.recipe.v1.ingredient.DefaultCustomIngredients;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -22,7 +24,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.*;
 
-public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEffectInstance... effects) implements ItemLike {
+public record PesticideType(float growSpeedFactor, Set<ItemStack> ingredients, MobEffectInstance... effects) implements ItemLike {
     public static final Codec<PesticideType> CODEC = ModRegistries.createRegistryCodec(ModRegistries.PESTICIDE_TYPE);
 
     public static final StreamCodec<RegistryFriendlyByteBuf, PesticideType> STREAM_CODEC = StreamCodec.composite(
@@ -62,7 +64,6 @@ public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEff
         return new HashSet<>(
                 items
                         .stream()
-                        .map(ItemStack::getItem)
                         .toList()
         ).containsAll(ingredients);
     }
@@ -74,8 +75,8 @@ public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEff
                 this.createContainer(),
                 this.ingredients()
                         .stream()
-                        .sorted(Comparator.comparingInt(BuiltInRegistries.ITEM::getId))
-                        .map(Ingredient::of)
+                        .sorted(Comparator.comparingInt(item -> BuiltInRegistries.ITEM.getId(item.getItem())))
+                        .map(DefaultCustomIngredients::components)
                         .toList()
         );
 
@@ -89,6 +90,11 @@ public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEff
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hashCode(this.getID());
+    }
+
+    @Override
     @NonNull
     public Item asItem() {
         return this.createContainer().getItem();
@@ -96,10 +102,5 @@ public record PesticideType(float growSpeedFactor, Set<Item> ingredients, MobEff
 
     public static PesticideType fromID(Identifier id) {
         return Objects.requireNonNull(ModRegistries.PESTICIDE_TYPE.getValue(id));
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(this.getID());
     }
 }

@@ -5,7 +5,13 @@
   "ingredients": [
     "minecraft:coal",
     "minecraft:dragon_breath",
-    "pesticides:water_container",
+    {
+      "fabric:type": "fabric:components",
+      "base": "pesticides:pesticide_container",
+      "components": {
+        "pesticides:pesticide_type": "pesticides:endosulfan"
+      }
+    },
     "pesticides:zombie_bone"
   ],
   "result": {

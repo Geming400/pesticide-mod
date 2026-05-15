@@ -5,7 +5,13 @@
   "ingredients": [
     "minecraft:coal",
     "minecraft:bone_meal",
-    "pesticides:water_container",
+    {
+      "fabric:type": "fabric:components",
+      "base": "pesticides:pesticide_container",
+      "components": {
+        "pesticides:pesticide_type": "pesticides:terpinolene"
+      }
+    },
     "pesticides:zombie_bone"
   ],
   "result": {

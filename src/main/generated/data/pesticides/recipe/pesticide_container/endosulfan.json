@@ -5,7 +5,13 @@
   "ingredients": [
     "minecraft:coal",
     "minecraft:quartz",
-    "pesticides:water_container",
+    {
+      "fabric:type": "fabric:components",
+      "base": "pesticides:pesticide_container",
+      "components": {
+        "pesticides:pesticide_type": "pesticides:atrazine"
+      }
+    },
     "pesticides:zombie_bone"
   ],
   "result": {

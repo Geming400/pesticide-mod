@@ -10,6 +10,7 @@ import fr.geming400.pesticide.content.recipe.ModRecipes;
 import fr.geming400.pesticide.content.tags.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.recipe.v1.ingredient.DefaultCustomIngredients;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -159,7 +160,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
             public void addPesticideContainerRecipes() {
                 for (PesticideType pesticideType : ModRegistries.PESTICIDE_TYPE) {
-                    createPesticideContainerRecipe(pesticideType)
+                    this.createPesticideContainerRecipe(pesticideType)
                             .save(output, "pesticide_container/" + pesticideType.getID().getPath());
                 }
             }
@@ -170,8 +171,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
                 List<Ingredient> sortedIngredients = pesticideType.ingredients()
                         .stream()
-                        .sorted(Comparator.comparingInt(BuiltInRegistries.ITEM::getId))
-                        .map(Ingredient::of)
+                        .sorted(Comparator.comparingInt(item -> BuiltInRegistries.ITEM.getId(item.getItem())))
+                        .map(itemstack -> {
+                            if (itemstack.is(ModItems.PESTICIDE_CONTAINER)) {
+                                return DefaultCustomIngredients.components(itemstack);
+                            } else {
+                                return Ingredient.of(itemstack.getItem());
+                            }
+                        })
                         .toList();
 
                 sortedIngredients.forEach(item -> {
