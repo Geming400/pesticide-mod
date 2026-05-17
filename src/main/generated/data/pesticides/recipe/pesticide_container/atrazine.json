@@ -4,7 +4,6 @@
   "group": "pesticide_container",
   "ingredients": [
     "minecraft:coal",
-    "minecraft:gunpowder",
     {
       "fabric:type": "fabric:components",
       "base": "pesticides:pesticide_container",
@@ -12,7 +11,8 @@
         "pesticides:pesticide_type": "pesticides:glyphosate"
       }
     },
-    "pesticides:zombie_bone"
+    "pesticides:zombie_bone",
+    "pesticides:sulfur_powder"
   ],
   "result": {
     "components": {

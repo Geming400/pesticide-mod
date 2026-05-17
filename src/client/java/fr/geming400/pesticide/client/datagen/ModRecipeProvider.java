@@ -101,7 +101,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.STICK), has(ConventionalItemTags.WOODEN_RODS))
                         .save(output);
 
-                shapeless(RecipeCategory.MISC, ModItems.PLASTIC_SHEET)
+                shapeless(RecipeCategory.MISC, ModItems.PLASTIC_SHEET, 2)
                         .requires(ModItems.HOT_MILK_BUCKET)
                         .requires(Items.PAPER)
                         .requires(Items.COAL, 4)
@@ -152,7 +152,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy(getHasName(Items.MILK_BUCKET), has(ConventionalItemTags.MILK_BUCKETS))
                         .save(output);
 
-                shapeless(RecipeCategory.MISC, ModItems.BIOMASS)
+                shapeless(RecipeCategory.MISC, ModItems.BIOMASS, 4)
                         .requires(ItemTags.SAPLINGS)
                         .requires(ItemTags.DIRT)
                         .requires(ConventionalItemTags.SEEDS)
@@ -160,13 +160,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy("has_flowers", has(ConventionalItemTags.FLOWERS))
                         .save(output);
 
-                shapeless(RecipeCategory.MISC, ModItems.SULFUR_POWDER)
+                shapeless(RecipeCategory.MISC, ModItems.SULFUR_POWDER, 4)
                         .requires(Items.BLAZE_POWDER)
                         .requires(Items.CHARCOAL)
                         .unlockedBy(getHasName(Items.BLAZE_POWDER), has(Items.BLAZE_POWDER))
                         .save(output);
 
-                shapeless(RecipeCategory.MISC, ModItems.TOXIC_COMPOUND)
+                shapeless(RecipeCategory.MISC, ModItems.TOXIC_COMPOUND, 2)
                         .requires(Items.FERMENTED_SPIDER_EYE)
                         .requires(ConventionalItemTags.GUNPOWDERS)
                         .unlockedBy(getHasName(Items.GUNPOWDER), has(ConventionalItemTags.GUNPOWDERS))

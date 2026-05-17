@@ -23,7 +23,7 @@ It's very recommended to use it with this mod because some recipes won't appear 
 
 ## TODO
 - [x] fix zombie loot table overriding vanilla's one
-- [ ] add becher instead of cotton swabs to check if something has been infected (check https://fr.minecraft.wiki/w/Corps_compos%C3%A9 for texture)
+- [ ] add beaker instead of cotton swabs to check if something has been infected (check https://fr.minecraft.wiki/w/Corps_compos%C3%A9 for texture)
 - [ ] add multiple faucet types:
   - Copper
   - Iron
