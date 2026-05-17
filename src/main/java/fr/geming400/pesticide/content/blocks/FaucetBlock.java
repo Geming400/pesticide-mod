@@ -10,7 +10,6 @@ import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.TrailParticleOption;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -161,7 +160,6 @@ public class FaucetBlock extends BaseEntityBlock {
                 if (faucetBlockEntity.fill(itemPesticideType)) {
                     player.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
                     level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_EMPTY, SoundSource.NEUTRAL, 1.0F, 1.0F);
-                    ((ServerPlayer) player).connection.send(faucetBlockEntity.getUpdatePacket());
 
                     return InteractionResult.SUCCESS
                             .heldItemTransformedTo(
