@@ -1,3 +1,6 @@
 // 1.21.11	-999999999-01-01T00:00:00	Pesticides/Block Loot Tables
-984d41c0d270e57c12500d052f71dab070d2b446 data/pesticides/loot_table/blocks/faucet.json
+033fca8754ec7a0aa8f2ec6cf1379fdd727ef066 data/pesticides/loot_table/blocks/copper_faucet.json
+9c18c2ef085658534a2a841f479925499bbfd888 data/pesticides/loot_table/blocks/diamond_faucet.json
 b6dc615d23bf39f4c043f8e1cdb635c0be9cb708 data/pesticides/loot_table/blocks/infested_farmland.json
+7f2420f45c04dd3eff95dfa43994bceca6940f3b data/pesticides/loot_table/blocks/iron_faucet.json
+ba91e2a2ffc6817ac604ac48e494d296b34081a2 data/pesticides/loot_table/blocks/netherite_faucet.json

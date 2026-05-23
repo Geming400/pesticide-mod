@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "faucet",
+  "ingredients": [
+    "pesticides:copper_faucet",
+    "#c:gems/diamond"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:diamond_faucet"
+  }
+}

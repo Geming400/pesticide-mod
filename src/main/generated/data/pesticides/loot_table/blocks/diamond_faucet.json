@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "pesticides:faucet"
+          "name": "pesticides:diamond_faucet"
         }
       ],
       "rolls": 1.0

@@ -3,7 +3,9 @@
   "category": "misc",
   "ingredients": [
     "minecraft:fermented_spider_eye",
-    "#c:gunpowders"
+    "#c:gunpowders",
+    "#c:crops/nether_wart",
+    "minecraft:rotten_flesh"
   ],
   "result": {
     "count": 2,

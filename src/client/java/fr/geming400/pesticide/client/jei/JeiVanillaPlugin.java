@@ -46,7 +46,9 @@ public class JeiVanillaPlugin implements IModPlugin {
         this.addIngredientInfo(registration, ModItems.FAUCET_ANALYSER);
         this.addIngredientInfo(registration, ModItems.ZOMBIE_BONE);
         this.addIngredientInfo(registration, ModItems.COTTON_SWAB);
-        this.addIngredientInfo(registration, ModBlocks.FAUCET);
+        ModBlocks.getFaucetBlocks()
+                .forEach(block -> this.addIngredientInfo(registration, block));
+
     }
 
     private void addIngredientInfo(@NonNull IRecipeRegistration registration, ItemLike itemLike) {

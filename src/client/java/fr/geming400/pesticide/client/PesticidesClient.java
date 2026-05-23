@@ -2,6 +2,7 @@ package fr.geming400.pesticide.client;
 
 import fr.geming400.pesticide.content.ModDataComponents;
 import fr.geming400.pesticide.content.blockentities.InfestedFarmlandBlockEntity;
+import fr.geming400.pesticide.content.blocks.FaucetBlock;
 import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
@@ -11,6 +12,7 @@ import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.Range;
 
@@ -39,6 +41,16 @@ public class PesticidesClient implements ClientModInitializer {
 					tooltip.add(Component.translatable(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.general", pesticideType.getName())
 							.withStyle(ChatFormatting.DARK_GREEN));
 				}
+			}
+
+			if (
+					stack.getItem() instanceof BlockItem blockItem
+					&& blockItem.getBlock() instanceof FaucetBlock faucetBlock
+			) {
+				int infectionChance = (int) (faucetBlock.getInfectionChance() * 100);
+
+				tooltip.add(Component.translatable("block.pesticides.faucet.tooltip.infectionChance", infectionChance)
+						.withStyle(ChatFormatting.DARK_GRAY));
 			}
 		});
 

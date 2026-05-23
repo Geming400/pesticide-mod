@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_iron_faucet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pesticides:iron_faucet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pesticides:faucet/diamond"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_iron_faucet"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pesticides:faucet/diamond"
+    ]
+  }
+}

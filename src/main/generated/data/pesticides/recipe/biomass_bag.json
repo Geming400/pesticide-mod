@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "pesticides:biomass",
+    "pesticides:biomass",
+    "pesticides:biomass",
+    "pesticides:biomass"
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:biomass_bag"
+  }
+}

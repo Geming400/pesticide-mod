@@ -23,17 +23,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.Range;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Objects;
 
 public class InfestedFarmBlock extends FarmBlockWithEntity {
-    @Range(from = 0, to = 1)
-    public static final double INFECTION_CHANCE = 0.1;
-    @Range(from = 0, to = 1)
-    public static final double MOIST_INFECTION_CHANCE = 0.15;
+    public static final double INFECTION_CHANCE = 0.10;
 
     public InfestedFarmBlock(Properties properties) {
         super(properties);
@@ -72,7 +68,7 @@ public class InfestedFarmBlock extends FarmBlockWithEntity {
 
         BlockEntity blockEntity = serverLevel.getBlockEntity(blockPos);
         if (blockEntity instanceof InfestedFarmlandBlockEntity infestedFarmlandBlockEntity) {
-            if (serverLevel.getRandom().nextDouble() <= getInfectionChance(blockToInfect, false) && blockToInfect.is(Blocks.FARMLAND))
+            if (serverLevel.getRandom().nextDouble() <= INFECTION_CHANCE && blockToInfect.is(Blocks.FARMLAND))
                 infectBlock(serverLevel, blockToInfect, chosenPosToInfect, infestedFarmlandBlockEntity.getPesticideType());
         }
     }
@@ -109,16 +105,6 @@ public class InfestedFarmBlock extends FarmBlockWithEntity {
                     .setValue(FarmBlock.MOISTURE, state.getValue(FarmBlock.MOISTURE));
         } else {
             throw new RuntimeException("Tried copying farmland's state to InfestedFarmBlock but failed because %s doesn't have the %s property".formatted(state, FarmBlock.MOISTURE));
-        }
-    }
-
-    public static double getInfectionChance(BlockState farmBlockState, boolean isFaucet) {
-        if (isFaucet) {
-            return INFECTION_CHANCE;
-        } else {
-            return farmBlockState.getValueOrElse(MOISTURE, 0) >= 0
-                    ? INFECTION_CHANCE
-                    : MOIST_INFECTION_CHANCE;
         }
     }
 }

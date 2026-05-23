@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "pesticides:block/faucet"
+    "model": "pesticides:item/biomass_bag"
   }
 }

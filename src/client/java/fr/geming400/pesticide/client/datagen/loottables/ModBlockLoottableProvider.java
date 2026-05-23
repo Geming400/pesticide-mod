@@ -15,7 +15,9 @@ public class ModBlockLoottableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        this.dropSelf(ModBlocks.FAUCET);
+        ModBlocks.getFaucetBlocks()
+                .forEach(this::dropSelf);
+
         this.dropOther(ModBlocks.INFESTED_FARMLAND, Blocks.DIRT);
     }
 }

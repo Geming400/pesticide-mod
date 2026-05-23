@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "pesticides:faucet"
+            "items": "pesticides:copper_faucet"
           }
         ]
       },
@@ -19,7 +19,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "pesticides:faucet"
+      "id": "pesticides:copper_faucet"
     },
     "title": {
       "translate": "advancements.pesticides.core.a_new_farmer_era.title"

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_faucet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pesticides:copper_faucet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "pesticides:faucet/iron"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_copper_faucet"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "pesticides:faucet/iron"
+    ]
+  }
+}

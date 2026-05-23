@@ -36,9 +36,25 @@ public final class ModModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(@NonNull BlockModelGenerators generator) {
         registerFaucet(
                 generator,
-                ModBlocks.FAUCET,
+                ModBlocks.COPPER_FAUCET,
+                createFaucetTextureMapping(Blocks.COPPER_BLOCK, Blocks.COBBLED_DEEPSLATE)
+        );
+        registerFaucet(
+                generator,
+                ModBlocks.IRON_FAUCET,
                 createFaucetTextureMapping(Blocks.IRON_BLOCK, Blocks.COBBLED_DEEPSLATE)
         );
+        registerFaucet(
+                generator,
+                ModBlocks.DIAMOND_FAUCET,
+                createFaucetTextureMapping(Blocks.DIAMOND_BLOCK, Blocks.COBBLED_DEEPSLATE)
+        );
+        registerFaucet(
+                generator,
+                ModBlocks.NETHERITE_FAUCET,
+                createFaucetTextureMapping(Blocks.NETHERITE_BLOCK, Blocks.COBBLED_DEEPSLATE)
+        );
+
         registerFarmland(generator, Blocks.DIRT, ModBlocks.INFESTED_FARMLAND);
     }
 
@@ -54,6 +70,7 @@ public final class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(ModItems.HOT_MILK_BUCKET, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.PLASTIC_SHEET, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.BIOMASS, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.BIOMASS_BAG, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.SULFUR_POWDER, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.TOXIC_COMPOUND, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateBooleanDispatch(

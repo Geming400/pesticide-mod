@@ -7,6 +7,7 @@ import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.effects.ModEffects;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.ModPesticides;
+import fr.geming400.pesticide.content.tags.ModBlockTags;
 import fr.geming400.pesticide.content.tags.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.core.HolderLookup;
@@ -35,9 +36,13 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         tu.createPotionTranslations(ModEffects.FREEZING, POTION_FORMATTING, "Gel", true);
         tu.createPotionTranslations(ModEffects.BURNING, POTION_FORMATTING, "Brûlure", true);
 
-        builder.add(ModBlocks.FAUCET, "Robinet");
+        builder.add(ModBlocks.COPPER_FAUCET, "Robinet en cuivre");
+        builder.add(ModBlocks.IRON_FAUCET, "Robinet en fer");
+        builder.add(ModBlocks.DIAMOND_FAUCET, "Robinet en diamant");
+        builder.add(ModBlocks.NETHERITE_FAUCET, "Robinet en netherite");
+        builder.add("block.pesticides.faucet.tooltip.infectionChance", "A une chance de %s%% d'infecter de la terre labourée");
         builder.add(
-                ModBlocks.FAUCET.getDescriptionId() + ".info",
+                "block.pesticides.faucet.info",
                 """
                         Un robinet permet de mettre des pesticides sur des plantations. En lui donnant un signal de redstone, tu peux le désactiver.
                         Il est aussi possible de faire SHIFT + CLIC pour changer entre ses différents modes : 'simple' et 'double'.
@@ -56,6 +61,7 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".infectedTooltip", "Nourriture infectée par des pesticides (ceci n'est pas affiché sur l'objet crafté)");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".unknownType", "pesticide inconnu");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.volume", "Contient 1b de %s");
+        builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.general", "Contient du %s");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", "Possède un facteur de croissance de %s");
         builder.add(ModItems.FAUCET_ANALYSER, "Analyseur de robinet");
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse", "Ce robinet contient %s mb de %s et est %s");
@@ -83,6 +89,7 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.HOT_MILK_BUCKET, "Seau de lait chaud");
         builder.add(ModItems.PLASTIC_SHEET, "Plastique");
         builder.add(ModItems.BIOMASS, "Biomasse");
+        builder.add(ModItems.BIOMASS_BAG, "Sac de biomasse");
         builder.add(ModItems.SULFUR_POWDER, "Poudre de soufre");
         builder.add(ModItems.TOXIC_COMPOUND, "Composé toxique");
 
@@ -94,6 +101,7 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItemTags.CONTAINERS, "Bidons");
         builder.add(ModItemTags.INFECTABLE_FOOD, "Nourriture infectable");
         builder.add(ModItemTags.PLASTIC_SHEETS, "Plastiques");
+        builder.add(ModBlockTags.FAUCETS, "Robinets");
 
         tu.createPesticideTranslation(ModPesticides.TERPINOLENE, "Terpinolène");
         tu.createPesticideTranslation(ModPesticides.GLYPHOSATE, "Glyphosate");

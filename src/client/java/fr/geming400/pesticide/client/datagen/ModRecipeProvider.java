@@ -17,12 +17,14 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.ItemLike;
 import org.jspecify.annotations.NonNull;
 
 import java.util.Comparator;
@@ -43,15 +45,43 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             @Override
             public void buildRecipes() {
                 HolderLookup.RegistryLookup<Item> itemLookup = registries.lookupOrThrow(Registries.ITEM);
-                shaped(RecipeCategory.MISC, ModBlocks.FAUCET, 3)
+
+
+                // Faucets
+                shaped(RecipeCategory.MISC, ModBlocks.COPPER_FAUCET, 3)
                         .pattern("ddd")
                         .pattern(" i ")
                         .define('d', ConventionalItemTags.DEEPSLATE_COBBLESTONES)
-                        .define('i', ConventionalItemTags.IRON_NUGGETS)
+                        .define('i', ConventionalItemTags.COPPER_NUGGETS)
                         .group("faucet")
-                        .unlockedBy(getHasName(Items.IRON_INGOT), has(ConventionalItemTags.IRON_INGOTS))
+                        .unlockedBy("has_copper_nuggets", has(ConventionalItemTags.COPPER_NUGGETS))
                         .unlockedBy(getHasName(Items.COBBLED_DEEPSLATE), has(ConventionalItemTags.DEEPSLATE_COBBLESTONES))
-                        .save(output);
+                        .save(output, "faucet/copper");
+
+                shaped(RecipeCategory.MISC, ModBlocks.IRON_FAUCET)
+                        .pattern(" i ")
+                        .pattern("ifi")
+                        .pattern(" i ")
+                        .define('i', ConventionalItemTags.IRON_INGOTS)
+                        .define('f', ModBlocks.COPPER_FAUCET)
+                        .group("faucet")
+                        .unlockedBy(getHasName(ModBlocks.COPPER_FAUCET), has(ModBlocks.COPPER_FAUCET))
+                        .save(output, "faucet/iron");
+
+                shapeless(RecipeCategory.MISC, ModBlocks.DIAMOND_FAUCET)
+                        .requires(ModBlocks.COPPER_FAUCET)
+                        .requires(ConventionalItemTags.DIAMOND_GEMS)
+                        .group("faucet")
+                        .unlockedBy(getHasName(ModBlocks.IRON_FAUCET), has(ModBlocks.IRON_FAUCET))
+                        .save(output, "faucet/diamond");
+
+                netheriteSmithing(
+                        ModBlocks.DIAMOND_FAUCET.asItem(),
+                        RecipeCategory.MISC,
+                        ModBlocks.NETHERITE_FAUCET.asItem(),
+                        "faucet/netherite"
+                );
+
 
                 shaped(RecipeCategory.MISC, ModItems.EMPTY_CONTAINER, 3)
                         .pattern("  g")
@@ -63,14 +93,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .save(output);
 
                 shaped(RecipeCategory.TOOLS, ModItems.FAUCET_ANALYSER)
-                        .pattern("  i")
-                        .pattern(" s ")
-                        .pattern("s  ")
-                        .define('i', ConventionalItemTags.IRON_NUGGETS)
-                        .define('s', ConventionalItemTags.WOODEN_RODS)
+                        .pattern("iii")
+                        .pattern("iri")
+                        .pattern("igi")
+                        .define('i', ConventionalItemTags.IRON_INGOTS)
+                        .define('r', ConventionalItemTags.REDSTONE_DUSTS)
+                        .define('g', ConventionalItemTags.GLASS_PANES)
                         .group("pesticide_containers")
-                        .unlockedBy(getHasName(Items.IRON_INGOT), has(ConventionalItemTags.IRON_INGOTS))
-                        .unlockedBy(getHasName(Items.STICK), has(ConventionalItemTags.WOODEN_RODS))
+                        .unlockedBy("has_glass_panes", has(ConventionalItemTags.GLASS_PANES))
                         .save(output);
 
 
@@ -79,7 +109,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .pattern(" w ")
                         .define('w', ItemTags.WOOL)
                         .group("wool_rod")
-                        .unlockedBy(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
+                        .unlockedBy("has_wool", has(ItemTags.WOOL))
                         .save(output, "wool_rod/wool");
 
                 shaped(RecipeCategory.MISC, ModItems.WOOL_ROD, 2)
@@ -87,7 +117,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .pattern(" s ")
                         .define('s', Items.STRING)
                         .group("wool_rod")
-                        .unlockedBy(getHasName(Items.WHITE_WOOL), has(ItemTags.WOOL))
+                        .unlockedBy("has_wool", has(ItemTags.WOOL))
                         .save(output, "wool_rod/string");
 
                 shaped(RecipeCategory.TOOLS, ModItems.COTTON_SWAB)
@@ -97,15 +127,15 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .define('w', Items.WHITE_WOOL)
                         .define('s', ModItems.WOOL_ROD)
                         .group("cotton_swab")
-                        .unlockedBy(getHasName(Items.WHITE_WOOL), has(Items.WHITE_WOOL))
-                        .unlockedBy(getHasName(Items.STICK), has(ConventionalItemTags.WOODEN_RODS))
+                        .unlockedBy("has_wool", has(Items.WHITE_WOOL))
+                        .unlockedBy("has_wooden_rods", has(ConventionalItemTags.WOODEN_RODS))
                         .save(output);
 
                 shapeless(RecipeCategory.MISC, ModItems.PLASTIC_SHEET, 2)
                         .requires(ModItems.HOT_MILK_BUCKET)
                         .requires(Items.PAPER)
                         .requires(Items.COAL, 4)
-                        .unlockedBy(getHasName(Items.COAL), has(ConventionalItemTags.COAL_ORES))
+                        .unlockedBy("has_coal_ores", has(ConventionalItemTags.COAL_ORES))
                         .save(output);
 
                 shaped(RecipeCategory.TOOLS, ModItems.HAZMAT_SUIT.helmet())
@@ -113,7 +143,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .pattern("s s")
                         .define('s', ModItemTags.PLASTIC_SHEETS)
                         .define('w', ConventionalItemTags.ORANGE_DYES)
-                        .unlockedBy(getHasName(ModItems.PLASTIC_SHEET), has(ModItemTags.PLASTIC_SHEETS))
+                        .unlockedBy("has_plastic_sheets", has(ModItemTags.PLASTIC_SHEETS))
                         .save(output);
 
                 shaped(RecipeCategory.TOOLS, ModItems.HAZMAT_SUIT.chestplate())
@@ -122,7 +152,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .pattern("sws")
                         .define('s', ModItemTags.PLASTIC_SHEETS)
                         .define('w', ConventionalItemTags.ORANGE_DYES)
-                        .unlockedBy(getHasName(ModItems.PLASTIC_SHEET), has(ModItemTags.PLASTIC_SHEETS))
+                        .unlockedBy("has_plastic_sheets", has(ModItemTags.PLASTIC_SHEETS))
                         .save(output);
 
                 shaped(RecipeCategory.TOOLS, ModItems.HAZMAT_SUIT.leggings())
@@ -131,7 +161,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .pattern("s s")
                         .define('s', ModItemTags.PLASTIC_SHEETS)
                         .define('w', ConventionalItemTags.ORANGE_DYES)
-                        .unlockedBy(getHasName(ModItems.PLASTIC_SHEET), has(ModItemTags.PLASTIC_SHEETS))
+                        .unlockedBy("has_plastic_sheets", has(ModItemTags.PLASTIC_SHEETS))
                         .save(output);
 
                 shaped(RecipeCategory.TOOLS, ModItems.HAZMAT_SUIT.boots())
@@ -139,7 +169,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .pattern("sws")
                         .define('s', ModItemTags.PLASTIC_SHEETS)
                         .define('w', ConventionalItemTags.ORANGE_DYES)
-                        .unlockedBy(getHasName(ModItems.PLASTIC_SHEET), has(ModItemTags.PLASTIC_SHEETS))
+                        .unlockedBy("has_plastic_sheets", has(ModItemTags.PLASTIC_SHEETS))
                         .save(output);
 
                 SimpleCookingRecipeBuilder.smoking(
@@ -149,7 +179,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         0.25f,
                         300
                 )
-                        .unlockedBy(getHasName(Items.MILK_BUCKET), has(ConventionalItemTags.MILK_BUCKETS))
+                        .unlockedBy("has_milk_buckets", has(ConventionalItemTags.MILK_BUCKETS))
                         .save(output);
 
                 shapeless(RecipeCategory.MISC, ModItems.BIOMASS, 4)
@@ -158,6 +188,11 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .requires(ConventionalItemTags.SEEDS)
                         .requires(ConventionalItemTags.FLOWERS)
                         .unlockedBy("has_flowers", has(ConventionalItemTags.FLOWERS))
+                        .save(output);
+
+                shapeless(RecipeCategory.MISC, ModItems.BIOMASS_BAG, 1)
+                        .requires(ModItems.BIOMASS, 4)
+                        .unlockedBy(getHasName(ModItems.BIOMASS), has(ModItems.BIOMASS))
                         .save(output);
 
                 shapeless(RecipeCategory.MISC, ModItems.SULFUR_POWDER, 4)
@@ -169,13 +204,28 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 shapeless(RecipeCategory.MISC, ModItems.TOXIC_COMPOUND, 2)
                         .requires(Items.FERMENTED_SPIDER_EYE)
                         .requires(ConventionalItemTags.GUNPOWDERS)
-                        .unlockedBy(getHasName(Items.GUNPOWDER), has(ConventionalItemTags.GUNPOWDERS))
+                        .requires(ConventionalItemTags.NETHER_WART_CROPS)
+                        .requires(Items.ROTTEN_FLESH)
+                        .unlockedBy("has_gunpowders", has(ConventionalItemTags.GUNPOWDERS))
                         .save(output);
 
                 this.addPesticideContainerRecipes();
 
                 this.addSpecialRecipe(InfectFoodRecipe::new, ModRecipes.INFECT_FOOD_RECIPE);
                 this.addSpecialRecipe(InfectedBreadRecipe::new, ModRecipes.INFECTED_BREAD_RECIPE);
+            }
+
+            public String getHasName(TagKey<Item> tag) {
+                String[] splittedPath = tag.location().getPath().split("/");
+                return "has_" + splittedPath[splittedPath.length - 1];
+            }
+
+            public void netheriteSmithing(ItemLike input, RecipeCategory category, ItemLike output, String path) {
+                SmithingTransformRecipeBuilder.smithing(
+                                Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(input), tag(ItemTags.NETHERITE_TOOL_MATERIALS), category, output.asItem()
+                        )
+                        .unlocks("has_netherite_ingot", has(ItemTags.NETHERITE_TOOL_MATERIALS))
+                        .save(this.output, path);
             }
 
             public void addPesticideContainerRecipes() {

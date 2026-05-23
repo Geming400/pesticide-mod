@@ -9,23 +9,43 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
+import java.util.*;
 import java.util.function.Function;
 
 public final class ModBlocks {
-    public static final FaucetBlock FAUCET = register(
-            "faucet",
-            FaucetBlock::new,
-            BlockBehaviour.Properties.of()
-                    .noCollision()
-                    .noOcclusion()
-                    .sound(SoundType.IRON)
-                    .instabreak(),
+    public static final FaucetBlock COPPER_FAUCET = register(
+            "copper_faucet",
+            properties -> new FaucetBlock(properties, 0.45),
+            FaucetBlock.getProperties(SoundType.COPPER),
             true
+    );
+
+    public static final FaucetBlock IRON_FAUCET = register(
+            "iron_faucet",
+            properties -> new FaucetBlock(properties, 0.3),
+            FaucetBlock.getProperties(SoundType.IRON),
+            true
+    );
+
+    public static final FaucetBlock DIAMOND_FAUCET = register(
+            "diamond_faucet",
+            properties -> new FaucetBlock(properties, 0.05),
+            FaucetBlock.getProperties(SoundType.IRON),
+            true
+    );
+
+    public static final FaucetBlock NETHERITE_FAUCET = register(
+            "netherite_faucet",
+            properties -> new FaucetBlock(properties, 0),
+            FaucetBlock.getProperties(SoundType.NETHERITE_BLOCK),
+            new Item.Properties()
+                    .rarity(Rarity.EPIC)
     );
 
     public static final InfestedFarmBlock INFESTED_FARMLAND = register(
@@ -36,6 +56,15 @@ public final class ModBlocks {
                     .strength(0.5f),
             true
     );
+
+    public static List<FaucetBlock> getFaucetBlocks() {
+        return BuiltInRegistries.BLOCK
+                .stream()
+                .filter(block -> block instanceof FaucetBlock)
+                .map(block -> (FaucetBlock) block)
+                .sorted(Comparator.comparingDouble(FaucetBlock::getInfectionChance).reversed())
+                .toList();
+    }
 
     public static void initialize() {
         ModBlockEntities.initialize();

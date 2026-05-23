@@ -58,7 +58,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
         advBuilder.add(
                 "a_new_farmer_era",
                 builder -> builder.display(
-                    ModBlocks.FAUCET,
+                    ModBlocks.COPPER_FAUCET,
                     Identifier.withDefaultNamespace("gui/advancements/backgrounds/stone"),
                     AdvancementType.TASK,
                     true,
@@ -67,7 +67,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         )
                         .parentAsRoot()
                         .addCriterion("got_faucet", InventoryChangeTrigger.TriggerInstance.hasItems(
-                                ItemPredicate.Builder.item().of(itemLookup, ModBlocks.FAUCET)))
+                                ItemPredicate.Builder.item().of(itemLookup, ModBlocks.COPPER_FAUCET)))
         );
 
         advBuilder.add(

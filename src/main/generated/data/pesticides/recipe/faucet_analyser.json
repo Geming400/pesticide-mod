@@ -3,13 +3,14 @@
   "category": "equipment",
   "group": "pesticide_containers",
   "key": {
-    "i": "#c:nuggets/iron",
-    "s": "#c:rods/wooden"
+    "g": "#c:glass_panes",
+    "i": "#c:ingots/iron",
+    "r": "#c:dusts/redstone"
   },
   "pattern": [
-    "  i",
-    " s ",
-    "s  "
+    "iii",
+    "iri",
+    "igi"
   ],
   "result": {
     "count": 1,

@@ -1,6 +1,8 @@
 package fr.geming400.pesticide.content.blocks;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.geming400.pesticide.content.ModDataComponents;
 import fr.geming400.pesticide.content.blockentities.FaucetBlockEntity;
 import fr.geming400.pesticide.content.blockentities.ModBlockEntities;
@@ -27,6 +29,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -44,6 +47,11 @@ import org.jspecify.annotations.Nullable;
 import java.util.Map;
 
 public class FaucetBlock extends BaseEntityBlock {
+    public static final MapCodec<FaucetBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            propertiesCodec(),
+            Codec.DOUBLE.fieldOf("infectionChance").forGetter(FaucetBlock::getInfectionChance)
+    ).apply(instance, FaucetBlock::new));
+
     /// The radius {@linkplain CropBlock crop blocks} will try to search
     /// for {@linkplain FaucetBlock faucet blocks}
     public static final int FIND_RADIUS = 6;
@@ -57,18 +65,22 @@ public class FaucetBlock extends BaseEntityBlock {
     private static final VoxelShape FULL_SHAPE = Block.box(0, 12, 0, 16, 14, 16);
     private static final Map<Direction, VoxelShape> SHAPES = Shapes.rotateHorizontal(Block.box(0, 12, 0, 16, 14, 7));
 
-    public FaucetBlock(Properties properties) {
+    private final double infectionChance;
+
+    public FaucetBlock(Properties properties, double infectionChance) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(SINGLE, true)
                 .setValue(ENABLED, true)
         );
+
+        this.infectionChance = Math.clamp(infectionChance, 0, 1);
     }
 
     @Override
     @NonNull
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return simpleCodec(FaucetBlock::new);
+    protected MapCodec<FaucetBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -190,7 +202,9 @@ public class FaucetBlock extends BaseEntityBlock {
         return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 
-
+    public double getInfectionChance() {
+        return this.infectionChance;
+    }
 
     @Override
     @NonNull
@@ -210,5 +224,13 @@ public class FaucetBlock extends BaseEntityBlock {
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NonNull Level level, @NonNull BlockState blockState, @NonNull BlockEntityType<T> type) {
         return createTickerHelper(type, ModBlockEntities.FAUCET_BLOCK_ENTITY, FaucetBlockEntity::tick);
+    }
+
+    public static BlockBehaviour.Properties getProperties(SoundType soundType) {
+        return BlockBehaviour.Properties.of()
+                .noCollision()
+                .noOcclusion()
+                .sound(soundType)
+                .instabreak();
     }
 }

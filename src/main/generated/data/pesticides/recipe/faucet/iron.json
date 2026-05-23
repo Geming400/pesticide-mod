@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "faucet",
+  "key": {
+    "f": "pesticides:copper_faucet",
+    "i": "#c:ingots/iron"
+  },
+  "pattern": [
+    " i ",
+    "ifi",
+    " i "
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:iron_faucet"
+  }
+}

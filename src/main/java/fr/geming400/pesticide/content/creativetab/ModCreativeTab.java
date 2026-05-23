@@ -39,11 +39,17 @@ public final class ModCreativeTab {
                 output.accept(ModItems.COTTON_SWAB);
                 output.accept(ModItems.HOT_MILK_BUCKET);
                 output.accept(ModItems.PLASTIC_SHEET);
+                output.accept(ModItems.SULFUR_POWDER);
+                output.accept(ModItems.TOXIC_COMPOUND);
+                output.accept(ModItems.BIOMASS);
+                output.accept(ModItems.BIOMASS_BAG);
+                output.accept(ModItems.FILTER);
 
                 ModItems.HAZMAT_SUIT.getAllArmorItem()
                         .forEach(output::accept);
 
-                output.accept(ModBlocks.FAUCET);
+                ModBlocks.getFaucetBlocks()
+                        .forEach(output::accept);
                 output.accept(ModItems.FAUCET_ANALYSER);
 
                 output.accept(ModItems.EMPTY_CONTAINER);

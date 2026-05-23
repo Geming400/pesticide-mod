@@ -3,6 +3,7 @@ package fr.geming400.pesticide.content.items;
 import fr.geming400.pesticide.Pesticides;
 import fr.geming400.pesticide.content.armor.HazmatArmorMaterial;
 import fr.geming400.pesticide.content.items.food.ModFoodProperties;
+import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -17,6 +18,7 @@ import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
 import org.jetbrains.annotations.Unmodifiable;
 
+import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
@@ -64,11 +66,8 @@ public final class ModItems {
 
     public static final Item ZOMBIE_BONE = register("zombie_bone");
 
-    public static final Item WOOL_ROD = register(
-            "wool_rod",
-            Item::new,
-            new Item.Properties()
-    );
+    @BurnTime(itemsToBurn = 2)
+    public static final Item WOOL_ROD = register("wool_rod");
 
     public static final Item SUSPICIOUS_WHEAT = register("suspicious_wheat");
 
@@ -84,16 +83,38 @@ public final class ModItems {
 
     public static final Item PLASTIC_SHEET = register("plastic_sheet");
 
+    @BurnTime(itemsToBurn = 2)
     public static final Item BIOMASS = register("biomass");
 
+    @BurnTime(itemsToBurn = 2*4 + 2)
+    public static final Item BIOMASS_BAG = register("biomass_bag");
+
+    @BurnTime(itemsToBurn = 4)
     public static final Item SULFUR_POWDER = register("sulfur_powder");
 
     public static final Item TOXIC_COMPOUND = register("toxic_compound");
+
+    public static final Item FILTER = register("filter");
 
     public static final ArmorItems HAZMAT_SUIT = ArmorItems.of("hazmat", HazmatArmorMaterial.INSTANCE, HazmatArmorMaterial.BASE_DURABILITY);
 
     public static void initialize() {
         ModPotions.initialize();
+
+        FuelRegistryEvents.BUILD.register((builder, context) -> {
+            for (Field field : ModItems.class.getFields()) {
+                if (field.getType().isAssignableFrom(Item.class) && field.isAnnotationPresent(BurnTime.class)) {
+                    int itemsToBurn = field.getAnnotation(BurnTime.class).itemsToBurn();
+
+                    try {
+                        builder.add((Item) field.get(null), itemsToBurn * context.baseSmeltTime());
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        });
+
     }
 
     private static Item register(String name) {

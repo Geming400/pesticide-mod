@@ -16,8 +16,9 @@ public class PesticidesDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModBlockLoottableProvider::new);
-		pack.addProvider(ModItemTagProvider::new);
 		pack.addProvider(ModAdvancementProvider::new);
+		pack.addProvider(ModItemTagProvider::new);
+		pack.addProvider(ModBlockTagProvider::new);
 
 		// Languages
 		pack.addProvider(ModEnUsLanguageProvider::new);

@@ -1,21 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_iron_ingot": {
+    "has_glass_panes": {
       "conditions": {
         "items": [
           {
-            "items": "#c:ingots/iron"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_stick": {
-      "conditions": {
-        "items": [
-          {
-            "items": "#c:rods/wooden"
+            "items": "#c:glass_panes"
           }
         ]
       },
@@ -31,8 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_iron_ingot",
-      "has_stick"
+      "has_glass_panes"
     ]
   ],
   "rewards": {

@@ -4,7 +4,7 @@
   "group": "faucet",
   "key": {
     "d": "#c:cobblestones/deepslate",
-    "i": "#c:nuggets/iron"
+    "i": "#c:nuggets/copper"
   },
   "pattern": [
     "ddd",
@@ -12,6 +12,6 @@
   ],
   "result": {
     "count": 3,
-    "id": "pesticides:faucet"
+    "id": "pesticides:copper_faucet"
   }
 }

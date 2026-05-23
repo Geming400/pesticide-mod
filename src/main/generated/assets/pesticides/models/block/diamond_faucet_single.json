@@ -1,0 +1,7 @@
+{
+  "parent": "pesticides:block/template_single_faucet",
+  "textures": {
+    "front": "minecraft:block/diamond_block",
+    "side": "minecraft:block/cobbled_deepslate"
+  }
+}

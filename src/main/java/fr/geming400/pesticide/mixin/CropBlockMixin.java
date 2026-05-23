@@ -76,6 +76,7 @@ abstract class CropBlockMixin {
     @Unique
     private static IterationResult checkIfHasFaucetNearCrop(ServerLevel serverLevel, BlockPos cropPos) {
         AtomicReference<PesticideType> pesticideType = new AtomicReference<>();
+        AtomicReference<FaucetBlock> faucetBlock = new AtomicReference<>();
         boolean succeeded = iterateOverRadius(
                 FaucetBlock.FIND_RADIUS,
                 cropPos,
@@ -102,6 +103,7 @@ abstract class CropBlockMixin {
                     if (blockEntity instanceof FaucetBlockEntity faucetBlockEntity) {
                         if (faucetBlockEntity.getPesticideType() != null && faucetBlockEntity.isActive()) {
                             pesticideType.set(faucetBlockEntity.getPesticideType());
+                            faucetBlock.set((FaucetBlock) faucetState.getBlock());
                             return true;
                         }
                     }
@@ -110,7 +112,7 @@ abstract class CropBlockMixin {
                 }
         );
 
-        return new IterationResult(pesticideType.get(), succeeded);
+        return new IterationResult(pesticideType.get(), succeeded, faucetBlock.get());
     }
 
     @WrapMethod(method = "mayPlaceOn")
@@ -136,9 +138,9 @@ abstract class CropBlockMixin {
 
         if (farmblockState.is(ModBlocks.INFESTED_FARMLAND)) {
             ci.cancel();
-        } else if (serverLevel.random.nextDouble() <= InfestedFarmBlock.getInfectionChance(farmblockState, true)) {
+        } else {
             IterationResult iterResult = checkIfHasFaucetNearCrop(serverLevel, cropPos);
-            if (iterResult.succeeded()) {
+            if (iterResult.succeeded() && serverLevel.random.nextDouble() <= iterResult.faucetBlock().getInfectionChance()) {
                 InfestedFarmBlock.infectBlock(serverLevel, farmblockState, cropPos.below(), iterResult.pesticideType);
 
                 double x = cropPos.getX() + 0.5;
@@ -179,5 +181,5 @@ abstract class CropBlockMixin {
                 : value;
     }
 
-    record IterationResult(PesticideType pesticideType, boolean succeeded) {}
+    record IterationResult(PesticideType pesticideType, boolean succeeded, FaucetBlock faucetBlock) {}
 }

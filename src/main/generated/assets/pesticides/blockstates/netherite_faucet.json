@@ -1,0 +1,42 @@
+{
+  "variants": {
+    "facing=east,single=false": {
+      "model": "pesticides:block/netherite_faucet",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=east,single=true": {
+      "model": "pesticides:block/netherite_faucet_single",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,single=false": {
+      "model": "pesticides:block/netherite_faucet",
+      "uvlock": true
+    },
+    "facing=north,single=true": {
+      "model": "pesticides:block/netherite_faucet_single",
+      "uvlock": true
+    },
+    "facing=south,single=false": {
+      "model": "pesticides:block/netherite_faucet",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=south,single=true": {
+      "model": "pesticides:block/netherite_faucet_single",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,single=false": {
+      "model": "pesticides:block/netherite_faucet",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=west,single=true": {
+      "model": "pesticides:block/netherite_faucet_single",
+      "uvlock": true,
+      "y": 270
+    }
+  }
+}

@@ -23,8 +23,9 @@ It's very recommended to use it with this mod because some recipes won't appear 
 
 ## TODO
 - [x] fix zombie loot table overriding vanilla's one
-- [ ] add beaker instead of cotton swabs to check if something has been infected (check https://fr.minecraft.wiki/w/Corps_compos%C3%A9 for texture)
-- [ ] add multiple faucet types:
+- [ ] add beaker to check if **food** has been infected (check https://fr.minecraft.wiki/w/Corps_compos%C3%A9 for texture)
+- [ ] add filter that replace the infection chance. Better faucets should simply change how long 1B of pesticide lasts in it
+- [x] add multiple faucet types:
   - Copper
   - Iron
   - Diamond

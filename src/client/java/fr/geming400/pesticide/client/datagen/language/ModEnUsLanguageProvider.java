@@ -7,6 +7,7 @@ import fr.geming400.pesticide.content.blocks.ModBlocks;
 import fr.geming400.pesticide.content.effects.ModEffects;
 import fr.geming400.pesticide.content.items.ModItems;
 import fr.geming400.pesticide.content.pesticides.ModPesticides;
+import fr.geming400.pesticide.content.tags.ModBlockTags;
 import fr.geming400.pesticide.content.tags.ModItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.core.HolderLookup;
@@ -35,9 +36,13 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         tu.createPotionTranslations(ModEffects.FREEZING, POTION_FORMATTING, "Freezing", true);
         tu.createPotionTranslations(ModEffects.BURNING, POTION_FORMATTING, "Burning", true);
 
-        builder.add(ModBlocks.FAUCET, "Faucet");
+        builder.add(ModBlocks.COPPER_FAUCET, "Copper Faucet");
+        builder.add(ModBlocks.IRON_FAUCET, "Iron Faucet");
+        builder.add(ModBlocks.DIAMOND_FAUCET, "Diamond Faucet");
+        builder.add(ModBlocks.NETHERITE_FAUCET, "Netherite Faucet");
+        builder.add("block.pesticides.faucet.tooltip.infectionChance", "Has a %s%% chance to infect farmlands");
         builder.add(
-                ModBlocks.FAUCET.getDescriptionId() + ".info",
+                "block.pesticides.faucet.info",
                 """
                         A faucet lets you dispense pesticide on crops. By providing it a redstone signal you can disable it.
                         You can also SHIFT+CLICK on it to toggle cycle between its 2 modes: 'single' and 'double'.
@@ -83,7 +88,8 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         );
         builder.add(ModItems.HOT_MILK_BUCKET, "Hot Milk Bucket");
         builder.add(ModItems.PLASTIC_SHEET, "Plastic Sheet");
-        builder.add(ModItems.BIOMASS, "Bio Mass");
+        builder.add(ModItems.BIOMASS, "Biomass");
+        builder.add(ModItems.BIOMASS_BAG, "Biomass Bag");
         builder.add(ModItems.SULFUR_POWDER, "Sulfur Powder");
         builder.add(ModItems.TOXIC_COMPOUND, "Toxic Compound");
 
@@ -95,6 +101,7 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItemTags.CONTAINERS, "Containers");
         builder.add(ModItemTags.INFECTABLE_FOOD, "Infectable Food");
         builder.add(ModItemTags.PLASTIC_SHEETS, "Plastic Sheets");
+        builder.add(ModBlockTags.FAUCETS, "Faucets");
 
         tu.createPesticideTranslation(ModPesticides.TERPINOLENE, "Terpinolene");
         tu.createPesticideTranslation(ModPesticides.GLYPHOSATE, "Glyphosate");
