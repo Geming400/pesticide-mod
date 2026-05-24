@@ -48,7 +48,7 @@ public class JeiVanillaPlugin implements IModPlugin {
         this.addIngredientInfo(registration, ModItems.COTTON_SWAB);
         this.addIngredientInfo(registration, ModItems.FILTER);
         ModBlocks.getFaucetBlocks()
-                .forEach(block -> registration.addIngredientInfo(block, Component.translatable("block.pesticides.faucet.tooltip.infectionChance.filter")));
+                .forEach(block -> registration.addIngredientInfo(block, Component.translatable("block.pesticides.faucet.info")));
     }
 
     private void addIngredientInfo(@NonNull IRecipeRegistration registration, ItemLike itemLike) {
