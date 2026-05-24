@@ -22,10 +22,13 @@ import java.util.Objects;
 
 public class FaucetBlockEntity extends BlockEntity {
     public static final long TICKS_TO_FULLY_DRAIN = Duration.ofMinutes(20).getSeconds() * 20;
+    public static final int TICKS_TO_BREAK_FILTER = (int) Duration.ofMinutes(20).getSeconds() * 20;
+
     public static final int MB_TO_DRAIN = 1000;
-    public static final float DRAINING_AMOUNT = (float) MB_TO_DRAIN / TICKS_TO_FULLY_DRAIN;
+    public static final float DRAINING_AMOUNT_PER_TICK = (float) MB_TO_DRAIN / TICKS_TO_FULLY_DRAIN;
 
     private float mbLeft = 0f;
+    private int timeBeforeFilterBreaks = TICKS_TO_BREAK_FILTER;
     @Nullable
     private PesticideType pesticideType = null;
     private boolean hasFilter = false;
@@ -48,8 +51,10 @@ public class FaucetBlockEntity extends BlockEntity {
         if (this.pesticideType != null)
             output.putString("pesticideType", this.getPesticideTypeID().toString());
 
-        if (this.hasFilter)
+        if (this.hasFilter) {
             output.putBoolean("hasFilter", true);
+            output.putInt("timeBeforeFilterBreaks", this.timeBeforeFilterBreaks);
+        }
 
         super.saveAdditional(output);
     }
@@ -66,6 +71,7 @@ public class FaucetBlockEntity extends BlockEntity {
                 : null;
 
         this.hasFilter = input.getBooleanOr("hasFilter", false);
+        this.timeBeforeFilterBreaks = input.getIntOr("timeBeforeFilterBreaks", TICKS_TO_BREAK_FILTER);
     }
 
     @Override
@@ -95,9 +101,9 @@ public class FaucetBlockEntity extends BlockEntity {
     public void drainMb(BlockState faucetBlockState) {
         // We drain more pesticide when there are 2 jets in the faucet block
         if (faucetBlockState.getValueOrElse(FaucetBlock.SINGLE, true)) {
-            this.mbLeft -= DRAINING_AMOUNT;
+            this.mbLeft -= DRAINING_AMOUNT_PER_TICK;
         } else {
-            this.mbLeft -= DRAINING_AMOUNT * 2;
+            this.mbLeft -= DRAINING_AMOUNT_PER_TICK * 2;
         }
 
         // If it drained 1B of pesticide
@@ -109,10 +115,12 @@ public class FaucetBlockEntity extends BlockEntity {
         this.setChanged();
         this.normalizeLeftMb();
     }
+
     public void drainMb(float amount) {
         this.mbLeft -= amount;
         this.normalizeLeftMb();
     }
+
     public void normalizeLeftMb() {
         this.mbLeft = Math.max(0, this.mbLeft);
     }
@@ -135,6 +143,30 @@ public class FaucetBlockEntity extends BlockEntity {
         this.hasFilter = hasFilter;
     }
 
+    public float getTimeBeforeFilterBreaks() {
+        return this.timeBeforeFilterBreaks;
+    }
+
+    public void setTimeBeforeFilterBreaks(int timeBeforeFilterBreaks) {
+        this.timeBeforeFilterBreaks = timeBeforeFilterBreaks;
+
+        this.setChanged();
+    }
+
+    public void tryBreakingFilter() {
+        this.timeBeforeFilterBreaks -= 1;
+        if (this.timeBeforeFilterBreaks <= 0) {
+            this.hasFilter = false;
+            this.timeBeforeFilterBreaks = TICKS_TO_BREAK_FILTER;
+        }
+
+        this.normalizeTimeBeforeFilterBreaks();
+    }
+
+    public void normalizeTimeBeforeFilterBreaks() {
+        this.timeBeforeFilterBreaks = Math.max(0, this.timeBeforeFilterBreaks);
+    }
+
     public boolean fill(PesticideType type) {
         if (this.pesticideType == type || this.pesticideType == null) {
             this.mbLeft += 1000;
@@ -153,7 +185,9 @@ public class FaucetBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, FaucetBlockEntity faucetBlockEntity) {
-        if (blockState.getValueOrElse(FaucetBlock.ENABLED, false))
+        if (blockState.getValueOrElse(FaucetBlock.ENABLED, false)) {
             faucetBlockEntity.drainMb(blockState);
+            faucetBlockEntity.tryBreakingFilter();
+        }
     }
 }

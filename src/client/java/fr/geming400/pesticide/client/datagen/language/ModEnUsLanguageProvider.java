@@ -96,6 +96,7 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.SULFUR_POWDER, "Sulfur Powder");
         builder.add(ModItems.TOXIC_COMPOUND, "Toxic Compound");
         builder.add(ModItems.FILTER, "Filter");
+        builder.add(ModItems.FILTER.getDescriptionId() + ".info", "A filter decreases the chance for farmland to get infected. It stays in the faucet for 20 minutes before breaking.");
 
         builder.add(ModItems.HAZMAT_SUIT.helmet(), "Hazmat Helmet");
         builder.add(ModItems.HAZMAT_SUIT.chestplate(), "Hazmat Chestplate");
