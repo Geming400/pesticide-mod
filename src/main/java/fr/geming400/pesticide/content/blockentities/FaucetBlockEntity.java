@@ -149,6 +149,7 @@ public class FaucetBlockEntity extends BlockEntity {
 
     public void setTimeBeforeFilterBreaks(int timeBeforeFilterBreaks) {
         this.timeBeforeFilterBreaks = timeBeforeFilterBreaks;
+        this.normalizeTimeBeforeFilterBreaks();
 
         this.setChanged();
     }
