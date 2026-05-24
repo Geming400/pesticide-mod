@@ -1,0 +1,33 @@
+{
+  "parent": "pesticides:core/first_pesticides",
+  "criteria": {
+    "got_plastic_sheet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pesticides:plastic_sheet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:gui/advancements/backgrounds/stone",
+    "description": {
+      "translate": "advancements.pesticides.core.obtain_plastic.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "pesticides:plastic_sheet"
+    },
+    "title": {
+      "translate": "advancements.pesticides.core.obtain_plastic.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_plastic_sheet"
+    ]
+  ]
+}

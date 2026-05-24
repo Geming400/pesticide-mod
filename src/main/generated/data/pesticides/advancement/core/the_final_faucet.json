@@ -1,0 +1,34 @@
+{
+  "parent": "pesticides:core/first_pesticides",
+  "criteria": {
+    "got_netherite_faucet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "pesticides:netherite_faucet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:gui/advancements/backgrounds/stone",
+    "description": {
+      "translate": "advancements.pesticides.core.the_final_faucet.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "pesticides:netherite_faucet"
+    },
+    "title": {
+      "translate": "advancements.pesticides.core.the_final_faucet.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_netherite_faucet"
+    ]
+  ]
+}

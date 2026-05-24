@@ -119,6 +119,9 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
                 .root("Pesticides", "Le début de toute entreprise de pesticides: les os de zombies !")
                 .add("a_new_farmer_era", "Une nouvelle ère dans l'agriculture", "Tous hail les pesticides !")
                 .add("first_pesticides" ,"Les premiers pesticides", "Et voilà comment rendre les écolos heureux !")
-                .add("a_true_farmer" ,"Un vrai fermier", "Obtenir l'effet \"Mauvais fermier\"");
+                .add("a_true_farmer" ,"Un vrai fermier", "Obtenir l'effet \"Mauvais fermier\"")
+                .add("obtain_plastic", "Du plastique !", "Si seulement il y avait du pétrole...")
+                .add("obtain_hazmat_suit", "De la radioactivité ? Non, c'est des pesticides", "Ce n'est pas le 26 avril 1986")
+                .add("the_final_faucet", "The final faucet", "Pourquoi est-ce que tu ferais ça ?");
     }
 }

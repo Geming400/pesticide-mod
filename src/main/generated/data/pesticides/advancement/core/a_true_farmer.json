@@ -15,7 +15,6 @@
     "description": {
       "translate": "advancements.pesticides.core.a_true_farmer.description"
     },
-    "frame": "goal",
     "hidden": true,
     "icon": {
       "count": 1,

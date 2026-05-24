@@ -1,5 +1,8 @@
 // 1.21.11	-999999999-01-01T00:00:00	Pesticides/Advancements
 bb5ec12597061241786d1f31d90549bf6ae82892 data/pesticides/advancement/core/a_new_farmer_era.json
-5e22401ade3cce6425dacfa2f5524c303d80f1e9 data/pesticides/advancement/core/a_true_farmer.json
+ec6fda48c5d4a6bf649466d351453c2e55295fc5 data/pesticides/advancement/core/a_true_farmer.json
 d4f5884f36c64905834ee3e3e08122a9e40a6e3a data/pesticides/advancement/core/first_pesticides.json
+593fd9ae29c1b26c11973960226566f40c8bbaa7 data/pesticides/advancement/core/obtain_hazmat_suit.json
+857ddbd056cc33934f83fb61856edfeed0c56030 data/pesticides/advancement/core/obtain_plastic.json
 415539e33334f4f8765451029ea86fb08b7b821e data/pesticides/advancement/core/root.json
+2793ca422308c358adf3440fe34a1647b4be5faa data/pesticides/advancement/core/the_final_faucet.json

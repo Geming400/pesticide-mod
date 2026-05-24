@@ -52,7 +52,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 true,
                 false
         ).addCriterion("got_zombie_bone", InventoryChangeTrigger.TriggerInstance.hasItems(
-                ItemPredicate.Builder.item().of(itemLookup, ModItems.ZOMBIE_BONE)))
+                ItemPredicate.Builder.item()
+                        .of(itemLookup, ModItems.ZOMBIE_BONE)))
         );
 
         advBuilder.add(
@@ -67,7 +68,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         )
                         .parentAsRoot()
                         .addCriterion("got_faucet", InventoryChangeTrigger.TriggerInstance.hasItems(
-                                ItemPredicate.Builder.item().of(itemLookup, ModBlocks.COPPER_FAUCET)))
+                                ItemPredicate.Builder.item()
+                                        .of(itemLookup, ModBlocks.COPPER_FAUCET)))
         );
 
         advBuilder.add(
@@ -82,7 +84,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         )
                         .parentAsLast()
                         .addCriterion("got_pesticides", InventoryChangeTrigger.TriggerInstance.hasItems(
-                            ItemPredicate.Builder.item().of(itemLookup, ModItems.PESTICIDE_CONTAINER))
+                            ItemPredicate.Builder.item()
+                                    .of(itemLookup, ModItems.PESTICIDE_CONTAINER))
                     )
         );
 
@@ -91,14 +94,71 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 builder -> builder.display(
                                 Items.DIAMOND_HOE,
                                 Identifier.withDefaultNamespace("gui/advancements/backgrounds/stone"),
-                                AdvancementType.GOAL,
+                                AdvancementType.TASK,
                                 true,
                                 true,
                                 true
                         )
                         .parentAsLast()
                         .addCriterion("got_bad_farmer_effect", EffectsChangedTrigger.TriggerInstance.hasEffects(
-                                MobEffectsPredicate.Builder.effects().and(ModEffects.BAD_FARMER))
+                                MobEffectsPredicate.Builder.effects()
+                                        .and(ModEffects.BAD_FARMER))
+                        )
+        );
+
+        advBuilder.add(
+                "obtain_plastic",
+                builder -> builder.display(
+                                ModItems.PLASTIC_SHEET,
+                                Identifier.withDefaultNamespace("gui/advancements/backgrounds/stone"),
+                                AdvancementType.TASK,
+                                true,
+                                true,
+                                false
+                        )
+                        .parentID("first_pesticides")
+                        .addCriterion("got_plastic_sheet", InventoryChangeTrigger.TriggerInstance.hasItems(
+                                ItemPredicate.Builder.item()
+                                        .of(itemLookup, ModItems.PLASTIC_SHEET))
+                        )
+        );
+
+        advBuilder.add(
+                "obtain_hazmat_suit",
+                builder -> builder.display(
+                                ModItems.HAZMAT_SUIT.chestplate(),
+                                Identifier.withDefaultNamespace("gui/advancements/backgrounds/stone"),
+                                AdvancementType.GOAL,
+                                true,
+                                true,
+                                false
+                        )
+                        .parentAsLast()
+                        .addCriterion("got_full_hazmat_suit", InventoryChangeTrigger.TriggerInstance.hasItems(
+                                ItemPredicate.Builder.item()
+                                        .of(itemLookup,
+                                                ModItems.HAZMAT_SUIT.boots(),
+                                                ModItems.HAZMAT_SUIT.leggings(),
+                                                ModItems.HAZMAT_SUIT.chestplate(),
+                                                ModItems.HAZMAT_SUIT.helmet()
+                                        ))
+                        )
+        );
+
+        advBuilder.add(
+                "the_final_faucet",
+                builder -> builder.display(
+                                ModBlocks.NETHERITE_FAUCET,
+                                Identifier.withDefaultNamespace("gui/advancements/backgrounds/stone"),
+                                AdvancementType.CHALLENGE,
+                                true,
+                                true,
+                                false
+                        )
+                        .parentID("first_pesticides")
+                        .addCriterion("got_netherite_faucet", InventoryChangeTrigger.TriggerInstance.hasItems(
+                                ItemPredicate.Builder.item()
+                                        .of(itemLookup, ModBlocks.NETHERITE_FAUCET))
                         )
         );
     }

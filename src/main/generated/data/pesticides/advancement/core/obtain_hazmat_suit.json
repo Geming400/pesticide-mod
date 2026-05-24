@@ -1,0 +1,39 @@
+{
+  "parent": "pesticides:core/obtain_plastic",
+  "criteria": {
+    "got_full_hazmat_suit": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pesticides:hazmat_boots",
+              "pesticides:hazmat_leggings",
+              "pesticides:hazmat_chestplate",
+              "pesticides:hazmat_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:gui/advancements/backgrounds/stone",
+    "description": {
+      "translate": "advancements.pesticides.core.obtain_hazmat_suit.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "pesticides:hazmat_chestplate"
+    },
+    "title": {
+      "translate": "advancements.pesticides.core.obtain_hazmat_suit.title"
+    }
+  },
+  "requirements": [
+    [
+      "got_full_hazmat_suit"
+    ]
+  ]
+}
