@@ -58,6 +58,8 @@
   "item.pesticides.faucet_analyser.onUse": "This faucet has %s mb of %s and is currently %s",
   "item.pesticides.faucet_analyser.onUse.empty": "This faucet is empty",
   "item.pesticides.faucet_analyser.onUse.state.active": "active",
+  "item.pesticides.faucet_analyser.onUse.state.hasFilter": "It has a filter.",
+  "item.pesticides.faucet_analyser.onUse.state.hasNoFilter": "It doesn't have any filter.",
   "item.pesticides.faucet_analyser.onUse.state.notActive": "not active",
   "item.pesticides.filter": "Filter",
   "item.pesticides.hazmat_boots": "Hazmat Boots",

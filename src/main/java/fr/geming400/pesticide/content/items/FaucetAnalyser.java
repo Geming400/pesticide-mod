@@ -38,7 +38,10 @@ public class FaucetAnalyser extends Item {
                                     Objects.requireNonNull(faucetBlockEntity.getPesticideType()).getName(),
                                     faucetBlockState.getValue(FaucetBlock.ENABLED)
                                             ? Component.translatable("item.pesticides.faucet_analyser.onUse.state.active")
-                                            : Component.translatable("item.pesticides.faucet_analyser.onUse.state.notActive")
+                                            : Component.translatable("item.pesticides.faucet_analyser.onUse.state.notActive"),
+                                    faucetBlockEntity.hasFilter()
+                                            ? Component.translatable("item.pesticides.faucet_analyser.onUse.state.hasFilter")
+                                            : Component.translatable("item.pesticides.faucet_analyser.onUse.state.hasNoFilter")
                             ),
                             false
                     );

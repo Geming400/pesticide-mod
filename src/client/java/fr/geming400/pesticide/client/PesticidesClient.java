@@ -48,8 +48,12 @@ public class PesticidesClient implements ClientModInitializer {
 					&& blockItem.getBlock() instanceof FaucetBlock faucetBlock
 			) {
 				int infectionChance = (int) (faucetBlock.getInfectionChance() * 100);
+				int infectionChanceWithFilter = (int) (faucetBlock.getInfectionChanceWithFilter() * 100);
 
 				tooltip.add(Component.translatable("block.pesticides.faucet.tooltip.infectionChance", infectionChance)
+						.withStyle(ChatFormatting.DARK_GRAY));
+
+				tooltip.add(Component.translatable("block.pesticides.faucet.tooltip.infectionChance.filter", infectionChanceWithFilter)
 						.withStyle(ChatFormatting.DARK_GRAY));
 			}
 		});

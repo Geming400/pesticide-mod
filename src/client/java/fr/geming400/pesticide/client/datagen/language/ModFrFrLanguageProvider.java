@@ -65,10 +65,12 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.general", "Contient du %s");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", "Possède un facteur de croissance de %s");
         builder.add(ModItems.FAUCET_ANALYSER, "Analyseur de robinet");
-        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse", "Ce robinet contient %s mb de %s et est %s");
+        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse", "Ce robinet contient %s mb de %s et est %s. %s");
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.empty", "Ce robinet est vide");
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.active", "actif");
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.notActive", "inactif");
+        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.hasFilter", "Il a un filtre.");
+        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.hasNoFilter", "Il n'a pas de filtre.");
         builder.add(
                 ModItems.FAUCET_ANALYSER.getDescriptionId() + ".info",
                 "Un analyseur de robinet permet de connaître le volume de pesticides contenu dans un robinet."

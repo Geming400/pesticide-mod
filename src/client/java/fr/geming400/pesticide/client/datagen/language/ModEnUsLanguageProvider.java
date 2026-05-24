@@ -69,6 +69,8 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.empty", "This faucet is empty");
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.active", "active");
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.notActive", "not active");
+        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.hasFilter", "It has a filter.");
+        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.hasNoFilter", "It doesn't have any filter.");
         builder.add(
                 ModItems.FAUCET_ANALYSER.getDescriptionId() + ".info",
                 "A faucet analyser allows to know the volume of pesticide left in a faucet"
