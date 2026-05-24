@@ -41,6 +41,7 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModBlocks.DIAMOND_FAUCET, "Robinet en diamant");
         builder.add(ModBlocks.NETHERITE_FAUCET, "Robinet en netherite");
         builder.add("block.pesticides.faucet.tooltip.infectionChance", "A une chance de %s%% d'infecter de la terre labourée");
+        builder.add("block.pesticides.faucet.tooltip.infectionChance.filter", "A une chance de %s%% d'infecter de la terre labourée avec un filtre");
         builder.add(
                 "block.pesticides.faucet.info",
                 """
@@ -92,6 +93,7 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.BIOMASS_BAG, "Sac de biomasse");
         builder.add(ModItems.SULFUR_POWDER, "Poudre de soufre");
         builder.add(ModItems.TOXIC_COMPOUND, "Composé toxique");
+        builder.add(ModItems.FILTER, "Filtre");
 
         builder.add(ModItems.HAZMAT_SUIT.helmet(), "Casque de protection Hazmat");
         builder.add(ModItems.HAZMAT_SUIT.chestplate(), "Plastron de protection Hazmat");

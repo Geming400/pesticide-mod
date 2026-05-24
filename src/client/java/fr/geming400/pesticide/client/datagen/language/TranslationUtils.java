@@ -21,13 +21,12 @@ public final class TranslationUtils {
 
     private void createPotionTranslations(
             String potionID,
-            Holder<MobEffect> effect,
             PotionFormatting potionFormatting,
             String name,
             boolean hasLongVariant
     ) {
         if (hasLongVariant)
-            this.createPotionTranslations(potionID + "_long", effect, potionFormatting, name, false);
+            this.createPotionTranslations(potionID + "_long", potionFormatting, name, false);
 
         this.translationBuilder.add("effect.%s.%s".formatted(Pesticides.MOD_ID, potionID), name);
 
@@ -56,7 +55,7 @@ public final class TranslationUtils {
             boolean hasLongVariant
     ) {
         String potionID = Identifier.parse(effect.getRegisteredName()).getPath();
-        this.createPotionTranslations(potionID, effect, potionFormatting, name, hasLongVariant);
+        this.createPotionTranslations(potionID, potionFormatting, name, hasLongVariant);
     }
 
     public AdvancementTranslationBuilder advancement(String id) {

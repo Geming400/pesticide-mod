@@ -41,6 +41,7 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModBlocks.DIAMOND_FAUCET, "Diamond Faucet");
         builder.add(ModBlocks.NETHERITE_FAUCET, "Netherite Faucet");
         builder.add("block.pesticides.faucet.tooltip.infectionChance", "Has a %s%% chance to infect farmlands");
+        builder.add("block.pesticides.faucet.tooltip.infectionChance.filter", "Has a %s%% chance to infect farmlands with a filter");
         builder.add(
                 "block.pesticides.faucet.info",
                 """
@@ -92,6 +93,7 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.BIOMASS_BAG, "Biomass Bag");
         builder.add(ModItems.SULFUR_POWDER, "Sulfur Powder");
         builder.add(ModItems.TOXIC_COMPOUND, "Toxic Compound");
+        builder.add(ModItems.FILTER, "Filter");
 
         builder.add(ModItems.HAZMAT_SUIT.helmet(), "Hazmat Helmet");
         builder.add(ModItems.HAZMAT_SUIT.chestplate(), "Hazmat Chestplate");
