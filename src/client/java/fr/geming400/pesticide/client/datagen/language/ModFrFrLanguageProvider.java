@@ -96,7 +96,7 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.SULFUR_POWDER, "Poudre de soufre");
         builder.add(ModItems.TOXIC_COMPOUND, "Composé toxique");
         builder.add(ModItems.FILTER, "Filtre");
-        builder.add(ModItems.FILTER.getDescriptionId() + ".info", "Un filtre baisse la chance pour de la terre labourée d'être infectée. Il reste dans le robinet pendant 20 minutes avant de se casser.");
+        builder.add(ModItems.FILTER.getDescriptionId() + ".info", "Un filtre baisse la chance pour de la terre labourée d'être infectée. Il reste dans le robinet pendant 35 minutes avant de se casser.");
 
         builder.add(ModItems.HAZMAT_SUIT.helmet(), "Casque de protection Hazmat");
         builder.add(ModItems.HAZMAT_SUIT.chestplate(), "Plastron de protection Hazmat");
@@ -122,6 +122,6 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
                 .add("a_true_farmer" ,"Un vrai fermier", "Obtenir l'effet \"Mauvais fermier\"")
                 .add("obtain_plastic", "Du plastique !", "Si seulement il y avait du pétrole...")
                 .add("obtain_hazmat_suit", "Une catastrophe nucléaire ?", "Non, c'est bien de l'agriculture.")
-                .add("the_final_faucet", "Le fermier le plus riche de France", "Pourquoi est-ce que tu ferais ça ?");
+                .add("the_final_faucet", "Génocide des nuisibles", "Le rendement avant tout !");
     }
 }

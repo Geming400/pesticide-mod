@@ -122,6 +122,6 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
                 .add("a_true_farmer" ,"A true farmer", "Get the \"bad farmer\" effect")
                 .add("obtain_plastic", "Plastic !", "If only we had oil...")
                 .add("obtain_hazmat_suit", "A nuclear disaster?", "No, it's just agriculture")
-                .add("the_final_faucet", "The final faucet", "Why would you even do this ?");
+                .add("the_final_faucet", "The genocide of pests", "Productivity above all else!");
     }
 }
