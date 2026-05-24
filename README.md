@@ -21,6 +21,10 @@ How cool is that
 There's basic integration with jei for crafts.
 It's very recommended to use it with this mod because some recipes won't appear in the recipe book !
 
+## Credits
+
+Thanks to my friend Raycor for most textures, and Kayrooxx for the faucet model and some other textures.
+
 ## TODO
 - [x] fix zombie loot table overriding vanilla's one
 - [ ] add beaker to check if **food** has been infected (check https://fr.minecraft.wiki/w/Corps_compos%C3%A9 for texture)
