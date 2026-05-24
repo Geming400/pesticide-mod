@@ -22,10 +22,10 @@ public final class HazmatArmorMaterial {
     public static final ArmorMaterial INSTANCE = new ArmorMaterial(
             BASE_DURABILITY,
             Map.of(
-                    ArmorType.HELMET, 3,
-                    ArmorType.CHESTPLATE, 8,
-                    ArmorType.LEGGINGS, 6,
-                    ArmorType.BOOTS, 3
+                    ArmorType.HELMET, 1,
+                    ArmorType.CHESTPLATE, 2,
+                    ArmorType.LEGGINGS, 3,
+                    ArmorType.BOOTS, 1
             ),
             1,
             SoundEvents.ARMOR_EQUIP_IRON,
