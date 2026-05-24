@@ -118,10 +118,10 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         tu.advancement("core")
                 .root("Pesticides", "The start of every pesticide industry, zombie bones !")
                 .add("a_new_farmer_era", "A new farmer era", "All hail pesticides !")
-                .add("first_pesticides" ,"First pesticides", "And that's how you make ecologists happy !")
+                .add("first_pesticides" ,"Toxic love", "And that's how you make ecologists happy !")
                 .add("a_true_farmer" ,"A true farmer", "Get the \"bad farmer\" effect")
                 .add("obtain_plastic", "Plastic !", "If only we had oil...")
-                .add("obtain_hazmat_suit", "Radioactivity ? No, it's pesticides", "This is not the 26th of April 1986")
+                .add("obtain_hazmat_suit", "A nuclear disaster?", "No, it's just agriculture")
                 .add("the_final_faucet", "The final faucet", "Why would you even do this ?");
     }
 }
