@@ -1,6 +1,7 @@
 package fr.geming400.pesticide.client.datagen;
 
 import com.google.gson.JsonObject;
+import fr.geming400.pesticide.client.PesticidesDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.HolderLookup;
@@ -30,13 +31,14 @@ public abstract class PesticidesLanguageProvider extends FabricLanguageProvider 
         this.languageMap.addLanguage(languageCode);
     }
 
+
     @Override
     @NotNull
     public CompletableFuture<?> run(@NonNull CachedOutput writer) {
         TreeMap<String, String> translationEntries = new TreeMap<>();
 
         return this.registryLookup.thenCompose(lookup -> {
-            generateTranslations(lookup, (key, value) -> {
+            this.generateTranslations(lookup, (key, value) -> {
                 Objects.requireNonNull(key);
                 Objects.requireNonNull(value);
 
@@ -54,8 +56,14 @@ public abstract class PesticidesLanguageProvider extends FabricLanguageProvider 
                 this.languageMap.addTranslation(this.languageCode, entry.getKey(), entry.getValue());
             }
 
+            PesticidesDataGenerator.checkForTranslations(this.languageCode);
+
             return DataProvider.saveStable(writer, langEntryJson, getLangFilePath(this.languageCode));
         });
+    }
+
+    public String getLanguageCode() {
+        return this.languageCode;
     }
 
     public static class LanguageMap extends HashMap<String, Map<String, String>> {
