@@ -27,7 +27,8 @@ public class FaucetBlockEntity extends BlockEntity {
 
     private float mbLeft = 0f;
     @Nullable
-    private PesticideType pesticideType;
+    private PesticideType pesticideType = null;
+    private boolean hasFilter = false;
 
     public FaucetBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(ModBlockEntities.FAUCET_BLOCK_ENTITY, blockPos, blockState);
@@ -47,6 +48,9 @@ public class FaucetBlockEntity extends BlockEntity {
         if (this.pesticideType != null)
             output.putString("pesticideType", this.getPesticideTypeID().toString());
 
+        if (this.hasFilter)
+            output.putBoolean("hasFilter", true);
+
         super.saveAdditional(output);
     }
 
@@ -60,12 +64,14 @@ public class FaucetBlockEntity extends BlockEntity {
         this.pesticideType = hasPesticide
                 ? ModRegistries.PESTICIDE_TYPE.getValue(Identifier.parse(input.getString("pesticideType").orElseThrow()))
                 : null;
+
+        this.hasFilter = input.getBooleanOr("hasFilter", false);
     }
 
     @Override
     @NonNull
     public CompoundTag getUpdateTag(HolderLookup.@NonNull Provider registryLookup) {
-        return saveWithoutMetadata(registryLookup);
+        return this.saveWithoutMetadata(registryLookup);
     }
 
     @NotNull
@@ -83,17 +89,24 @@ public class FaucetBlockEntity extends BlockEntity {
         this.mbLeft = mbLeft;
         this.normalizeLeftMb();
 
-        setChanged();
+        this.setChanged();
     }
 
     public void drainMb(BlockState faucetBlockState) {
         // We drain more pesticide when there are 2 jets in the faucet block
-        if (faucetBlockState.getValueOrElse(FaucetBlock.SINGLE, false)) {
+        if (faucetBlockState.getValueOrElse(FaucetBlock.SINGLE, true)) {
             this.mbLeft -= DRAINING_AMOUNT;
         } else {
             this.mbLeft -= DRAINING_AMOUNT * 2;
         }
 
+        // If it drained 1B of pesticide
+        // we remove the filter
+        if ((int) this.mbLeft % 1000 == 0) {
+            this.hasFilter = false;
+        }
+
+        this.setChanged();
         this.normalizeLeftMb();
     }
     public void drainMb(float amount) {
@@ -111,7 +124,15 @@ public class FaucetBlockEntity extends BlockEntity {
 
     public void setPesticideType(@Nullable PesticideType pesticideType) {
         this.pesticideType = pesticideType;
-        setChanged();
+        this.setChanged();
+    }
+
+    public boolean hasFilter() {
+        return this.hasFilter;
+    }
+
+    public void hasFilter(boolean hasFilter) {
+        this.hasFilter = hasFilter;
     }
 
     public boolean fill(PesticideType type) {
@@ -119,7 +140,7 @@ public class FaucetBlockEntity extends BlockEntity {
             this.mbLeft += 1000;
             this.pesticideType = type;
 
-            setChanged();
+            this.setChanged();
 
             return true;
         }

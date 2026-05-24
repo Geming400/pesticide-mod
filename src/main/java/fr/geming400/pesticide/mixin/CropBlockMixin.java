@@ -11,7 +11,6 @@ import fr.geming400.pesticide.content.effects.ModEffects;
 import fr.geming400.pesticide.content.pesticides.PesticideType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -77,6 +76,8 @@ abstract class CropBlockMixin {
     private static IterationResult checkIfHasFaucetNearCrop(ServerLevel serverLevel, BlockPos cropPos) {
         AtomicReference<PesticideType> pesticideType = new AtomicReference<>();
         AtomicReference<FaucetBlock> faucetBlock = new AtomicReference<>();
+        AtomicReference<FaucetBlockEntity> faucetBlockEntityRef = new AtomicReference<>();
+
         boolean succeeded = iterateOverRadius(
                 FaucetBlock.FIND_RADIUS,
                 cropPos,
@@ -104,6 +105,7 @@ abstract class CropBlockMixin {
                         if (faucetBlockEntity.getPesticideType() != null && faucetBlockEntity.isActive()) {
                             pesticideType.set(faucetBlockEntity.getPesticideType());
                             faucetBlock.set((FaucetBlock) faucetState.getBlock());
+                            faucetBlockEntityRef.set(faucetBlockEntity);
                             return true;
                         }
                     }
@@ -112,7 +114,7 @@ abstract class CropBlockMixin {
                 }
         );
 
-        return new IterationResult(pesticideType.get(), succeeded, faucetBlock.get());
+        return new IterationResult(pesticideType.get(), succeeded, faucetBlock.get(), faucetBlockEntityRef.get());
     }
 
     @WrapMethod(method = "mayPlaceOn")
@@ -136,17 +138,17 @@ abstract class CropBlockMixin {
     private void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos cropPos, RandomSource randomSource, CallbackInfo ci) {
         BlockState farmblockState = serverLevel.getBlockState(cropPos.below());
 
+        // If it's infested farmland, we don't allow
+        // crops to grow
         if (farmblockState.is(ModBlocks.INFESTED_FARMLAND)) {
             ci.cancel();
         } else {
             IterationResult iterResult = checkIfHasFaucetNearCrop(serverLevel, cropPos);
-            if (iterResult.succeeded() && serverLevel.random.nextDouble() <= iterResult.faucetBlock().getInfectionChance()) {
+            if (
+                    iterResult.succeeded()
+                    && serverLevel.random.nextDouble() <= iterResult.faucetBlock().getInfectionChanceWithModifier(iterResult.faucetBlockEntity)
+            ) {
                 InfestedFarmBlock.infectBlock(serverLevel, farmblockState, cropPos.below(), iterResult.pesticideType);
-
-                double x = cropPos.getX() + 0.5;
-                double y = cropPos.getY() + 0.5;
-                double z = cropPos.getZ() + 0.5;
-                serverLevel.addParticle(new DustParticleOptions(0x540000, 0.5f), x, y, z, 0.0, 0.0, 0.0);
             }
         }
     }
@@ -181,5 +183,5 @@ abstract class CropBlockMixin {
                 : value;
     }
 
-    record IterationResult(PesticideType pesticideType, boolean succeeded, FaucetBlock faucetBlock) {}
+    record IterationResult(PesticideType pesticideType, boolean succeeded, FaucetBlock faucetBlock, FaucetBlockEntity faucetBlockEntity) {}
 }

@@ -47,9 +47,11 @@ import org.jspecify.annotations.Nullable;
 import java.util.Map;
 
 public class FaucetBlock extends BaseEntityBlock {
+    public static double FILTER_INFECTION_CHANCE_DECREASE = 0.15;
+
     public static final MapCodec<FaucetBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             propertiesCodec(),
-            Codec.DOUBLE.fieldOf("infectionChance").forGetter(FaucetBlock::getInfectionChance)
+            Codec.DOUBLE.fieldOf("infectionChance").forGetter(block -> block.infectionChance)
     ).apply(instance, FaucetBlock::new));
 
     /// The radius {@linkplain CropBlock crop blocks} will try to search
@@ -196,6 +198,13 @@ public class FaucetBlock extends BaseEntityBlock {
                                     )
                             );
                 }
+            } else if (itemStack.is(ModItems.FILTER) && !faucetBlockEntity.hasFilter()) {
+                faucetBlockEntity.hasFilter(true);
+
+                if (!player.isCreative())
+                    itemStack.shrink(1);
+
+                return InteractionResult.SUCCESS;
             }
         }
 
@@ -204,6 +213,22 @@ public class FaucetBlock extends BaseEntityBlock {
 
     public double getInfectionChance() {
         return this.infectionChance;
+    }
+
+    public double getInfectionChanceWithFilter() {
+        return Math.clamp(
+                this.infectionChance - FILTER_INFECTION_CHANCE_DECREASE,
+                0, 1
+        );
+    }
+
+    public double getInfectionChanceWithModifier(FaucetBlockEntity faucetBlockEntity) {
+        return Math.clamp(
+                faucetBlockEntity.hasFilter()
+                        ? this.infectionChance - FILTER_INFECTION_CHANCE_DECREASE
+                        : this.infectionChance,
+                0, 1
+        );
     }
 
     @Override
