@@ -22,6 +22,7 @@ public class InfestedFarmlandBlockEntity extends BlockEntity {
     /// The time for an infest farmland to fully show as "infected" (aka the block has finished tinting)
     private static final float INFECTION_TIME = Duration.ofMinutes(30).getSeconds() * 20;
     private static final float INFECTION_STEP = 1 / INFECTION_TIME;
+    private static final int TIME_BEFORE_BLOCK_UPDATE = 20 * 30; // Every 30 seconds
 
     /// Used to prevent crashing
     private static final PesticideType DEFAULT_PESTICIDE_TYPE = Objects.requireNonNull(ModRegistries.PESTICIDE_TYPE.byId(0));
@@ -29,6 +30,7 @@ public class InfestedFarmlandBlockEntity extends BlockEntity {
     @Range(from = 0, to = 1)
     private float infectionProgress = 0f;
     private PesticideType pesticideType;
+    private int blockUpdateCountdown = 0; // Every 30 seconds
 
     public InfestedFarmlandBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(ModBlockEntities.INFESTED_FARMLAND_BLOCK_ENTITY, blockPos, blockState);
@@ -74,7 +76,8 @@ public class InfestedFarmlandBlockEntity extends BlockEntity {
             this.infectionProgress += INFECTION_STEP;
             this.infectionProgress = Math.min(this.infectionProgress, 1);
 
-            if (level.isClientSide()) {
+            this.blockUpdateCountdown += 1;
+            if (level.isClientSide() && this.blockUpdateCountdown > TIME_BEFORE_BLOCK_UPDATE) {
                 // This allows for the block's tint to get updated dynamically
                 //
                 // Minecraft store tint values in a cache, sending
@@ -85,6 +88,8 @@ public class InfestedFarmlandBlockEntity extends BlockEntity {
                         blockState,
                         Block.UPDATE_CLIENTS
                 );
+
+                this.blockUpdateCountdown = 0;
             }
         }
     }
