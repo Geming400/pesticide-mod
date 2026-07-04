@@ -65,7 +65,7 @@ public class ModEnUsLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.general", "Contains %s");
         builder.add(ModItems.PESTICIDE_CONTAINER.getDescriptionId() + ".tooltip.growthFactor", "Has a growth factor of %s");
         builder.add(ModItems.FAUCET_ANALYSER, "Faucet Analyser");
-        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse", "This faucet has %s mb of %s and is currently %s");
+        builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse", "This faucet has %s mb of %s and is currently %s. %s");
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.empty", "This faucet is empty");
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.active", "active");
         builder.add(ModItems.FAUCET_ANALYSER.getDescriptionId() + ".onUse.state.notActive", "not active");
