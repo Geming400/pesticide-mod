@@ -68,7 +68,7 @@
   "item.pesticides.faucet_analyser.onUse.state.hasNoFilter": "Il n'a pas de filtre.",
   "item.pesticides.faucet_analyser.onUse.state.notActive": "inactif",
   "item.pesticides.filter": "Filtre",
-  "item.pesticides.filter.info": "Un filtre baisse la chance pour de la terre labourée d'être infectée. Il reste dans le robinet pendant 35 minutes avant de se casser.",
+  "item.pesticides.filter.info": "Un filtre baisse la chance pour de la terre labourée d'être infectée. Il reste dans le robinet pendant 20 minutes avant de se casser.",
   "item.pesticides.hazmat_boots": "Bottes de protection Hazmat",
   "item.pesticides.hazmat_chestplate": "Plastron de protection Hazmat",
   "item.pesticides.hazmat_helmet": "Casque de protection Hazmat",

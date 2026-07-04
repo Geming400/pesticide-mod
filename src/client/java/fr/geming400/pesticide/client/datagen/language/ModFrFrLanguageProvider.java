@@ -96,7 +96,7 @@ public class ModFrFrLanguageProvider extends PesticidesLanguageProvider {
         builder.add(ModItems.SULFUR_POWDER, "Poudre de soufre");
         builder.add(ModItems.TOXIC_COMPOUND, "Composé toxique");
         builder.add(ModItems.FILTER, "Filtre");
-        builder.add(ModItems.FILTER.getDescriptionId() + ".info", "Un filtre baisse la chance pour de la terre labourée d'être infectée. Il reste dans le robinet pendant 35 minutes avant de se casser.");
+        builder.add(ModItems.FILTER.getDescriptionId() + ".info", "Un filtre baisse la chance pour de la terre labourée d'être infectée. Il reste dans le robinet pendant 20 minutes avant de se casser.");
 
         builder.add(ModItems.HAZMAT_SUIT.helmet(), "Casque de protection Hazmat");
         builder.add(ModItems.HAZMAT_SUIT.chestplate(), "Plastron de protection Hazmat");
