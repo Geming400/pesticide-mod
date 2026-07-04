@@ -9,7 +9,8 @@
 	],
 	"contact": {
 		"issues": "https://github.com/Geming400/pesticide-mod/issues",
-		"sources": "https://github.com/Geming400/pesticide-mod"
+		"sources": "https://github.com/Geming400/pesticide-mod",
+		"homepage": "https://modrinth.com/mod/pesticides"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/pesticides/icon.png",
