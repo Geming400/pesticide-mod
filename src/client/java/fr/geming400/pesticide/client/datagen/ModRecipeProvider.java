@@ -69,7 +69,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .save(output, "faucet/iron");
 
                 shapeless(RecipeCategory.MISC, ModBlocks.DIAMOND_FAUCET)
-                        .requires(ModBlocks.COPPER_FAUCET)
+                        .requires(ModBlocks.IRON_FAUCET)
                         .requires(ConventionalItemTags.DIAMOND_GEMS)
                         .group("faucet")
                         .unlockedBy(getHasName(ModBlocks.IRON_FAUCET), has(ModBlocks.IRON_FAUCET))
@@ -84,9 +84,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
 
                 shaped(RecipeCategory.MISC, ModItems.EMPTY_CONTAINER, 3)
-                        .pattern("  g")
-                        .pattern(" gg")
-                        .pattern(" gg")
+                        .pattern(" g")
+                        .pattern("gg")
+                        .pattern("gg")
                         .define('g', ConventionalItemTags.GLASS_BLOCKS)
                         .group("pesticide_containers")
                         .unlockedBy(getHasName(Items.GLASS), has(ConventionalItemTags.GLASS_BLOCKS))

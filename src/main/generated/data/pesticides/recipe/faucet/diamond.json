@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "faucet",
   "ingredients": [
-    "pesticides:copper_faucet",
+    "pesticides:iron_faucet",
     "#c:gems/diamond"
   ],
   "result": {

@@ -6,9 +6,9 @@
     "g": "#c:glass_blocks"
   },
   "pattern": [
-    "  g",
-    " gg",
-    " gg"
+    " g",
+    "gg",
+    "gg"
   ],
   "result": {
     "count": 3,
