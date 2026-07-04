@@ -7,6 +7,7 @@ bdf3f3028b16a8d32e9386077e18815cbf233787 data/pesticides/advancement/recipes/mis
 5e64f9d03a07c04c6bcd5faf2eaf3fd6a113feb3 data/pesticides/advancement/recipes/misc/faucet/diamond.json
 c6c8fe7b3037b676152d2a714357bc911ed3a806 data/pesticides/advancement/recipes/misc/faucet/iron.json
 94a76c7ebf182bc4f1a626a63e55ac6c7afcc5a5 data/pesticides/advancement/recipes/misc/faucet/netherite.json
+a78eb6bd5de94c078cd039a785c94016c07246ac data/pesticides/advancement/recipes/misc/filter.json
 8a2dbebfc1b5864ec5549d1db488966aba2ef304 data/pesticides/advancement/recipes/misc/pesticide_container/afidopyropen.json
 eb108757fe254045671164ec705bd9a3af8f02c5 data/pesticides/advancement/recipes/misc/pesticide_container/ampropylfos.json
 54ea728ebd9e44569e39e0b3464d313756c8df7e data/pesticides/advancement/recipes/misc/pesticide_container/atrazine.json
@@ -33,6 +34,7 @@ dbdb769b92f39dde4b528570bb62878c77103ac4 data/pesticides/recipe/faucet/copper.js
 f34378030cea221d3b21eb4fb8cecc90bec959fe data/pesticides/recipe/faucet/iron.json
 28d59eb89f6c9637d27260cc74b50f713f8157e4 data/pesticides/recipe/faucet/netherite.json
 9d2d8d0e95b9e2decb04a6dc32aa61cb0fe0f6ff data/pesticides/recipe/faucet_analyser.json
+060f243ca722e42a82c74ddff70b9d9a1f069bde data/pesticides/recipe/filter.json
 88ac435ddcf8f1daf2fcf96c489810acb63a2b5b data/pesticides/recipe/hazmat_boots.json
 441b5c05d9988236ee6882c6280e992c2070d400 data/pesticides/recipe/hazmat_chestplate.json
 cac77ef28045b252645207fb22cf687054f3f0d9 data/pesticides/recipe/hazmat_helmet.json

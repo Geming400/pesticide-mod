@@ -172,13 +172,24 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy("has_plastic_sheets", has(ModItemTags.PLASTIC_SHEETS))
                         .save(output);
 
-                SimpleCookingRecipeBuilder.smoking(
-                        Ingredient.of(Items.MILK_BUCKET),
-                        RecipeCategory.FOOD,
-                        ModItems.HOT_MILK_BUCKET,
-                        0.25f,
-                        300
-                )
+                shaped(RecipeCategory.MISC, ModItems.FILTER)
+                        .pattern(" p ")
+                        .pattern("ibi")
+                        .pattern(" i ")
+                        .define('p', Items.PAPER)
+                        .define('i', ConventionalItemTags.IRON_INGOTS)
+                        .define('b', ConventionalItemTags.EMPTY_BUCKETS)
+                        .unlockedBy("has_iron_ingots", has(ConventionalItemTags.IRON_INGOTS))
+                        .save(output);
+
+                SimpleCookingRecipeBuilder
+                        .smoking(
+                                Ingredient.of(Items.MILK_BUCKET),
+                                RecipeCategory.FOOD,
+                                ModItems.HOT_MILK_BUCKET,
+                                0.25f,
+                                300
+                        )
                         .unlockedBy("has_milk_buckets", has(ConventionalItemTags.MILK_BUCKETS))
                         .save(output);
 

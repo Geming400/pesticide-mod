@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": "#c:buckets/empty",
+    "i": "#c:ingots/iron",
+    "p": "minecraft:paper"
+  },
+  "pattern": [
+    " p ",
+    "ibi",
+    " i "
+  ],
+  "result": {
+    "count": 1,
+    "id": "pesticides:filter"
+  }
+}
